@@ -21,14 +21,12 @@ const WindTurbine = ({
       {...props}>
       <img
         src={
-          dark
-            ? '/products/wind-turbine-scaled.png'
-            : '/products/wind-turbine-scaled.png'
+          imgSrc
         }
-        width={600}
-        height={600}
+        width={1280}
+        height={1280}
         className='pointer-events-none z-50 select-none'
-        alt='phone image'
+        alt='extractor eólico imagen'
       />
     </div>
   );
