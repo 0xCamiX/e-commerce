@@ -1,14 +1,20 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
-import { Recursive } from 'next/font/google'
-import "./globals.css";
 import Footer from "@/components/Footer";
+
+import "@/styles/globals.css";
+
+import { Recursive } from 'next/font/google'
+import { siteConfig } from "@/config/site";
 
 const recursive = Recursive({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "Extractores eólicos",
-  description: "e-commerce de extractores eólicos en Colombia con envío a todo el país"
+  title: siteConfig.name,
+  description: siteConfig.description,
+  icons: {
+    icon: 'favicon/favicon.ico'
+  }
 };
 
 export default function RootLayout({
