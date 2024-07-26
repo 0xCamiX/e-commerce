@@ -1,6 +1,6 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { HTMLAttributes } from "react";
-
 interface WindTurbineProps extends HTMLAttributes<HTMLDivElement> {
   imgSrc: string;
   dark?: boolean;
@@ -19,7 +19,7 @@ const WindTurbine = ({
         className
       )}
       {...props}>
-      <img
+      <Image
         src={
           imgSrc
         }

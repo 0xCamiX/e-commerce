@@ -6,24 +6,24 @@ import { cn } from "@/lib/utils";
 import WindTurbine from "./WindTurbine";
 
 const WIND_TURBINES = [
-  "products/testimonials/1.jpg",
-  "products/testimonials/2.jpg",
-  "products/testimonials/3.jpg",
-  "products/testimonials/4.jpg",
-  "products/testimonials/5.jpg",
-  "products/testimonials/5.jpg",
-  "products/testimonials/1.jpg",
-  "products/testimonials/2.jpg",
-  "products/testimonials/3.jpg",
-  "products/testimonials/4.jpg",
-  "products/testimonials/5.jpg",
-  "products/testimonials/5.jpg",
-  "products/testimonials/1.jpg",
-  "products/testimonials/2.jpg",
-  "products/testimonials/3.jpg",
-  "products/testimonials/4.jpg",
-  "products/testimonials/5.jpg",
-  "products/testimonials/5.jpg",
+  "/products/testimonials/1.jpg",
+  "/products/testimonials/2.jpg",
+  "/products/testimonials/3.jpg",
+  "/products/testimonials/4.jpg",
+  "/products/testimonials/5.jpg",
+  "/products/testimonials/5.jpg",
+  "/products/testimonials/1.jpg",
+  "/products/testimonials/2.jpg",
+  "/products/testimonials/3.jpg",
+  "/products/testimonials/4.jpg",
+  "/products/testimonials/5.jpg",
+  "/products/testimonials/5.jpg",
+  "/products/testimonials/1.jpg",
+  "/products/testimonials/2.jpg",
+  "/products/testimonials/3.jpg",
+  "/products/testimonials/4.jpg",
+  "/products/testimonials/5.jpg",
+  "/products/testimonials/5.jpg",
 ];
 
 function splitArray<T>(array: Array<T>, numParts: number) {
@@ -39,7 +39,6 @@ function splitArray<T>(array: Array<T>, numParts: number) {
 
   return result;
 }
-
 
 function ReviewColumn({
   reviews,

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import WindTurbine from "@/components/WindTurbine";
 import { Reviews } from "@/components/Reviews";
@@ -7,7 +8,6 @@ import { Check, Star } from "lucide-react";
 export default function Home() {
   return (
     <div className="bg-slate-50">
-
       {/* Hero */}
       <section>
         <MaxWidthWrapper className="pb-24 pt-12 lg:grid lg:grid-cols-3 sm:pb-32 lg:gap-x-0 xl:gap-x-8 lg:pt-16 xl:pt-24 lg:pb-52">
@@ -15,7 +15,13 @@ export default function Home() {
             <div className="relative mx-auto text-center lg:text-left flex flex-col items-center lg:items-start">
               {/* Image */}
               <div className="absolute w-28 left-0 -top-20 hidden lg:block">
-                <img src="products/wind-turbine-info-3.png" alt="Extractor eólico información" className="w-full" />
+                <Image
+                  src={"/products/wind-turbine-info-3.png"}
+                  alt="Extractor eólico información"
+                  width={200}
+                  height={200}
+                  className="w-full"
+                />
               </div>
               {/* Hero Title */}
               <h1 className="relative w-fit tracking-tight text-balance mt-16 font-bold !leading-tight text-gray-900 text-5xl md:text-6xl lg:text-7xl">
@@ -65,7 +71,7 @@ export default function Home() {
             <div className="relative md:max-w-xl">
               <WindTurbine
                 className="w-full"
-                imgSrc="products/wind-turbine-scaled.png"
+                imgSrc="/products/wind-turbine-scaled.png"
               />
             </div>
           </div>
@@ -102,9 +108,11 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex flex-col md:flex-row gap-4 mt-2">
-                <img
-                  src="clients/srwok.jpg"
-                  alt="client"
+                <Image
+                  src={"/clients/srwok.jpg"}
+                  alt="Sr Wok"
+                  width={248}
+                  height={22}
                   className="rounded-full h-22 w-64 object-cover"
                 />
                 <div className="flex flex-col">
@@ -136,10 +144,12 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex gap-4 mt-2">
-                <img
-                  src="clients/ind-carber.png"
-                  alt="client"
-                  className="rounded-full h-[64px] w-[64px] object-cover"
+                <Image
+                  src={"/clients/ind-carber.png"}
+                  alt="Industrias Carber"
+                  width={128}
+                  height={128}
+                  className="rounded-full h-16 w-16 object-cover"
                 />
                 <div className="flex flex-col">
                   <p className="font-semibold">Industrias Cárbel</p>
@@ -170,9 +180,11 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex flex-col md:flex-row gap-4 mt-2">
-                <img
-                  src="clients/carpas-mundial.png"
-                  alt="client"
+                <Image
+                  src={"/clients/carpas-mundial.png"}
+                  alt="Carpas Mundial"
+                  width={258}
+                  height={64}
                   className="rounded-full h-[64px] w-[258px] object-cover"
                 />
                 <div className="flex flex-col">
@@ -204,10 +216,12 @@ export default function Home() {
                 </p>
               </div>
               <div className="flex gap-4 mt-2">
-                <img
-                  src="clients/papeles-cauca.png"
-                  alt="client"
-                  className="rounded-full h-[64px] w-[64px] object-cover"
+                <Image 
+                  src={"/clients/papeles-cauca.png"}
+                  alt="Papeles del Valle"
+                  width={128}
+                  height={128}
+                  className="rounded-full h-[64px] w-[70px] object-cover"
                 />
                 <div className="flex flex-col">
                   <p className="font-semibold">Papeles del Valle</p>
@@ -224,8 +238,8 @@ export default function Home() {
           <Reviews />
         </div>
       </section>
-        
-        {/* Contact Section */}
+
+      {/* Contact Section */}
       <section>
         <MaxWidthWrapper className="py-24">
           <div className="mb-12 px-6 lg:px-8">
