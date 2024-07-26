@@ -1,20 +1,20 @@
-import type { Metadata } from "next";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import type { Metadata } from 'next';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
-import "@/styles/globals.css";
+import '@/styles/globals.css';
 
-import { Recursive } from 'next/font/google'
-import { siteConfig } from "@/config/site";
+import { Recursive } from 'next/font/google';
+import { siteConfig } from '@/config/site';
 
-const recursive = Recursive({ subsets: ['latin'] })
+const recursive = Recursive({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: siteConfig.name,
   description: siteConfig.description,
   icons: {
-    icon: 'favicon/favicon.ico'
-  }
+    icon: 'favicon/favicon.ico',
+  },
 };
 
 export default function RootLayout({
@@ -28,9 +28,7 @@ export default function RootLayout({
         <Navbar />
 
         <main className='flex grainy-light flex-col min-h-[calc(100vh-3.5rem-1px)]'>
-          <div className='flex-1 flex flex-col h-full'>
-            {children}
-          </div>
+          <div className='flex-1 flex flex-col h-full'>{children}</div>
           <Footer />
         </main>
       </body>

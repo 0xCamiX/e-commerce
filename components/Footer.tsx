@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import MaxWidthWrapper from './MaxWidthWrapper'
+import Link from 'next/link';
+import MaxWidthWrapper from './MaxWidthWrapper';
 
 const Footer = () => {
   return (
@@ -18,17 +18,20 @@ const Footer = () => {
             <div className='flex space-x-8'>
               <Link
                 href='#'
-                className='text-sm text-muted-foreground hover:text-gray-600'>
+                className='text-sm text-muted-foreground hover:text-gray-600'
+              >
                 Terms
               </Link>
               <Link
                 href='#'
-                className='text-sm text-muted-foreground hover:text-gray-600'>
+                className='text-sm text-muted-foreground hover:text-gray-600'
+              >
                 Privacy Policy
               </Link>
               <Link
                 href='#'
-                className='text-sm text-muted-foreground hover:text-gray-600'>
+                className='text-sm text-muted-foreground hover:text-gray-600'
+              >
                 Cookie Policy
               </Link>
             </div>
@@ -36,7 +39,7 @@ const Footer = () => {
         </div>
       </MaxWidthWrapper>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

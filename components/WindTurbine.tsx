@@ -1,6 +1,6 @@
-import Image from "next/image";
-import { cn } from "@/lib/utils";
-import { HTMLAttributes } from "react";
+import Image from 'next/image';
+import { cn } from '@/lib/utils';
+import { HTMLAttributes } from 'react';
 interface WindTurbineProps extends HTMLAttributes<HTMLDivElement> {
   imgSrc: string;
   dark?: boolean;
@@ -18,11 +18,10 @@ const WindTurbine = ({
         'relative pointer-events-none z-50 overflow-hidden',
         className
       )}
-      {...props}>
+      {...props}
+    >
       <Image
-        src={
-          imgSrc
-        }
+        src={imgSrc}
         width={1280}
         height={1280}
         className='pointer-events-none z-50 select-none'
