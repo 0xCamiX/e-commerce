@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Image from 'next/image';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import WindTurbine from '@/components/WindTurbine';
@@ -267,7 +268,21 @@ export default function Home() {
                 >
                   +57 317 752 5559
                 </a>
-                <Icons.whatsapp className='w-16 h-16 text-green-400' />
+                <div className='flex items-center gap-4 sm:gap-6'>
+                  <Link
+                    href={
+                      'https://wa.me/3177525559?text=Me%20interesa%20el%20extractor%20eólico'
+                    }
+                  >
+                    <Icons.whatsapp className='w-16 h-16' />
+                  </Link>
+                  <Link href='/'>
+                    <Icons.instagram className='w-16 h-16' />
+                  </Link>
+                  <Link href={'https://www.facebook.com/juancarlosgallego32'}>
+                    <Icons.facebook className='w-14 h-14' />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
