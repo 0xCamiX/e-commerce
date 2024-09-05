@@ -10,28 +10,18 @@ export default function Home() {
     <div className='bg-slate-50'>
       {/* Hero */}
       <section>
-        <MaxWidthWrapper className='pb-24 pt-12 lg:grid lg:grid-cols-3 sm:pb-32 lg:gap-x-0 xl:gap-x-8 lg:pt-16 xl:pt-24 lg:pb-52'>
-          <div className='col-span-2 px-6 lg:px-0 lg:pt-4'>
+        <MaxWidthWrapper className='pb-12 pt-6 lg:grid lg:grid-cols-3 sm:pb-16 lg:gap-x-0 xl:gap-x-4 lg:pt-8 xl:pt-12 lg:pb-26'>
+          <div className='col-span-2 px-6 lg:px-0'>
             <div className='relative mx-auto text-center lg:text-left flex flex-col items-center lg:items-start'>
-              {/* Image */}
-              <div className='absolute w-28 left-0 -top-20 hidden lg:block'>
-                <Image
-                  src={'/products/wind-turbine-info-3.png'}
-                  alt='Extractor eólico información'
-                  width={200}
-                  height={200}
-                  className='w-full'
-                />
-              </div>
               {/* Hero Title */}
-              <h1 className='relative w-fit tracking-tight text-balance mt-16 font-bold !leading-tight text-gray-900 text-5xl md:text-6xl lg:text-7xl'>
+              <h1 className='relative w-fit tracking-tight text-balance mt-8 font-bold !leading-tight text-gray-900 text-5xl md:text-6xl lg:text-7xl'>
                 Extractor Eólico en{' '}
                 <span className='bg-blue-600 px-2 text-white rounded-lg'>
                   Colombia
                 </span>{' '}
                 mejora el confort
               </h1>
-              <p className='mt-8 text-lg lg:pr-10 max-w-prose text-center lg:text-left text-balance md:text-wrap'>
+              <p className='mt-4 text-lg lg:pr-5 max-w-prose text-center lg:text-left text-balance md:text-wrap'>
                 Somos una empresa líder en la fabricación de extractores eólicos
                 que ayudan a mejorar la sensación térmica en
                 <span className='font-semibold'> recintos cerrados</span>.
@@ -39,7 +29,7 @@ export default function Home() {
                 proporcionar un ambiente más cómodo y saludable.
               </p>
 
-              <ul className='mt-8 space-y-2 text-left font-medium flex flex-col items-center sm:items-start'>
+              <ul className='mt-4 space-y-2 text-left font-medium flex flex-col items-center sm:items-start'>
                 <div className='space-y-2'>
                   <li className='flex gap-1.5 items-center text-left'>
                     <Check className='h-5 w-5 shrink-0 text-blue-600' />
@@ -56,7 +46,7 @@ export default function Home() {
                 </div>
               </ul>
 
-              <div className='mt-8 flex flex-col items-center lg:items-start'>
+              <div className='mt-4 flex flex-col items-center lg:items-start'>
                 <a
                   href='#buy'
                   className='bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold text-lg'
@@ -67,7 +57,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className='col-span-full lg:col-span-1 w-full flex justify-center px-8 sm:px-16 md:px-0 mt-32 lg:mx-0 lg:mt-20 h-fit'>
+          <div className='col-span-full lg:col-span-1 w-full flex justify-center px-8 sm:px-16 md:px-0 mt-16 lg:mx-0 lg:mt-10 h-fit'>
             <div className='relative md:max-w-xl'>
               <WindTurbine
                 className='w-full'
@@ -77,9 +67,15 @@ export default function Home() {
           </div>
         </MaxWidthWrapper>
       </section>
-
       {/* Value Proposition Section */}
-      <section className='bg-slate-100 py-24'>
+      <section className='bg-slate-100 py-12'>
+        <h2 className='order-1 mt-2 tracking-tight text-center text-balance !leading-tight font-bold text-5xl md:text-6xl text-gray-900 '>
+          <span className='relative px-2'>
+            Nuestros proyectos
+            <Icons.underline className='hidden sm:block pointer-events-none absolute inset-x-0 -bottom-12 text-blue-400' />
+          </span>
+        </h2>
+        <Reviews />
         <MaxWidthWrapper className='flex flex-col items-center gap-16 sm:gap-32'>
           <div className='flex flex-col lg:flex-row items-center gap-4 sm:gap-6'>
             <h2 className='order-1 mt-2 tracking-tight text-center text-balance !leading-tight font-bold text-5xl md:text-6xl text-gray-900 '>
@@ -102,9 +98,10 @@ export default function Home() {
               </div>
               <div className='text-lg leading-8'>
                 <p>
-                  &quot;Los extractores eólicos han mejorado significativamente la
-                  sensación térmica en nuestro edificio. Ahora podemos disfrutar
-                  de un ambiente más fresco y cómodo. ¡Recomendado al 100%!&quot;
+                  &quot;Los extractores eólicos han mejorado significativamente
+                  la sensación térmica en nuestro edificio. Ahora podemos
+                  disfrutar de un ambiente más fresco y cómodo. ¡Recomendado al
+                  100%!&quot;
                 </p>
               </div>
               <div className='flex flex-col md:flex-row gap-4 mt-2'>
@@ -136,11 +133,11 @@ export default function Home() {
               </div>
               <div className='text-lg leading-8'>
                 <p>
-                  &quot;Desde que instalamos los extractores eólicos, hemos notado
-                  una gran diferencia en la calidad del aire de nuestra fábrica.
-                  La reducción de calor ha mejorado las condiciones de trabajo,
-                  lo que se refleja en un aumento de la productividad. Sin duda,
-                  una inversión que vale la pena.&quot; 
+                  &quot;Desde que instalamos los extractores eólicos, hemos
+                  notado una gran diferencia en la calidad del aire de nuestra
+                  fábrica. La reducción de calor ha mejorado las condiciones de
+                  trabajo, lo que se refleja en un aumento de la productividad.
+                  Sin duda, una inversión que vale la pena.&quot;
                 </p>
               </div>
               <div className='flex gap-4 mt-2'>
@@ -176,7 +173,7 @@ export default function Home() {
                   GreenFlow Cali superaron nuestras expectativas. Nuestro
                   almacén ya no sufre de sobrecalentamiento, y hemos mejorado la
                   conservación de nuestros productos. Excelente solución para el
-                  clima cálido de Cali.&quot; 
+                  clima cálido de Cali.&quot;
                 </p>
               </div>
               <div className='flex flex-col md:flex-row gap-4 mt-2'>
@@ -212,7 +209,7 @@ export default function Home() {
                   complicaciones. Notamos de inmediato una disminución en el uso
                   de aire acondicionado, lo que nos ha permitido ahorrar en
                   costos de energía. ¡Totalmente satisfechos con los
-                  resultados!&quot; 
+                  resultados!&quot;
                 </p>
               </div>
               <div className='flex gap-4 mt-2'>
@@ -234,9 +231,6 @@ export default function Home() {
             </div>
           </div>
         </MaxWidthWrapper>
-        <div className='pt-16'>
-          <Reviews />
-        </div>
       </section>
 
       {/* Contact Section */}
