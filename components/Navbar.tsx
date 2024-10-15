@@ -75,7 +75,7 @@ const Navbar = async () => {
 
                 <Link
                   //href='/buy/products'
-                  href={'#'}
+                  href={'https://articulo.mercadolibre.com.co/MCO-1447243257-extractor-eolico-31-pulgadas-en-aluminio-_JM#polycard_client=search-nordic&position=10&search_layout=stack&type=item&tracking_id=d5b11873-76f7-4b67-a192-01e80fce6391'}
                   className={buttonVariants({
                     size: 'sm',
                     variant: 'ghost',

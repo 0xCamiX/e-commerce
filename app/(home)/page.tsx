@@ -49,7 +49,7 @@ export default function Home() {
 
               <div className='mt-4 flex flex-col items-center lg:items-start'>
                 <a
-                  href='#buy'
+                  href='https://articulo.mercadolibre.com.co/MCO-1447243257-extractor-eolico-31-pulgadas-en-aluminio-_JM#polycard_client=search-nordic&position=10&search_layout=stack&type=item&tracking_id=d5b11873-76f7-4b67-a192-01e80fce6391'
                   className='bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold text-lg'
                 >
                   Comprar
