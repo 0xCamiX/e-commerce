@@ -276,7 +276,7 @@ export default function Home() {
                   >
                     <Icons.whatsapp className='w-16 h-16' />
                   </Link>
-                  <Link href='/'>
+                  <Link href='https://www.instagram.com/eolicosgallego_/profilecard/?igsh=MTFzYWxyeDc3ZnJqeQ=='>
                     <Icons.instagram className='w-16 h-16' />
                   </Link>
                   <Link href={'https://www.facebook.com/juancarlosgallego32'}>
