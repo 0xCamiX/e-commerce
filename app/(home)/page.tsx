@@ -49,10 +49,10 @@ export default function Home() {
 
               <div className='mt-4 flex flex-col lg:flex-row items-center lg:items-start'>
                 <Link
-                  href='https://articulo.mercadolibre.com.co/MCO-1447243257-extractor-eolico-31-pulgadas-en-aluminio-_JM#polycard_client=search-nordic&position=10&search_layout=stack&type=item&tracking_id=d5b11873-76f7-4b67-a192-01e80fce6391'
+                  href='https://wa.me/3177525559?text=Deseo%20obtener%20información%20de%20los%20extractores%20para%20comprar%20al%20por%20mayor.'
                   className='bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold text-lg mb-4 lg:mb-0 lg:mr-4'
                 >
-                  Comprar
+                  Compra al por mayor
                 </Link>
                 <Link
                   href='https://articulo.mercadolibre.com.co/MCO-1447243257-extractor-eolico-31-pulgadas-en-aluminio-_JM#polycard_client=search-nordic&position=10&search_layout=stack&type=item&tracking_id=d5b11873-76f7-4b67-a192-01e80fce6391'
