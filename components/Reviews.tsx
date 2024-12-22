@@ -11,19 +11,19 @@ const WIND_TURBINES = [
   '/products/testimonials/3.jpg',
   '/products/testimonials/4.jpg',
   '/products/testimonials/5.jpg',
-  '/products/testimonials/5.jpg',
-  '/products/testimonials/1.jpg',
-  '/products/testimonials/2.jpg',
-  '/products/testimonials/3.jpg',
-  '/products/testimonials/4.jpg',
-  '/products/testimonials/5.jpg',
-  '/products/testimonials/5.jpg',
-  '/products/testimonials/1.jpg',
-  '/products/testimonials/2.jpg',
-  '/products/testimonials/3.jpg',
-  '/products/testimonials/4.jpg',
-  '/products/testimonials/5.jpg',
-  '/products/testimonials/5.jpg',
+  '/products/testimonials/6.jpg',
+  '/products/testimonials/7.jpg',
+  '/products/testimonials/8.jpg',
+  '/products/testimonials/9.jpg',
+  '/products/testimonials/10.jpg',
+  '/products/testimonials/11.jpg',
+  '/products/testimonials/12.jpg',
+  '/products/testimonials/13.jpg',
+  '/products/testimonials/14.jpg',
+  '/products/testimonials/15.jpg',
+  '/products/testimonials/16.jpg',
+  '/products/testimonials/17.jpg',
+  '/products/testimonials/18.jpg',
 ];
 
 function splitArray<T>(array: Array<T>, numParts: number) {
@@ -121,7 +121,7 @@ function Review({ imgSrc, className, ...props }: ReviewProps) {
 
 function ReviewGrid() {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const isInView = useInView(containerRef, { once: true, amount: 0.4 });
+  const isInView = useInView(containerRef as React.RefObject<Element>, { once: true, amount: 0.4 });
   const columns = splitArray(WIND_TURBINES, 3);
   const column1 = columns[0];
   const column2 = columns[1];

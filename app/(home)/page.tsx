@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className='bg-slate-50'>
       {/* Hero */}
-      <section>
+      <section id='hero'>
         <MaxWidthWrapper className='pb-12 pt-6 lg:grid lg:grid-cols-3 sm:pb-16 lg:gap-x-0 xl:gap-x-4 lg:pt-8 xl:pt-12 lg:pb-26'>
           <div className='col-span-2 px-6 lg:px-0'>
             <div className='relative mx-auto text-center lg:text-left flex flex-col items-center lg:items-start'>
@@ -24,7 +24,7 @@ export default function Home() {
               </h1>
               <p className='mt-4 text-lg lg:pr-5 max-w-prose text-center lg:text-left text-balance md:text-wrap'>
                 Somos una empresa líder en la fabricación de extractores eólicos
-                que ayudan a mejorar la sensación térmica en
+                en Cali, Colombia que ayudan a mejorar la sensación térmica en
                 <span className='font-semibold'> recintos cerrados</span>.
                 Nuestros productos innovadores y eficientes están diseñados para
                 proporcionar un ambiente más cómodo y saludable.
@@ -47,13 +47,23 @@ export default function Home() {
                 </div>
               </ul>
 
-              <div className='mt-4 flex flex-col items-center lg:items-start'>
-                <a
+              <div className='mt-4 flex flex-col lg:flex-row items-center lg:items-start'>
+                <Link
                   href='https://articulo.mercadolibre.com.co/MCO-1447243257-extractor-eolico-31-pulgadas-en-aluminio-_JM#polycard_client=search-nordic&position=10&search_layout=stack&type=item&tracking_id=d5b11873-76f7-4b67-a192-01e80fce6391'
-                  className='bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold text-lg'
+                  className='bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold text-lg mb-4 lg:mb-0 lg:mr-4'
                 >
                   Comprar
-                </a>
+                </Link>
+                <Link
+                  href='https://articulo.mercadolibre.com.co/MCO-1447243257-extractor-eolico-31-pulgadas-en-aluminio-_JM#polycard_client=search-nordic&position=10&search_layout=stack&type=item&tracking_id=d5b11873-76f7-4b67-a192-01e80fce6391'
+                  className='bg-yellow-300 text-black px-6 py-3 rounded-lg font-semibold text-lg flex items-center'
+                >
+                  <Icons.mercadolibre className='w-6 h-6 mr-2' />
+                  <span className='hidden lg:inline'>
+                    Comprar en MercadoLibre
+                  </span>
+                  <span className='lg:hidden'>Comprar</span>
+                </Link>
               </div>
             </div>
           </div>
@@ -69,20 +79,53 @@ export default function Home() {
         </MaxWidthWrapper>
       </section>
       {/* Value Proposition Section */}
-      <section className='bg-slate-100 py-12'>
+      <section className='bg-slate-100 py-12' id='projects'>
         <h2 className='order-1 mt-2 tracking-tight text-center text-balance !leading-tight font-bold text-5xl md:text-6xl text-gray-900 '>
           <span className='relative px-2'>
             Nuestros proyectos
             <Icons.underline className='hidden sm:block pointer-events-none absolute inset-x-0 -bottom-12 text-blue-400' />
           </span>
         </h2>
+        <div className='flex justify-center'>
+          <Link
+            href='https://photos.app.goo.gl/ceR7T4kVS8X3SHDk7'
+            target='_blank'
+            className='mt-8 inline-block rounded-full bg-blue-500 text-white px-6 py-3 text-lg font-semibold hover:bg-blue-600 transition-colors'
+          >
+            Explorar nuestro álbum
+          </Link>
+        </div>
         <Reviews />
+      </section>
+
+      {/* Tutorial de Instalación Section */}
+      <section className='bg-white py-12' id='tutorial'>
+        <MaxWidthWrapper>
+          <h2 className='text-center text-4xl font-bold text-gray-900 mb-8'>
+            Tutorial de Instalación
+          </h2>
+          <div className='flex justify-center'>
+            <div className='w-full max-w-4xl'>
+              <iframe
+                className='w-full h-[32rem] rounded-lg shadow-lg'
+                src='https://www.youtube.com/embed/XlNISZIxEdI'
+                title='Tutorial de Instalación de un extractor eólico en teja claraboya'
+                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        </MaxWidthWrapper>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id='testimonials'>
         <MaxWidthWrapper className='flex flex-col items-center gap-16 sm:gap-32'>
           <div className='flex flex-col lg:flex-row items-center gap-4 sm:gap-6'>
             <h2 className='order-1 mt-2 tracking-tight text-center text-balance !leading-tight font-bold text-5xl md:text-6xl text-gray-900 '>
               ¿Qué dicen{' '}
               <span className='relative px-2'>
-                nuestros clientes{' '}
+                nuestros clientes?{' '}
                 <Icons.underline className='hidden sm:block pointer-events-none absolute inset-x-0 -bottom-12 text-blue-400' />
               </span>
             </h2>
@@ -222,7 +265,7 @@ export default function Home() {
                   className='rounded-full h-[64px] w-[70px] object-cover'
                 />
                 <div className='flex flex-col'>
-                  <p className='font-semibold'>Papeles del Valle</p>
+                  <p className='font-semibold'>Papeles del Cauca</p>
                   <div className='flex gap-1.5 items-center text-zinc-600'>
                     <Check className='h-4 w-4 stroke-[3px] text-blue-600'></Check>
                     <p className='text-sm'>36 Extractores instalados!</p>
@@ -235,7 +278,7 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section>
+      <section id='contact'>
         <MaxWidthWrapper className='py-24'>
           <div className='mb-12 px-6 lg:px-8'>
             <div className='mx-auto max-w-2xl sm:text-center'>
@@ -251,9 +294,9 @@ export default function Home() {
           <div className='flex flex-col items-center gap-8 sm:gap-16'>
             <div className='flex flex-col items-center gap-4 sm:gap-6'>
               <p className='text-center text-balance max-w-prose'>
-                Contáctanos para recibir una cotización personalizada y sin
-                compromiso. Nuestro equipo de expertos te asesorará en la mejor
-                solución para tu proyecto.
+                Contáctanos para recibir una cotización personalizada. Nuestro
+                equipo de expertos te asesorará en la mejor solución para tu
+                proyecto.
               </p>
             </div>
 
@@ -271,13 +314,18 @@ export default function Home() {
                 <div className='flex items-center gap-4 sm:gap-6'>
                   <Link
                     href={
-                      'https://wa.me/3177525559?text=Me%20interesa%20el%20extractor%20eólico'
+                      'https://wa.me/3177525559?text=Estuve%20viendo%20tu%20página%20web%20y%20me%20interesan%20los%20extractores%20eólicos.'
                     }
+                    target='_blank'
+                    rel='noopener noreferrer'
                   >
                     <Icons.whatsapp className='w-16 h-16' />
                   </Link>
                   <Link href='https://www.instagram.com/eolicosgallego_/profilecard/?igsh=MTFzYWxyeDc3ZnJqeQ=='>
                     <Icons.instagram className='w-16 h-16' />
+                  </Link>
+                  <Link href='https://www.tiktok.com/@eolicosgallego?_t=ZS-8sRHsIiYjiy&_r=1'>
+                    <Icons.tiktok className='w-16 h-16' />
                   </Link>
                   <Link href={'https://www.facebook.com/juancarlosgallego32'}>
                     <Icons.facebook className='w-14 h-14' />

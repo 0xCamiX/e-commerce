@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
+import FloatingWhatsAppButton from '@/components/FloatingWhatsappButton';
+
 import '@/styles/globals.css';
 
 import { Analytics } from '@vercel/analytics/react';
@@ -34,6 +36,7 @@ export default function RootLayout({
           </div>
           <Footer />
         </main>
+        <FloatingWhatsAppButton />
       </body>
     </html>
   );
