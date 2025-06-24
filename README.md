@@ -1,50 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with
-[`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Eólicos Gallego - Store
 
-## Getting Started
+## 🏢 Acerca de Eólicos Gallego
 
-First, run the development server:
+**Eólicos Gallego** es una empresa especializada en la fabricación y comercialización de sistemas de ventilación ecológica para industrias y edificaciones en la región de Cali, Colombia.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### 🌟 Nuestro Producto
+
+Ofrecemos **extractores tipo turbina** fabricados localmente en Cali con materiales resistentes y de alta calidad, diseñados para proporcionar:
+
+- **Ventilación pasiva 100% ecológica** - Sin consumo de energía eléctrica
+- **Instalación rápida y sencilla** en cubiertas
+- **Garantía de 5 años** y alta durabilidad
+- **Reducción del consumo de aire acondicionado**
+
+### 🎯 Beneficios Principales
+
+- ✅ Sistema eficaz, natural y libre de energía eléctrica
+- ✅ Fabricación local en Cali
+- ✅ Garantía prolongada de 5 años
+- ✅ Satisfacción avalada por varios negocios
+- ✅ Mejora del confort en espacios industriales y comerciales
+
+### 📍 Cobertura y Contacto
+
+- **Cobertura**: Cali y cobertura nacional en Colombia
+- **Ventas**: Disponibles al por mayor o en MercadoLibre
+- **Sitio web**: [eolicosgallego.com](https://eolicosgallego.com)
+- **Contacto directo**: +57 317 752 5559
+- **Servicio**: Asesoría y cotización personalizada
+
+---
+
+## 🛒 Proyecto E-commerce
+
+### Descripción del Proyecto
+
+Este proyecto desarrolla una **landing page** moderna y atractiva para Eólicos Gallego, enfocada en presentar los extractores eólicos de manera profesional y facilitar el contacto con clientes potenciales.
+
+### Tecnologías Utilizadas
+
+- **Framework**: Next.js 15 con TypeScript
+- **Styling**: Tailwind CSS
+- **Componentes**: shadcn/ui
+- **Testing**: Vitest
+- **Linting**: ESLint + Prettier
+
+### Estructura del Proyecto
+
+```
+store-v2/
+├── src/
+│   ├── app/                 # Páginas y layouts de Next.js
+│   ├── components/          # Componentes reutilizables
+│   │   └── ui/             # Componentes de UI base
+│   ├── lib/                # Utilidades y configuraciones
+│   └── tests/              # Tests del proyecto
+├── public/                 # Assets estáticos
+└── docs/                   # Documentación adicional
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the
-result.
+### Características de la Landing Page
 
-You can start editing the page by modifying `app/page.tsx`. The page
-auto-updates as you edit the file.
+- 🎨 **Diseño moderno y responsive**
+- 📱 **Optimizada para móviles**
+- ⚡ **Rendimiento optimizado**
+- 🔍 **SEO friendly**
+- 📞 **Integración de contacto directo**
+- 🛒 **Preparada para futura expansión e-commerce**
 
-This project uses
-[`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts)
-to automatically optimize and load [Geist](https://vercel.com/font), a new font
-family for Vercel.
+---
 
-## Learn More
+## 🚀 Próximos Pasos
 
-To learn more about Next.js, take a look at the following resources:
+1. **Desarrollo de la landing page principal**
+2. **Implementación de formularios de contacto**
+3. **Optimización SEO**
+4. **Integración con sistemas de análisis**
+5. **Expansión hacia tienda e-commerce completa**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js
-  features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out
-[the Next.js GitHub repository](https://github.com/vercel/next.js) - your
-feedback and contributions are welcome!
+## 📞 Contacto para Desarrollo
 
-## Deploy on Vercel
+Para consultas sobre el desarrollo del proyecto o colaboración, contactar al equipo de desarrollo.
 
-The easiest way to deploy your Next.js app is to use the
-[Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-from the creators of Next.js.
+---
 
-Check out our
-[Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying)
-for more details.
-# store
+*Desarrollado por 0xCamix con ❤️ para Eólicos Gallego*
+
