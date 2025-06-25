@@ -10,8 +10,8 @@ import { Star, Home, Warehouse, Building2 } from 'lucide-react';
 
 const plans = [
   {
-    type: 'Hogar',
-    price: '$650,000 COP',
+    type: 'Hogar (24" - 60cm)',
+    price: '$750,000 COP + IVA',
     description: 'Buena para hogares, apartamentos y pequeños comercios.',
     warranty: '5 años de garantía',
     features: [
@@ -30,8 +30,8 @@ const plans = [
     gradient: 'from-sky-200 via-sky-100 to-sky-50',
   },
   {
-    type: 'Bodegas',
-    price: '$850,000 COP',
+    type: 'Bodegas (31" - 80cm)',
+    price: '$850,000 COP + IVA',
     description: 'Ideal para fábricas, bodegas y hangares.',
     warranty: '5 años de garantía',
     features: [

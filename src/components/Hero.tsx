@@ -28,7 +28,7 @@ export default function Hero() {
             </h1>
             <p className="mb-6 max-w-md text-lg font-medium text-slate-600 sm:text-xl">
               Somos una empresa líder en la fabricación de extractores eólicos
-              en Cali, Colombia que ayudan a mejorar la sensación térmica en{' '}
+              en Cali - Colombia, que ayudan a mejorar la sensación térmica en{' '}
               <b>recintos cerrados</b>. Nuestros productos innovadores y
               eficientes están diseñados para proporcionar un ambiente más
               cómodo y saludable.
