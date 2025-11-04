@@ -1,0 +1,7 @@
+eslint.config.mjs
+.eslintrc.json
+prettier.config.js
+*.css
+**/*.css
+src/app/styles/**
+

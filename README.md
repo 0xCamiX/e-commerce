@@ -1,6 +1,7 @@
 # 🌀 Eólicos Gallego - Landing Page
 
-> **Sistema de ventilación ecológica para industrias y edificaciones en Colombia**
+> **Sistema de ventilación ecológica para industrias y edificaciones en
+> Colombia**
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=flat-square&logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
@@ -10,12 +11,15 @@
 
 ## 🏢 Acerca de Eólicos Gallego
 
-**Eólicos Gallego** es una empresa especializada en la fabricación y comercialización de extractores eólicos tipo turbina 100% ecológicos en Cali, Colombia. Ofrecemos soluciones de ventilación natural para espacios industriales, comerciales y residenciales.
+**Eólicos Gallego** es una empresa especializada en la fabricación y
+comercialización de extractores eólicos tipo turbina 100% ecológicos en Cali,
+Colombia. Ofrecemos soluciones de ventilación natural para espacios
+industriales, comerciales y residenciales.
 
 ### 🌟 Nuestro Producto
 
 - **Extractores tipo turbina** fabricados localmente en Cali
-- **100% ecológicos** - Sin consumo de energía eléctrica  
+- **100% ecológicos** - Sin consumo de energía eléctrica
 - **5 años de garantía** y materiales resistentes
 - **Instalación profesional** y asesoría personalizada
 - **Mejora del confort térmico** en recintos cerrados
@@ -25,6 +29,7 @@
 ## 🚀 Características del Proyecto
 
 ### 📱 Landing Page Moderna
+
 - Diseño **mobile-first** completamente responsive
 - Paleta de colores **sky** (azul) y **slate** (gris) profesional
 - Animaciones y transiciones suaves
@@ -33,17 +38,20 @@
 ### 🎨 Componentes Implementados
 
 #### 🧭 **Navbar**
+
 - Navegación responsive con menú hamburguesa
 - Logo con texto "Eólicos Gallego"
 - Enlaces de navegación con scroll suave a secciones
 
 #### 🎯 **Hero Section**
+
 - Título impactante con "Colombia" resaltado en azul
 - Lista de beneficios con iconos de check
 - Botones CTA: WhatsApp y MercadoLibre
 - **PhotoCarousel**: Carrusel automático con 6 imágenes superpuestas
 
 #### 💰 **Prices Section**
+
 - **3 planes de precios**: Hogar, Bodegas (Recomendado), Empresarial
 - Cards con gradientes superiores y malla de iconos SVG
 - Badge "Recomendado" en la opción de Bodegas
@@ -51,21 +59,25 @@
 - Tipografía consistente y profesional
 
 #### 🎥 **Tutorial Section**
+
 - Video de YouTube embebido responsive (16:9)
 - Iframe optimizado con ID `tutorial`
 
 #### 🏢 **Testimonials Section**
+
 - 5 marcas mostradas en fila horizontal
 - Imágenes en escala de grises con efectos hover
 - Layout simple y efectivo
 
 #### 📞 **Contact Section**
+
 - Información de contacto con bandera colombiana 🇨🇴
 - Botón de teléfono clickeable
 - 4 iconos de redes sociales con colores originales
 - Efectos hover personalizados
 
 #### 🔗 **Footer**
+
 - Diseño moderno de 4 columnas responsive
 - Logo invertido para fondo oscuro
 - Navegación rápida e información completa
@@ -76,6 +88,7 @@
 ## 🛠️ Stack Tecnológico
 
 ### Core Technologies
+
 ```json
 {
   "runtime": "Bun 1.0+",
@@ -159,21 +172,23 @@ store-v2/
 ## 🎨 Guía de Diseño
 
 ### 🎨 Paleta de Colores
+
 ```css
 /* Colores principales */
---sky-500: #0ea5e9;     /* Azul principal */
---sky-600: #0284c7;     /* Azul hover */
---slate-900: #0f172a;   /* Texto principal */
---slate-600: #475569;   /* Texto secundario */
---green-500: #22c55e;   /* Verde favorito */
---amber-500: #f59e0b;   /* Dorado empresarial */
+--sky-500: #0ea5e9; /* Azul principal */
+--sky-600: #0284c7; /* Azul hover */
+--slate-900: #0f172a; /* Texto principal */
+--slate-600: #475569; /* Texto secundario */
+--green-500: #22c55e; /* Verde favorito */
+--amber-500: #f59e0b; /* Dorado empresarial */
 ```
 
 ### 📐 Tipografía Estándar
+
 ```css
 /* Títulos H2 */
 .section-title {
-  @apply text-3xl md:text-4xl lg:text-5xl font-bold text-slate-900;
+  @apply text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl;
 }
 
 /* Espaciado de secciones */
@@ -188,8 +203,9 @@ store-v2/
 ```
 
 ### 🔄 Fondos Alternados
+
 - **Hero**: `bg-white`
-- **Prices**: `bg-slate-50` 
+- **Prices**: `bg-slate-50`
 - **Tutorial**: `bg-white`
 - **Testimonials**: `bg-white`
 - **Contact**: `bg-white`
@@ -200,16 +216,18 @@ store-v2/
 ## 📞 Información de Contacto
 
 ### 🏢 Datos de la Empresa
+
 ```typescript
 export const siteConfig = {
-  name: "Eólicos Gallego",
-  description: "Extractores eólicos 100% ecológicos en Cali, Colombia",
-  phone: "+57 317 752 5559",
-  email: "carlosgallego32@hotmail.es",
-  location: "Cali, Colombia",
-  whatsapp: "https://wa.me/573177525559",
-  mercadolibre: "https://articulo.mercadolibre.com.co/MCO-1447243257-extractor-eolico-31-pulgadas-en-aluminio-_JM"
-}
+  name: 'Eólicos Gallego',
+  description: 'Extractores eólicos 100% ecológicos en Cali, Colombia',
+  phone: '+57 317 752 5559',
+  email: 'carlosgallego32@hotmail.es',
+  location: 'Cali, Colombia',
+  whatsapp: 'https://wa.me/573177525559',
+  mercadolibre:
+    'https://articulo.mercadolibre.com.co/MCO-1447243257-extractor-eolico-31-pulgadas-en-aluminio-_JM',
+};
 ```
 
 ---
@@ -241,11 +259,13 @@ bun run format
 ### 🌐 Deployment en Vercel
 
 1. **Conectar repositorio**:
+
    ```bash
    vercel --prod
    ```
 
 2. **Variables de entorno** (si aplica):
+
    ```env
    NEXT_PUBLIC_SITE_URL=https://eolicosgallego.com
    ```
@@ -260,6 +280,7 @@ bun run format
 ## 🧪 Testing
 
 ### 🔧 Setup de Testing
+
 - **Framework**: Vitest
 - **Testing Library**: React Testing Library
 - **Cobertura**: Componentes críticos
@@ -280,12 +301,14 @@ bun test --coverage
 ## 📈 Performance y SEO
 
 ### ⚡ Optimizaciones Implementadas
+
 - **Next.js Image**: Optimización automática de imágenes
 - **Code Splitting**: Carga lazy de componentes
 - **CSS-in-JS**: Tailwind con purge automático
 - **Fonts**: Optimización de Google Fonts
 
 ### 🔍 SEO Features
+
 - **Metadata**: Títulos y descripciones optimizadas
 - **Open Graph**: Cards para redes sociales
 - **Schema.org**: Structured data para negocios
@@ -296,12 +319,14 @@ bun test --coverage
 ## 🤝 Contribución y Desarrollo
 
 ### 📋 Estándares de Código
+
 - **ESLint**: Configuración estricta con TypeScript
 - **Prettier**: Formateo automático
 - **Husky**: Git hooks para calidad
 - **Conventional Commits**: Formato de commits
 
 ### 🔄 Flujo de Trabajo
+
 1. Fork del repositorio
 2. Crear branch: `feature/nueva-funcionalidad`
 3. Commits con formato convencional
@@ -314,18 +339,21 @@ bun test --coverage
 ## 📊 Roadmap y Próximas Funcionalidades
 
 ### 🎯 Fase 1 - Completada ✅
+
 - [x] Landing page responsive
 - [x] Secciones principales implementadas
 - [x] Integración de contacto
 - [x] SEO básico
 
 ### 🎯 Fase 2 - En Planificación
+
 - [ ] Sistema de cotizaciones online
 - [ ] Panel de administración
 - [ ] Blog de contenidos
 - [ ] Carrito de compras básico
 
 ### 🎯 Fase 3 - Futuro
+
 - [ ] E-commerce completo
 - [ ] Sistema de inventario
 - [ ] Integración con pasarelas de pago
@@ -335,7 +363,8 @@ bun test --coverage
 
 ## 📄 Licencia
 
-Este proyecto está desarrollado para **Eólicos Gallego** y es propiedad de la empresa.
+Este proyecto está desarrollado para **Eólicos Gallego** y es propiedad de la
+empresa.
 
 ---
 
@@ -344,6 +373,7 @@ Este proyecto está desarrollado para **Eólicos Gallego** y es propiedad de la 
 **0xCamix** - Desarrollo Full Stack con ❤️ para Eólicos Gallego
 
 ### 📞 Contacto del Desarrollador
+
 - **GitHub**: [@0xcamix](https://github.com/0xcamix)
 - **Email**: [contacto disponible via GitHub]
 
@@ -351,4 +381,4 @@ Este proyecto está desarrollado para **Eólicos Gallego** y es propiedad de la 
 
 ---
 
-*"Mejorando el confort en Colombia con tecnología ecológica"* 🇨🇴
+_"Mejorando el confort en Colombia con tecnología ecológica"_ 🇨🇴

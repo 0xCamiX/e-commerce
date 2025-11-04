@@ -1,6 +1,6 @@
-import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import { CheckCircle } from 'lucide-react';
 import Link from 'next/link';
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import PhotoCarousel from '@/components/PhotoCarousel';
 
 const benefits = [
