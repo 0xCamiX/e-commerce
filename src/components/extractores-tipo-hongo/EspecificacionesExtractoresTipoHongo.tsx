@@ -1,8 +1,8 @@
 'use client';
 
-import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+import { CheckCircle, Gauge, Ruler, Settings, Zap } from 'lucide-react';
 import Link from 'next/link';
-import { CheckCircle, Ruler, Gauge, Zap, Settings } from 'lucide-react';
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 
 const specifications = [
   {
@@ -132,9 +132,9 @@ export default function EspecificacionesExtractoresTipoHongo() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-200 bg-white">
-                  {specifications.map((spec, idx) => (
+                  {specifications.map(spec => (
                     <tr
-                      key={idx}
+                      key={spec.size}
                       className={`transition-colors hover:bg-slate-50 ${
                         spec.recommended ? 'bg-sky-50' : ''
                       }`}
@@ -181,9 +181,9 @@ export default function EspecificacionesExtractoresTipoHongo() {
                 Materiales de Construcción
               </h3>
               <ul className="space-y-3">
-                {materials.map((material, idx) => (
+                {materials.map(material => (
                   <li
-                    key={idx}
+                    key={material}
                     className="flex items-start gap-3 text-sm font-medium text-slate-700"
                   >
                     <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-500" />
@@ -199,9 +199,9 @@ export default function EspecificacionesExtractoresTipoHongo() {
                 {warranty.title}
               </h3>
               <ul className="space-y-3">
-                {warranty.items.map((item, idx) => (
+                {warranty.items.map(item => (
                   <li
-                    key={idx}
+                    key={item}
                     className="flex items-start gap-3 text-sm font-medium text-slate-700"
                   >
                     <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-sky-500" />

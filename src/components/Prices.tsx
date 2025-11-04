@@ -1,12 +1,12 @@
-import React from 'react';
+import { Building2, Home, Star, Warehouse } from 'lucide-react';
+import Link from 'next/link';
+import type React from 'react';
 import {
   CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
 } from '@/components/ui/card';
-import Link from 'next/link';
-import { Star, Home, Warehouse, Building2 } from 'lucide-react';
 
 const plans = [
   {
@@ -85,12 +85,17 @@ function IconMesh({
     <svg
       className="absolute inset-0 h-full w-full [mask-image:linear-gradient(to_bottom,black_60%,transparent)] opacity-30"
       style={{ zIndex: 1 }}
+      aria-hidden="true"
+      role="presentation"
     >
-      {Array.from({ length: count }).map((_, i) => {
+      {Array.from({ length: count }, (_, i) => {
         const x = (i % 12) * 24 + 8;
         const y = Math.floor(i / 12) * 24 + 8;
         return (
-          <g key={i} transform={`translate(${x},${y}) scale(0.18)`}>
+          <g
+            key={`icon-${x}-${y}`}
+            transform={`translate(${x},${y}) scale(0.18)`}
+          >
             <Icon strokeWidth={1} />
           </g>
         );

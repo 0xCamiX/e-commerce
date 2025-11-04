@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { Icons } from '@/components/ui/icons';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+import { Icons } from '@/components/ui/icons';
 
 export default function Contact() {
   return (

@@ -1,5 +1,5 @@
+import { Building2, ChefHat, Cookie, Factory } from 'lucide-react';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
-import { ChefHat, Cookie, Factory, Building2 } from 'lucide-react';
 
 const applications = [
   {
@@ -78,11 +78,11 @@ export default function AplicacionesExtractoresTipoHongo() {
 
           {/* Applications Grid */}
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            {applications.map((app, idx) => {
+            {applications.map(app => {
               const Icon = app.icon;
               return (
                 <div
-                  key={idx}
+                  key={app.title}
                   className={`group overflow-hidden rounded-xl border border-slate-200 ${app.bgColor} p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl`}
                 >
                   <div className="mb-6 flex items-start gap-4">
@@ -107,9 +107,9 @@ export default function AplicacionesExtractoresTipoHongo() {
                       Beneficios principales:
                     </p>
                     <ul className="grid grid-cols-2 gap-2">
-                      {app.benefits.map((benefit, benefitIdx) => (
+                      {app.benefits.map(benefit => (
                         <li
-                          key={benefitIdx}
+                          key={benefit}
                           className="flex items-center gap-2 text-sm font-medium text-slate-600"
                         >
                           <span className="h-1.5 w-1.5 rounded-full bg-sky-500"></span>

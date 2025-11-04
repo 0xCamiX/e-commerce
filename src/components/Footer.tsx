@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { siteConfig } from '@/config/site';
-import { Icons } from '@/components/ui/icons';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+import { Icons } from '@/components/ui/icons';
+import { siteConfig } from '@/config/site';
 
 export default function Footer() {
   return (
@@ -107,8 +107,8 @@ export default function Footer() {
         <div className="mt-8 border-t border-gray-800 pt-8">
           <div className="flex flex-col items-center justify-between text-sm text-blue-200 md:flex-row">
             <p>
-              © {new Date().getFullYear()} {siteConfig.name}. Todos los
-              derechos reservados.
+              © {new Date().getFullYear()} {siteConfig.name}. Todos los derechos
+              reservados.
             </p>
             <div className="mt-4 flex space-x-6 md:mt-0">
               <p>Fabricado en Cali, Colombia 🇨🇴</p>

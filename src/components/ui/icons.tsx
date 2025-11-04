@@ -1,4 +1,4 @@
-import { LucideProps } from 'lucide-react';
+import type { LucideProps } from 'lucide-react';
 
 export const Icons = {
   tiktok: (props: LucideProps) => (
@@ -9,8 +9,11 @@ export const Icons = {
       width="100"
       height="100"
       viewBox="0 0 48 48"
+      aria-label="TikTok"
+      role="img"
       {...props}
     >
+      <title>TikTok</title>
       <path
         fill="#212121"
         fillRule="evenodd"
@@ -43,8 +46,11 @@ export const Icons = {
       height="800px"
       viewBox="0 0 48 48"
       xmlns="http://www.w3.org/2000/svg"
+      aria-label="MercadoLibre"
+      role="img"
       {...props}
     >
+      <title>MercadoLibre</title>
       <defs>
         <style>
           {`
@@ -90,7 +96,12 @@ export const Icons = {
     </svg>
   ),
   underline: (props: LucideProps) => (
-    <svg {...props} viewBox="0 0 687 155">
+    <svg
+      {...props}
+      viewBox="0 0 687 155"
+      aria-label="Underline decoration"
+      role="presentation"
+    >
       <g
         stroke="currentColor"
         strokeWidth="7"
@@ -99,6 +110,7 @@ export const Icons = {
         strokeLinecap="round"
         strokeLinejoin="round"
       >
+        <title>Underline decoration</title>
         <path
           d="M20 98c27-13.3333333 54-20 81-20 40.5 0 40.5 20 81 20s40.626917-20 81-20 40.123083 20 80.5 20 40.5-20 81-20 40.5 20 81 20 40.626917-20 81-20c26.915389 0 53.748722 6.6666667 80.5 20"
           opacity=".3"
@@ -116,7 +128,10 @@ export const Icons = {
       width="100"
       height="100"
       viewBox="0 0 48 48"
+      aria-label="Instagram"
+      role="img"
     >
+      <title>Instagram</title>
       <radialGradient
         id="yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1"
         cx="19.38"
@@ -171,7 +186,10 @@ export const Icons = {
       width="100"
       height="100"
       viewBox="0 0 48 48"
+      aria-label="Facebook"
+      role="img"
     >
+      <title>Facebook</title>
       <linearGradient
         id="Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1"
         x1="9.993"
@@ -202,7 +220,10 @@ export const Icons = {
       width="100"
       height="100"
       viewBox="0 0 48 48"
+      aria-label="WhatsApp"
+      role="img"
     >
+      <title>WhatsApp</title>
       <path
         fill="#fff"
         d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-0.001,0,0,0,0,0h-0.008c-3.177-0.001-6.3-0.798-9.073-2.311L4.868,43.303z"

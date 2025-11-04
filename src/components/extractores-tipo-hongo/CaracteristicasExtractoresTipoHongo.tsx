@@ -1,14 +1,14 @@
-import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import {
   Droplets,
-  Wrench,
   Gauge,
-  Shield,
-  Zap,
-  Wind,
   Layers,
   Settings,
+  Shield,
+  Wind,
+  Wrench,
+  Zap,
 } from 'lucide-react';
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 
 const features = [
   {
@@ -98,11 +98,11 @@ export default function CaracteristicasExtractoresTipoHongo() {
 
           {/* Features Grid */}
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {features.map((feature, idx) => {
+            {features.map(feature => {
               const Icon = feature.icon;
               return (
                 <div
-                  key={idx}
+                  key={feature.title}
                   className="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
                 >
                   <div

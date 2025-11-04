@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
-import HeroExtractoresTipoHongo from '@/components/extractores-tipo-hongo/HeroExtractoresTipoHongo';
-import CaracteristicasExtractoresTipoHongo from '@/components/extractores-tipo-hongo/CaracteristicasExtractoresTipoHongo';
-import AplicacionesExtractoresTipoHongo from '@/components/extractores-tipo-hongo/AplicacionesExtractoresTipoHongo';
-import EspecificacionesExtractoresTipoHongo from '@/components/extractores-tipo-hongo/EspecificacionesExtractoresTipoHongo';
 import Contact from '@/components/Contact';
+import AplicacionesExtractoresTipoHongo from '@/components/extractores-tipo-hongo/AplicacionesExtractoresTipoHongo';
+import CaracteristicasExtractoresTipoHongo from '@/components/extractores-tipo-hongo/CaracteristicasExtractoresTipoHongo';
+import EspecificacionesExtractoresTipoHongo from '@/components/extractores-tipo-hongo/EspecificacionesExtractoresTipoHongo';
+import HeroExtractoresTipoHongo from '@/components/extractores-tipo-hongo/HeroExtractoresTipoHongo';
 
 export const metadata: Metadata = {
   title: 'Extractores Tipo Hongo | Eólicos Gallego',

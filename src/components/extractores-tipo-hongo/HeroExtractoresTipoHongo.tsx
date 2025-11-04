@@ -1,6 +1,6 @@
-import MaxWidthWrapper from '@/components/MaxWidthWrapper';
-import { Wind, Shield, Zap } from 'lucide-react';
+import { Shield, Wind, Zap } from 'lucide-react';
 import Link from 'next/link';
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 
 export default function HeroExtractoresTipoHongo() {
   return (

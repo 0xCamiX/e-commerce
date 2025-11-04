@@ -1,12 +1,12 @@
 'use client';
 
-import Link from 'next/link';
+import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import { buttonVariants } from '@/components/ui/button';
 import { siteConfig } from '@/config/site';
-import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -47,6 +47,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
+            type="button"
             onClick={toggleMenu}
             className="rounded-md p-2 transition-colors hover:bg-gray-100 md:hidden"
             aria-label="Toggle menu"

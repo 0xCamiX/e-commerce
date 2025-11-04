@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
 
 const images = [
   '/hero-pictures/1.jpeg',
@@ -28,7 +28,7 @@ export default function PhotoCarousel() {
     return () => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
-  }, [index]);
+  }, []);
 
   // Calcula los índices de las fotos atrás
   const getBackIndexes = () => {
