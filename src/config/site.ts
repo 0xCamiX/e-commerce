@@ -16,29 +16,34 @@ export const siteConfig = {
   navigation: {
     main: [
       {
+        title: 'Eólicos',
+        href: '/',
+        description: 'Extractores eólicos ecológicos',
+        isPrimary: true,
+      },
+      {
         title: 'Extractores Tipo Hongo',
         href: '/extractores-tipo-hongo',
         description: 'Extractores de ventilación industrial premium',
-      },
-      {
-        title: 'Proyectos',
-        href: '#projects',
-        description: 'Ver nuestros proyectos realizados',
+        isPrimary: true,
       },
       {
         title: 'Tutorial',
         href: '#tutorial',
         description: 'Guía de instalación y uso',
+        isPrimary: false,
       },
       {
         title: 'Testimonios',
         href: '#testimonials',
         description: 'Experiencias de nuestros clientes',
+        isPrimary: false,
       },
       {
         title: 'Contacto',
         href: '#contact',
         description: 'Contáctanos para cotización',
+        isPrimary: false,
       },
     ],
   },
