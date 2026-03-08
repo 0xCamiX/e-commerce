@@ -1,6 +1,6 @@
 'use client';
 
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -14,23 +14,10 @@ const Navbar = () => {
   const pathname = usePathname();
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  // Determinar la URL correcta para anchors según la página actual
-  const getHref = (href: string) => {
-    if (href.startsWith('#')) {
-      // Si estamos en /extractores-tipo-hongo, los anchors van a la página principal
-      return pathname === '/extractores-tipo-hongo' ? `/${href}` : href;
-    }
-    return href;
-  };
-
-  // Filtrar navlinks según la página actual
-  const currentPageNavLinks = siteConfig.navigation.main;
-
   return (
     <nav className="sticky inset-x-0 top-0 z-[100] h-14 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
         <div className="flex h-14 items-center justify-between border-b border-zinc-200">
-          {/* Logo */}
           <Link href="/" className="z-40 flex items-center font-semibold">
             <Image
               src="/logo.png"
@@ -43,43 +30,34 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden h-full items-center space-x-2 md:flex">
-            {currentPageNavLinks.map(item => {
-              const isActive = pathname === item.href || 
-                (item.href === '/' && pathname === '/');
-              const isPrimary = 'isPrimary' in item && item.isPrimary;
-              const isAnchor = item.href.startsWith('#');
+          <div className="hidden h-full items-center space-x-1 md:flex">
+            {siteConfig.navigation.main.map(item => {
+              const isActive = pathname === item.href;
+              const isNew = 'isNew' in item && item.isNew;
 
               return (
                 <Link
                   key={item.href}
-                  href={getHref(item.href)}
+                  href={item.href}
                   className={`group relative ${buttonVariants({
                     size: 'sm',
                     variant: 'ghost',
-                  })} ${isPrimary ? 'px-3 font-semibold' : ''} ${isActive && !isAnchor ? 'text-sky-600' : ''} transition-all duration-200 hover:scale-105`}
+                  })} px-3 font-medium ${isActive ? 'text-sky-600' : ''} transition-all duration-200 hover:scale-105`}
                 >
-                  {isPrimary && (
-                    <span className="absolute -top-1 -right-1 flex h-2 w-2">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
-                      <span className="relative inline-flex h-2 w-2 rounded-full bg-sky-500"></span>
+                  {isNew && (
+                    <span className="absolute -top-2 -right-3 rounded-full bg-amber-500 px-1.5 py-0.5 text-[10px] font-bold leading-none text-white shadow-sm">
+                      NEW
                     </span>
                   )}
-                  <span className="flex items-center gap-1.5">
-                    {item.title}
-                    {isPrimary && (
-                      <Sparkles className="h-3 w-3 text-sky-500 transition-transform group-hover:scale-110 group-hover:rotate-12" />
-                    )}
-                  </span>
-                  {isPrimary && (
-                    <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-sky-400 to-sky-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                  )}
+                  <span>{item.title}</span>
+                  <span
+                    className={`absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r ${isNew ? 'from-amber-400 to-orange-500' : 'from-sky-400 to-sky-600'} ${isActive ? 'scale-x-100' : 'scale-x-0'} group-hover:scale-x-100 transition-transform duration-300`}
+                  />
                 </Link>
               );
             })}
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             type="button"
             onClick={toggleMenu}
@@ -93,33 +71,30 @@ const Navbar = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="absolute top-14 right-0 left-0 border-b border-gray-200 bg-white shadow-lg md:hidden">
-            <div className="flex flex-col space-y-2 p-4">
-              {currentPageNavLinks.map(item => {
-                const isActive = pathname === item.href || 
-                  (item.href === '/' && pathname === '/');
-                const isPrimary = 'isPrimary' in item && item.isPrimary;
-                const isAnchor = item.href.startsWith('#');
+            <div className="flex flex-col space-y-1 p-4">
+              {siteConfig.navigation.main.map(item => {
+                const isActive = pathname === item.href;
+                const isNew = 'isNew' in item && item.isNew;
 
                 return (
                   <Link
                     key={item.href}
-                    href={getHref(item.href)}
-                    className={`group relative ${buttonVariants({
+                    href={item.href}
+                    className={`${buttonVariants({
                       size: 'sm',
                       variant: 'ghost',
                       className: 'w-full justify-start',
-                    })} ${isPrimary ? 'font-semibold' : ''} ${isActive && !isAnchor ? 'text-sky-600' : ''} transition-all duration-200`}
+                    })} font-medium ${isActive ? 'text-sky-600' : ''} transition-all duration-200`}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <span className="flex items-center gap-2">
                       {item.title}
-                      {isPrimary && (
-                        <Sparkles className="h-3.5 w-3.5 text-sky-500 transition-transform group-hover:rotate-12" />
+                      {isNew && (
+                        <span className="rounded-full bg-amber-500 px-1.5 py-0.5 text-[10px] font-bold leading-none text-white">
+                          NEW
+                        </span>
                       )}
                     </span>
-                    {isPrimary && (
-                      <span className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-sky-400 to-sky-600 scale-y-0 group-hover:scale-y-100 transition-transform duration-300"></span>
-                    )}
                   </Link>
                 );
               })}

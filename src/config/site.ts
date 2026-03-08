@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: 'Eólicos Gallego',
   description:
-    'Sistemas de ventilación ecológica para industrias y edificaciones en Cali, Colombia',
+    'Sistemas de ventilación ecológica y soluciones térmicas para industrias y edificaciones en Cali, Colombia',
   url: 'https://eolicosgallego.com',
   ogImage: 'og/logo.png',
   links: {
@@ -12,6 +12,7 @@ export const siteConfig = {
     phone: '+57 317 752 5559',
     email: 'carlosgallego32@hotmail.es',
     address: 'Cali, Colombia',
+    whatsapp: '573177525559',
   },
   navigation: {
     main: [
@@ -28,22 +29,17 @@ export const siteConfig = {
         isPrimary: true,
       },
       {
-        title: 'Tutorial',
-        href: '#tutorial',
-        description: 'Guía de instalación y uso',
-        isPrimary: false,
+        title: 'Pintura Térmica',
+        href: '/pintura-termica',
+        description: 'Pintura reflectiva que reduce hasta 20°C',
+        isPrimary: true,
+        isNew: true,
       },
       {
-        title: 'Testimonios',
-        href: '#testimonials',
-        description: 'Experiencias de nuestros clientes',
-        isPrimary: false,
-      },
-      {
-        title: 'Contacto',
-        href: '#contact',
-        description: 'Contáctanos para cotización',
-        isPrimary: false,
+        title: 'Cotizador',
+        href: '/cotizador',
+        description: 'Cotiza extractores eólicos según tu proyecto',
+        isPrimary: true,
       },
     ],
   },
@@ -72,3 +68,11 @@ export const siteConfig = {
 } as const;
 
 export type SiteConfig = typeof siteConfig;
+
+export function buildWhatsAppUrl(product: string) {
+  const phone = siteConfig.contact.whatsapp;
+  const message = encodeURIComponent(
+    `Hola, estoy interesado en cotizar: ${product}. ¿Me pueden dar más información?`,
+  );
+  return `https://wa.me/${phone}?text=${message}`;
+}
