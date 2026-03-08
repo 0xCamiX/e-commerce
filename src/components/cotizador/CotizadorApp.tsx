@@ -13,7 +13,15 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Icons } from '@/components/ui/icons';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Separator } from '@/components/ui/separator';
+import { Textarea } from '@/components/ui/textarea';
 import {
   buildQuoteHTML,
   buildSummary,
@@ -34,9 +42,6 @@ import {
   syncDims,
   totalArea,
 } from '@/lib/cotizador';
-
-const INPUT =
-  'w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-sky-500 focus:outline-none focus:ring-2 focus:ring-sky-500/20 transition-colors';
 
 export default function CotizadorApp() {
   const [client, setClient] = useState<ClientData>({
@@ -132,52 +137,39 @@ export default function CotizadorApp() {
   };
 
   return (
-    <section className="w-full bg-slate-50 py-8 md:py-12">
+    <section className="w-full bg-muted/50 py-8 md:py-12">
       <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        {/* Header */}
         <div className="mb-8 text-center">
-          <h1 className="mb-2 text-3xl font-bold text-slate-900 md:text-4xl">
+          <h1 className="mb-2 text-2xl font-bold text-foreground md:text-3xl">
             Cotizador de Extractores Eólicos
           </h1>
-          <p className="text-lg font-medium text-slate-600">
+          <p className="text-sm text-muted-foreground">
             Calcula la cantidad exacta de extractores según las dimensiones de
             tu techo
           </p>
         </div>
 
         <div className="space-y-6">
-          {/* ── DATOS DEL CLIENTE ───────────────────────────── */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-900">
-              <User className="h-5 w-5 text-sky-500" />
+          {/* DATOS DEL CLIENTE */}
+          <Card className="p-6">
+            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-foreground">
+              <User className="h-5 w-5 text-primary" />
               Datos del Cliente
             </h3>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div>
-                <label
-                  htmlFor="client-name"
-                  className="mb-1.5 block text-sm font-medium text-slate-700"
-                >
-                  Nombre completo
-                </label>
-                <input
+              <div className="space-y-2">
+                <Label htmlFor="client-name">Nombre completo</Label>
+                <Input
                   id="client-name"
-                  className={INPUT}
                   value={client.name}
                   onChange={e => setClient({ ...client, name: e.target.value })}
                   placeholder="Nombre del cliente"
                 />
               </div>
-              <div>
-                <label
-                  htmlFor="client-phone"
-                  className="mb-1.5 block text-sm font-medium text-slate-700"
-                >
-                  Teléfono / WhatsApp
-                </label>
-                <input
+              <div className="space-y-2">
+                <Label htmlFor="client-phone">Teléfono / WhatsApp</Label>
+                <Input
                   id="client-phone"
-                  className={INPUT}
                   value={client.phone}
                   onChange={e =>
                     setClient({ ...client, phone: e.target.value })
@@ -185,31 +177,19 @@ export default function CotizadorApp() {
                   placeholder="Ej: 3001234567"
                 />
               </div>
-              <div>
-                <label
-                  htmlFor="client-city"
-                  className="mb-1.5 block text-sm font-medium text-slate-700"
-                >
-                  Ciudad
-                </label>
-                <input
+              <div className="space-y-2">
+                <Label htmlFor="client-city">Ciudad</Label>
+                <Input
                   id="client-city"
-                  className={INPUT}
                   value={client.city}
                   onChange={e => setClient({ ...client, city: e.target.value })}
                   placeholder="Ciudad"
                 />
               </div>
-              <div>
-                <label
-                  htmlFor="client-address"
-                  className="mb-1.5 block text-sm font-medium text-slate-700"
-                >
-                  Dirección del proyecto
-                </label>
-                <input
+              <div className="space-y-2">
+                <Label htmlFor="client-address">Dirección del proyecto</Label>
+                <Input
                   id="client-address"
-                  className={INPUT}
                   value={client.address}
                   onChange={e =>
                     setClient({ ...client, address: e.target.value })
@@ -218,47 +198,37 @@ export default function CotizadorApp() {
                 />
               </div>
             </div>
-          </div>
+          </Card>
 
-          {/* ── TIPO DE TECHO ───────────────────────────────── */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-900">
-              <Home className="h-5 w-5 text-sky-500" />
+          {/* TIPO DE TECHO */}
+          <Card className="p-6">
+            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-foreground">
+              <Home className="h-5 w-5 text-primary" />
               Tipo de Techo
             </h3>
             <div className="mb-6 flex flex-wrap gap-2">
               {ROOF_TYPES.map(r => (
-                <button
+                <Button
                   key={r.id}
                   type="button"
+                  variant={roofType === r.id ? 'default' : 'outline'}
                   onClick={() => handleRoofTypeChange(r.id)}
-                  className={`rounded-lg border-2 px-4 py-2.5 text-sm font-medium transition-all ${
-                    roofType === r.id
-                      ? 'border-sky-500 bg-sky-50 text-sky-700'
-                      : 'border-slate-200 bg-white text-slate-600 hover:border-slate-300'
-                  }`}
                 >
                   {r.label}
-                </button>
+                </Button>
               ))}
             </div>
             <div className="space-y-4">
               {dims.map((dim, i) => (
                 <div key={dim.id}>
-                  <p className="mb-2 text-sm font-semibold text-sky-700">
+                  <p className="mb-2 text-sm font-semibold text-primary">
                     Pendiente {i + 1}
                   </p>
                   <div className="grid grid-cols-2 gap-3">
-                    <div>
-                      <label
-                        htmlFor={`${dim.id}-largo`}
-                        className="mb-1.5 block text-sm font-medium text-slate-700"
-                      >
-                        Largo (m)
-                      </label>
-                      <input
+                    <div className="space-y-2">
+                      <Label htmlFor={`${dim.id}-largo`}>Largo (m)</Label>
+                      <Input
                         id={`${dim.id}-largo`}
-                        className={INPUT}
                         type="number"
                         min="0"
                         value={dim.largo}
@@ -266,16 +236,10 @@ export default function CotizadorApp() {
                         placeholder="metros"
                       />
                     </div>
-                    <div>
-                      <label
-                        htmlFor={`${dim.id}-ancho`}
-                        className="mb-1.5 block text-sm font-medium text-slate-700"
-                      >
-                        Ancho (m)
-                      </label>
-                      <input
+                    <div className="space-y-2">
+                      <Label htmlFor={`${dim.id}-ancho`}>Ancho (m)</Label>
+                      <Input
                         id={`${dim.id}-ancho`}
-                        className={INPUT}
                         type="number"
                         min="0"
                         value={dim.ancho}
@@ -288,21 +252,21 @@ export default function CotizadorApp() {
               ))}
             </div>
             {area > 0 && (
-              <div className="mt-4 flex items-center gap-2 rounded-lg bg-sky-50 px-4 py-3 text-sm font-semibold text-sky-700">
+              <div className="mt-4 flex items-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-semibold text-accent-foreground">
                 <Ruler className="h-4 w-4" />
                 Área total del techo: {area.toFixed(2)} m²
               </div>
             )}
-          </div>
+          </Card>
 
-          {/* ── MATERIAL DE CUBIERTA ───────────────────────── */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-900">
-              <Layers className="h-5 w-5 text-sky-500" />
+          {/* MATERIAL DE CUBIERTA */}
+          <Card className="p-6">
+            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-foreground">
+              <Layers className="h-5 w-5 text-primary" />
               Material de la Cubierta
             </h3>
             <select
-              className={INPUT}
+              className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
               value={material}
               onChange={e => setMaterial(e.target.value)}
             >
@@ -313,12 +277,12 @@ export default function CotizadorApp() {
                 </option>
               ))}
             </select>
-          </div>
+          </Card>
 
-          {/* ── SELECTOR DE EXTRACTOR ──────────────────────── */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-900">
-              <Wind className="h-5 w-5 text-sky-500" />
+          {/* SELECTOR DE EXTRACTOR */}
+          <Card className="p-6">
+            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-foreground">
+              <Wind className="h-5 w-5 text-primary" />
               Tipo de Extractor
             </h3>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -332,31 +296,27 @@ export default function CotizadorApp() {
                     onClick={() => setSelectedExtractor(ext.id)}
                     className={`rounded-xl border-2 p-5 text-left transition-all ${
                       isSelected
-                        ? 'border-sky-500 bg-sky-50 shadow-md'
-                        : 'border-slate-200 bg-white hover:border-slate-300 hover:shadow-sm'
+                        ? 'border-primary bg-accent shadow-md'
+                        : 'border-border bg-card hover:border-primary/50 hover:shadow-sm'
                     }`}
                   >
                     <div className="mb-2 flex items-center justify-between">
-                      <span className="text-base font-bold text-slate-900">
+                      <span className="text-base font-bold text-foreground">
                         {ext.name}
                       </span>
-                      {isSelected && (
-                        <span className="rounded-full bg-sky-500 px-2 py-0.5 text-[10px] font-bold text-white">
-                          ✓
-                        </span>
-                      )}
+                      {isSelected && <Badge>✓</Badge>}
                     </div>
-                    <p className="mb-3 text-xs leading-relaxed text-slate-600">
+                    <p className="mb-3 text-xs leading-relaxed text-muted-foreground">
                       {ext.description}
                     </p>
-                    <div className="mb-1 text-xs text-slate-500">
+                    <div className="mb-1 text-xs text-muted-foreground">
                       Cobertura: {ext.coverage} m²/und
                     </div>
-                    <div className="text-lg font-bold text-green-600">
+                    <div className="text-lg font-bold text-primary">
                       {formatCOP(ext.price)}
                     </div>
                     {isSelected && area > 0 && (
-                      <div className="mt-3 rounded-lg bg-sky-500 px-3 py-2 text-center text-sm font-bold text-white">
+                      <div className="mt-3 rounded-lg bg-primary px-3 py-2 text-center text-sm font-bold text-primary-foreground">
                         Cantidad: {count} und
                       </div>
                     )}
@@ -364,36 +324,32 @@ export default function CotizadorApp() {
                 );
               })}
             </div>
-          </div>
+          </Card>
 
-          {/* ── PINTURA DEL TECHO ──────────────────────────── */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-900">
-              <Paintbrush className="h-5 w-5 text-sky-500" />
+          {/* PINTURA DEL TECHO */}
+          <Card className="p-6">
+            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-foreground">
+              <Paintbrush className="h-5 w-5 text-primary" />
               Pintura del Techo
             </h3>
-            <label className="flex cursor-pointer items-center gap-3 text-sm font-medium text-slate-700">
-              <input
-                type="checkbox"
+            <div className="flex items-center gap-3">
+              <Checkbox
+                id="paint-roof"
                 checked={paintRoof}
-                onChange={e => setPaintRoof(e.target.checked)}
-                className="h-4 w-4 rounded border-slate-300 text-sky-600 accent-sky-600"
+                onCheckedChange={checked => setPaintRoof(checked === true)}
               />
-              El cliente desea pintar el techo
-            </label>
+              <Label htmlFor="paint-roof" className="cursor-pointer">
+                El cliente desea pintar el techo
+              </Label>
+            </div>
             {paintRoof && (
               <div className="mt-4 space-y-3">
-                <div>
-                  <label
-                    htmlFor="paint-area"
-                    className="mb-1.5 block text-sm font-medium text-slate-700"
-                  >
-                    ¿Cuántos m² desea pintar?
-                  </label>
+                <div className="space-y-2">
+                  <Label htmlFor="paint-area">¿Cuántos m² desea pintar?</Label>
                   <div className="flex items-center gap-3">
-                    <input
+                    <Input
                       id="paint-area"
-                      className={`${INPUT} max-w-[200px]`}
+                      className="max-w-[200px]"
                       type="number"
                       min="1"
                       value={paintArea}
@@ -408,13 +364,13 @@ export default function CotizadorApp() {
                       className="rounded-lg object-cover"
                     />
                   </div>
-                  <p className="mt-1.5 text-xs text-slate-500">
+                  <p className="text-xs text-muted-foreground">
                     1 cuñete cubre {PAINT_COVERAGE} m² · Precio:{' '}
                     {formatCOP(PAINT_PRICE)} / cuñete
                   </p>
                 </div>
                 {suggestedCuñetes > 0 && (
-                  <div className="rounded-lg bg-green-50 px-4 py-3 text-sm text-green-700">
+                  <div className="rounded-lg bg-accent px-4 py-3 text-sm text-accent-foreground">
                     <span className="font-semibold">
                       Cuñetes sugeridos: {suggestedCuñetes}
                     </span>
@@ -424,111 +380,106 @@ export default function CotizadorApp() {
                 )}
               </div>
             )}
-          </div>
+          </Card>
 
-          {/* ── NOTAS ADICIONALES ───────────────────────────── */}
-          <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
-            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-900">
-              <FileText className="h-5 w-5 text-sky-500" />
+          {/* NOTAS ADICIONALES */}
+          <Card className="p-6">
+            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-foreground">
+              <FileText className="h-5 w-5 text-primary" />
               Notas adicionales
             </h3>
-            <textarea
-              className={`${INPUT} resize-none`}
+            <Textarea
               rows={3}
               value={quoteNote}
               onChange={e => setQuoteNote(e.target.value)}
               placeholder="Observaciones, condiciones especiales, tiempo de entrega..."
             />
-          </div>
+          </Card>
 
-          {/* ── RESUMEN DE COTIZACIÓN ──────────────────────── */}
+          {/* RESUMEN DE COTIZACIÓN */}
           {canQuote && (
-            <div className="rounded-xl border-2 border-sky-500 bg-white p-6 shadow-lg">
-              <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-slate-900">
-                <ClipboardList className="h-5 w-5 text-sky-500" />
+            <Card className="border-2 border-primary p-6 shadow-lg">
+              <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-foreground">
+                <ClipboardList className="h-5 w-5 text-primary" />
                 Resumen de Cotización
               </h3>
 
-              <div className="mb-4 space-y-2 border-b border-slate-200 pb-4 text-sm">
+              <div className="mb-4 space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Cliente:</span>
-                  <span className="font-semibold text-slate-900">
+                  <span className="text-muted-foreground">Cliente:</span>
+                  <span className="font-semibold text-foreground">
                     {client.name || '—'}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Techo:</span>
-                  <span className="text-slate-700">
+                  <span className="text-muted-foreground">Techo:</span>
+                  <span className="text-foreground">
                     {roofTypeObj.label} — {material || '—'}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-500">Área total:</span>
-                  <span className="font-semibold text-slate-900">
+                  <span className="text-muted-foreground">Área total:</span>
+                  <span className="font-semibold text-foreground">
                     {area.toFixed(2)} m²
                   </span>
                 </div>
               </div>
 
+              <Separator className="my-4" />
+
               {summary.extractor && (
-                <div className="mb-2 flex items-center justify-between rounded-lg bg-slate-50 px-4 py-3 text-sm">
-                  <span className="text-slate-700">
+                <div className="mb-2 flex items-center justify-between rounded-lg bg-muted px-4 py-3 text-sm">
+                  <span className="text-foreground">
                     {summary.extractor.name} ({summary.extractorCount} und ×{' '}
                     {formatCOP(summary.extractor.price)})
                   </span>
-                  <span className="font-bold text-slate-900">
+                  <span className="font-bold text-foreground">
                     {formatCOP(summary.extractorTotal)}
                   </span>
                 </div>
               )}
 
               {paintRoof && summary.paintCount > 0 && (
-                <div className="mb-2 flex items-center justify-between rounded-lg bg-slate-50 px-4 py-3 text-sm">
-                  <span className="text-slate-700">
+                <div className="mb-2 flex items-center justify-between rounded-lg bg-muted px-4 py-3 text-sm">
+                  <span className="text-foreground">
                     Pintura techo ({summary.paintCount} cuñetes ×{' '}
                     {formatCOP(PAINT_PRICE)})
                   </span>
-                  <span className="font-bold text-slate-900">
+                  <span className="font-bold text-foreground">
                     {formatCOP(summary.paintTotal)}
                   </span>
                 </div>
               )}
 
-              <div className="mt-4 flex items-center justify-between rounded-lg bg-sky-500 px-5 py-4">
-                <span className="text-base font-bold text-white">TOTAL</span>
-                <span className="text-xl font-extrabold text-white">
+              <div className="mt-4 flex items-center justify-between rounded-lg bg-primary px-5 py-4">
+                <span className="text-base font-bold text-primary-foreground">
+                  TOTAL
+                </span>
+                <span className="text-xl font-extrabold text-primary-foreground">
                   {formatCOP(summary.total)}
                 </span>
               </div>
 
-              <p className="mt-2 text-xs font-medium text-red-500 italic">
+              <p className="mt-2 text-xs font-medium text-destructive italic">
                 ⚠️ Los costos de envío pueden variar si el proyecto es fuera de
                 Cali.
               </p>
 
               <div className="mt-5 flex flex-wrap gap-3">
-                <button
-                  type="button"
-                  onClick={openPdf}
-                  className="flex items-center gap-2 rounded-lg bg-red-500 px-5 py-3 text-sm font-semibold text-white transition-all hover:bg-red-600"
-                >
-                  <Printer className="h-4 w-4" />
+                <Button variant="destructive" onClick={openPdf}>
+                  <Printer className="mr-2 h-4 w-4" />
                   Ver / Imprimir PDF
-                </button>
-                <button
-                  type="button"
-                  onClick={sendWhatsApp}
-                  className="flex items-center gap-2 rounded-lg bg-green-500 px-5 py-3 text-sm font-semibold text-white transition-all hover:bg-green-600"
-                >
-                  <Icons.whatsapp className="h-4 w-4" />
+                </Button>
+                <Button onClick={sendWhatsApp}>
+                  <Icons.whatsapp className="mr-2 h-4 w-4" />
                   Enviar por WhatsApp
-                </button>
+                </Button>
               </div>
-              <p className="mt-2 text-xs text-slate-500">
+              <p className="mt-2 text-xs text-muted-foreground">
                 WhatsApp envía copia simultánea al cliente y a la empresa (+57
                 317 752 5559)
               </p>
-            </div>
+            </Card>
           )}
         </div>
       </div>

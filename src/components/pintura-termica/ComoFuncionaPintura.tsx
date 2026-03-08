@@ -3,13 +3,13 @@
 import { motion } from 'framer-motion';
 import { Lightbulb, Microscope, RotateCcw, Thermometer } from 'lucide-react';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+import { Card } from '@/components/ui/card';
 
 const steps = [
   {
     icon: Lightbulb,
     title: 'Rayos solares',
     description: 'La radiación solar incide sobre la superficie del techo',
-    color: 'bg-amber-100 text-amber-600',
     stat: '100%',
     statLabel: 'Radiación incidente',
   },
@@ -18,7 +18,6 @@ const steps = [
     title: 'Microesferas cerámicas',
     description:
       'La pintura contiene millones de microesferas huecas de cerámica',
-    color: 'bg-sky-100 text-sky-600',
     stat: 'Millones',
     statLabel: 'Microesferas por m²',
   },
@@ -26,7 +25,6 @@ const steps = [
     icon: RotateCcw,
     title: 'Reflexión solar',
     description: 'Las microesferas reflejan hasta el 85% de la radiación solar',
-    color: 'bg-green-100 text-green-600',
     stat: '85%',
     statLabel: 'Reflexión',
   },
@@ -35,7 +33,6 @@ const steps = [
     title: 'Reducción térmica',
     description:
       'La temperatura de la superficie baja drásticamente hasta 20°C menos',
-    color: 'bg-orange-100 text-orange-600',
     stat: '−20°C',
     statLabel: 'En superficie',
   },
@@ -59,20 +56,17 @@ const itemVariants = {
 
 export default function ComoFuncionaPintura() {
   return (
-    <section
-      id="como-funciona"
-      className="w-full bg-gradient-to-b from-slate-50 to-white py-20 md:py-28"
-    >
+    <section id="como-funciona" className="w-full bg-muted/50 py-12 md:py-16">
       <MaxWidthWrapper>
         <div className="space-y-16">
           <div className="text-center">
-            <p className="mb-2 text-sm font-semibold tracking-widest text-amber-600 uppercase">
+            <p className="mb-2 text-sm font-semibold tracking-widest text-primary uppercase">
               Tecnología
             </p>
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl">
+            <h2 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">
               La ciencia detrás de la frescura
             </h2>
-            <p className="mx-auto max-w-2xl text-lg font-medium text-slate-600">
+            <p className="mx-auto max-w-2xl text-sm font-medium text-muted-foreground sm:text-base">
               La pintura térmica actúa como un escudo que refleja la radiación
               solar antes de que se convierta en calor dentro de tu espacio
             </p>
@@ -88,55 +82,52 @@ export default function ComoFuncionaPintura() {
             {steps.map((step, idx) => {
               const Icon = step.icon;
               return (
-                <motion.div
-                  key={step.title}
-                  variants={itemVariants}
-                  className="group relative rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
-                >
-                  {idx < steps.length - 1 && (
-                    <div className="absolute top-1/2 -right-3 z-10 hidden text-slate-300 lg:block">
-                      →
+                <motion.div key={step.title} variants={itemVariants}>
+                  <Card className="group relative h-full p-6 transition-all hover:-translate-y-1 hover:shadow-lg">
+                    {idx < steps.length - 1 && (
+                      <div className="absolute top-1/2 -right-3 z-10 hidden text-muted-foreground lg:block">
+                        →
+                      </div>
+                    )}
+                    <div className="mb-4 flex items-center justify-between">
+                      <div className="inline-flex rounded-lg bg-accent p-3 text-accent-foreground">
+                        <Icon className="h-6 w-6" />
+                      </div>
+                      <span className="rounded-full bg-muted px-2 py-0.5 text-xs font-bold text-muted-foreground">
+                        {idx + 1}
+                      </span>
                     </div>
-                  )}
-                  <div className="mb-4 flex items-center justify-between">
-                    <div className={`inline-flex rounded-lg p-3 ${step.color}`}>
-                      <Icon className="h-6 w-6" />
+                    <h3 className="mb-2 text-base font-bold text-foreground">
+                      {step.title}
+                    </h3>
+                    <p className="mb-4 text-sm leading-relaxed font-medium text-muted-foreground">
+                      {step.description}
+                    </p>
+                    <div className="border-t border-border pt-3">
+                      <p className="text-xl font-bold text-foreground">
+                        {step.stat}
+                      </p>
+                      <p className="text-xs font-medium text-muted-foreground">
+                        {step.statLabel}
+                      </p>
                     </div>
-                    <span className="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-bold text-slate-500">
-                      {idx + 1}
-                    </span>
-                  </div>
-                  <h3 className="mb-2 text-lg font-bold text-slate-900">
-                    {step.title}
-                  </h3>
-                  <p className="mb-4 text-sm leading-relaxed font-medium text-slate-600">
-                    {step.description}
-                  </p>
-                  <div className="border-t border-slate-100 pt-3">
-                    <p className="text-2xl font-bold text-slate-900">
-                      {step.stat}
-                    </p>
-                    <p className="text-xs font-medium text-slate-500">
-                      {step.statLabel}
-                    </p>
-                  </div>
+                  </Card>
                 </motion.div>
               );
             })}
           </motion.div>
 
-          {/* Comparison bar */}
           <div className="mx-auto max-w-2xl space-y-4">
             <div className="space-y-2">
-              <div className="flex items-center justify-between text-sm font-medium text-slate-700">
+              <div className="flex items-center justify-between text-sm font-medium text-foreground">
                 <span>Sin pintura térmica</span>
-                <span className="font-semibold text-red-600">
+                <span className="font-semibold text-destructive">
                   85% absorción
                 </span>
               </div>
-              <div className="h-3 w-full overflow-hidden rounded-full bg-slate-200">
+              <div className="h-3 w-full overflow-hidden rounded-full bg-muted">
                 <motion.div
-                  className="h-full rounded-full bg-gradient-to-r from-red-400 to-red-500"
+                  className="h-full rounded-full bg-destructive"
                   initial={{ width: 0 }}
                   whileInView={{ width: '85%' }}
                   viewport={{ once: true }}
@@ -145,15 +136,15 @@ export default function ComoFuncionaPintura() {
               </div>
             </div>
             <div className="space-y-2">
-              <div className="flex items-center justify-between text-sm font-medium text-slate-700">
+              <div className="flex items-center justify-between text-sm font-medium text-foreground">
                 <span>Con pintura térmica</span>
-                <span className="font-semibold text-green-600">
+                <span className="font-semibold text-primary">
                   85% reflexión
                 </span>
               </div>
-              <div className="h-3 w-full overflow-hidden rounded-full bg-slate-200">
+              <div className="h-3 w-full overflow-hidden rounded-full bg-muted">
                 <motion.div
-                  className="h-full rounded-full bg-gradient-to-r from-green-400 to-green-500"
+                  className="h-full rounded-full bg-primary"
                   initial={{ width: 0 }}
                   whileInView={{ width: '85%' }}
                   viewport={{ once: true }}

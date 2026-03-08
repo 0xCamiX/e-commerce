@@ -11,22 +11,20 @@ const brands = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="bg-white py-16 md:py-20">
+    <section id="testimonials" className="bg-muted/50 py-12 md:py-16">
       <MaxWidthWrapper>
-        <div className="space-y-12 text-center">
-          {/* Título de la sección */}
-          <div className="space-y-4">
-            <h2 className="text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl">
+        <div className="space-y-10 text-center">
+          <div className="space-y-3">
+            <h2 className="text-2xl font-bold text-foreground md:text-3xl">
               Marcas que confían en nosotros
             </h2>
-            <p className="mx-auto max-w-2xl text-lg font-medium text-slate-600">
+            <p className="mx-auto max-w-xl text-sm text-muted-foreground">
               Empresas líderes en diferentes sectores han elegido nuestros
               extractores eólicos para mejorar la ventilación de sus
               instalaciones.
             </p>
           </div>
 
-          {/* Marcas en fila */}
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 lg:gap-16">
             {brands.map(brand => (
               <div key={brand.id} className="flex items-center justify-center">
@@ -35,7 +33,7 @@ export default function Testimonials() {
                   alt={brand.name}
                   width={120}
                   height={60}
-                  className="h-12 w-auto object-contain opacity-70 grayscale filter md:h-16"
+                  className="h-10 w-auto object-contain opacity-70 grayscale filter transition-all hover:opacity-100 hover:grayscale-0 md:h-14"
                 />
               </div>
             ))}

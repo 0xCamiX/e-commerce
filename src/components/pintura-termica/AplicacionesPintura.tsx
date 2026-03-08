@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import { Building2, Factory, Home, Warehouse } from 'lucide-react';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
 
 const surfaces = [
   {
@@ -10,8 +12,6 @@ const surfaces = [
     name: 'Losa de concreto plana',
     description: 'La superficie más común. Máximo beneficio térmico.',
     benefit: 'Máximo beneficio',
-    color: 'from-slate-500 to-gray-600',
-    bgColor: 'bg-slate-50',
   },
   {
     icon: Factory,
@@ -19,8 +19,6 @@ const surfaces = [
     description:
       'Alta ganancia térmica. Ideal para bodegas y galpones industriales.',
     benefit: 'Ideal para industria',
-    color: 'from-sky-500 to-blue-600',
-    bgColor: 'bg-sky-50',
   },
   {
     icon: Warehouse,
@@ -28,8 +26,6 @@ const surfaces = [
     description:
       'Muy común en Colombia. Compatible directo con excelente adherencia.',
     benefit: 'Compatible directo',
-    color: 'from-green-500 to-emerald-600',
-    bgColor: 'bg-green-50',
   },
   {
     icon: Home,
@@ -37,8 +33,6 @@ const surfaces = [
     description:
       'Requiere imprimante previo. Excelente resultado en viviendas tradicionales.',
     benefit: 'Con imprimante',
-    color: 'from-amber-500 to-orange-600',
-    bgColor: 'bg-amber-50',
   },
 ];
 
@@ -60,17 +54,17 @@ const itemVariants = {
 
 export default function AplicacionesPintura() {
   return (
-    <section className="w-full bg-gradient-to-b from-slate-50 to-white py-20 md:py-28">
+    <section id="aplicaciones" className="w-full bg-muted/50 py-12 md:py-16">
       <MaxWidthWrapper>
         <div className="space-y-16">
           <div className="text-center">
-            <p className="mb-2 text-sm font-semibold tracking-widest text-amber-600 uppercase">
+            <p className="mb-2 text-sm font-semibold tracking-widest text-primary uppercase">
               Compatibilidad
             </p>
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl">
+            <h2 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">
               ¿Funciona en tu techo?
             </h2>
-            <p className="mx-auto max-w-2xl text-lg font-medium text-slate-600">
+            <p className="mx-auto max-w-2xl text-sm font-medium text-muted-foreground sm:text-base">
               La pintura térmica se adapta a los tipos de superficie más comunes
               en Colombia
             </p>
@@ -86,25 +80,19 @@ export default function AplicacionesPintura() {
             {surfaces.map(surface => {
               const Icon = surface.icon;
               return (
-                <motion.div
-                  key={surface.name}
-                  variants={itemVariants}
-                  className={`group overflow-hidden rounded-xl border border-slate-200 ${surface.bgColor} p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg`}
-                >
-                  <div
-                    className={`mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-gradient-to-r ${surface.color} shadow-lg`}
-                  >
-                    <Icon className="h-7 w-7 text-white" />
-                  </div>
-                  <h3 className="mb-2 text-lg font-bold text-slate-900">
-                    {surface.name}
-                  </h3>
-                  <p className="mb-3 text-sm leading-relaxed font-medium text-slate-600">
-                    {surface.description}
-                  </p>
-                  <span className="inline-flex rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-700 shadow-sm">
-                    {surface.benefit}
-                  </span>
+                <motion.div key={surface.name} variants={itemVariants}>
+                  <Card className="group h-full p-6 transition-all hover:-translate-y-1 hover:shadow-lg">
+                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-primary shadow-lg">
+                      <Icon className="h-7 w-7 text-primary-foreground" />
+                    </div>
+                    <h3 className="mb-2 text-base font-bold text-foreground">
+                      {surface.name}
+                    </h3>
+                    <p className="mb-3 text-sm leading-relaxed font-medium text-muted-foreground">
+                      {surface.description}
+                    </p>
+                    <Badge variant="secondary">{surface.benefit}</Badge>
+                  </Card>
                 </motion.div>
               );
             })}

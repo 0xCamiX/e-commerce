@@ -1,18 +1,14 @@
-import { Building2, Home, Star, Warehouse } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import Link from 'next/link';
-import type React from 'react';
-import {
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 
 const plans = [
   {
-    type: 'Hogar (24" - 60cm)',
-    price: '$750,000 COP + IVA',
-    description: 'Buena para hogares, apartamentos y pequeños comercios.',
+    name: 'Hogar (24")',
+    subtitle: 'Para uso residencial',
+    price: '$750,000',
+    period: 'COP + IVA',
     warranty: '5 años de garantía',
     features: [
       'Fácil instalación',
@@ -20,19 +16,14 @@ const plans = [
       '100% ecológico',
       'Silencioso',
     ],
-    button: {
-      label: 'Comprar',
-      url: 'https://wa.me/573177525559',
-      style:
-        'bg-gradient-to-r from-sky-500 to-sky-400 text-white shadow-md shadow-sky-200/80 hover:shadow-lg hover:shadow-sky-300/90 hover:-translate-y-0.5',
-    },
-    icon: Home,
-    gradient: 'from-sky-200 via-sky-100 to-sky-50',
+    url: 'https://wa.me/573177525559',
+    recommended: false,
   },
   {
-    type: 'Bodegas (31" - 80cm)',
-    price: '$850,000 COP + IVA',
-    description: 'Ideal para fábricas, bodegas y hangares.',
+    name: 'Bodegas (31")',
+    subtitle: 'Para uso industrial',
+    price: '$850,000',
+    period: 'COP + IVA',
     warranty: '5 años de garantía',
     features: [
       'Alta capacidad de extracción',
@@ -40,20 +31,14 @@ const plans = [
       'Materiales resistentes',
       'Instalación profesional',
     ],
-    button: {
-      label: 'Comprar',
-      url: 'https://wa.me/573177525559',
-      style:
-        'bg-gradient-to-r from-green-600 to-green-500 text-white shadow-lg shadow-green-200/80 hover:shadow-xl hover:shadow-green-300/90 hover:-translate-y-1 hover:scale-105',
-    },
-    icon: Warehouse,
-    gradient: 'from-green-200 via-green-100 to-green-50',
+    url: 'https://wa.me/573177525559',
+    recommended: true,
   },
   {
-    type: 'Empresarial',
+    name: 'Empresarial',
+    subtitle: 'Para proyectos a gran escala',
     price: null,
-    description:
-      'Proyectos empresariales para cubiertas industriales o de gran cantidad. Contáctanos para un acuerdo en el precio.',
+    period: null,
     warranty: null,
     features: [
       'Soluciones a medida',
@@ -62,125 +47,93 @@ const plans = [
       'Soporte prioritario',
       'Ahorro de energía',
     ],
-    button: {
-      label: 'Contáctanos',
-      url: 'https://wa.me/573177525559',
-      style:
-        'bg-gradient-to-r from-amber-500 to-amber-400 text-white shadow-md shadow-amber-200/80 hover:shadow-lg hover:shadow-amber-300/90 hover:-translate-y-0.5',
-    },
-    icon: Building2,
-    gradient: 'from-amber-200 via-amber-100 to-amber-50',
+    url: 'https://wa.me/573177525559',
+    recommended: false,
   },
 ];
 
-function IconMesh({
-  Icon,
-  count = 36,
-}: {
-  Icon: React.ComponentType<{ strokeWidth?: number }>;
-  count?: number;
-}) {
-  // Renderiza una malla de iconos pequeños
-  return (
-    <svg
-      className="absolute inset-0 h-full w-full [mask-image:linear-gradient(to_bottom,black_60%,transparent)] opacity-30"
-      style={{ zIndex: 1 }}
-      aria-hidden="true"
-      role="presentation"
-    >
-      {Array.from({ length: count }, (_, i) => {
-        const x = (i % 12) * 24 + 8;
-        const y = Math.floor(i / 12) * 24 + 8;
-        return (
-          <g
-            key={`icon-${x}-${y}`}
-            transform={`translate(${x},${y}) scale(0.18)`}
-          >
-            <Icon strokeWidth={1} />
-          </g>
-        );
-      })}
-    </svg>
-  );
-}
-
 export default function Prices() {
   return (
-    <section className="w-full bg-slate-50 py-16 md:py-20">
+    <section id="precios" className="w-full bg-background py-12 md:py-16">
       <div className="mx-auto max-w-5xl px-4">
-        <h2 className="mb-4 text-center text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl">
-          Precios
-        </h2>
-        <p className="mx-auto mb-12 max-w-2xl text-center text-lg font-medium text-slate-600">
-          Elige el extractor ideal para tu espacio
-        </p>
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-          {plans.map((plan, idx) => (
+        <div className="mb-10 text-center">
+          <h2 className="mb-2 text-2xl font-bold text-foreground md:text-3xl">
+            Precios
+          </h2>
+          <p className="mx-auto max-w-lg text-sm text-muted-foreground">
+            Elige el extractor ideal para tu espacio
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {plans.map(plan => (
             <div
-              key={plan.type}
-              className={`overflow-hidden rounded-xl transition-transform duration-300 ease-in-out ${idx === 1 ? 'border-2 border-green-400 shadow-xl shadow-green-100/50 hover:scale-105' : 'border border-gray-100 hover:scale-102'}`}
+              key={plan.name}
+              className={`flex flex-col rounded-xl border bg-white p-6 ${
+                plan.recommended
+                  ? 'border-primary ring-1 ring-primary/20'
+                  : 'border-border'
+              }`}
             >
-              <div className="flex h-full flex-col">
-                {/* Gradiente y malla de iconos */}
-                <div
-                  className={`relative h-24 w-full bg-gradient-to-b ${plan.gradient}`}
-                >
-                  <IconMesh Icon={plan.icon} />
-                  <div className="absolute top-4 left-4 z-10">
-                    <plan.icon className="h-6 w-6 text-black opacity-60" />
-                  </div>
-                  {idx === 1 && (
-                    <div className="absolute top-4 right-4 z-10 rounded-full bg-gradient-to-r from-green-600 to-green-500 px-4 py-1.5 text-sm font-semibold text-white shadow-lg ring-2 ring-white/20">
-                      Recomendado
-                    </div>
-                  )}
-                </div>
-                {/* Contenido de la carta */}
-                <div className="flex flex-1 flex-col bg-white">
-                  <CardHeader className="px-6 pt-4 pb-2">
-                    <CardTitle className="text-xl font-bold text-slate-900">
-                      {plan.type}
-                    </CardTitle>
-                    <CardDescription className="min-h-[40px] font-medium text-slate-600">
-                      {plan.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="flex flex-1 flex-col justify-between px-6 pt-0 pb-6">
-                    <div>
-                      {plan.price && (
-                        <div className="mb-2 flex items-baseline gap-2">
-                          <span className="text-3xl font-bold text-slate-900">
-                            {plan.price}
-                          </span>
-                        </div>
-                      )}
-                      {plan.warranty && (
-                        <div className="mb-2 text-xs font-semibold text-sky-700">
-                          {plan.warranty}
-                        </div>
-                      )}
-                      <ul className="mb-4 space-y-1">
-                        {plan.features.map(f => (
-                          <li
-                            key={f}
-                            className="flex items-center text-sm font-medium text-slate-700"
-                          >
-                            <Star className="mr-2 h-3 w-3 text-sky-400 opacity-70" />
-                            {f}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <Link
-                      href={plan.button.url}
-                      target="_blank"
-                      className={`group mt-auto flex w-full items-center justify-center rounded-lg px-4 py-2 text-center text-base font-semibold transition-all duration-300 ease-in-out ${plan.button.style}`}
-                    >
-                      {plan.button.label}
-                    </Link>
-                  </CardContent>
-                </div>
+              <div className="mb-4">
+                <p className="text-base font-bold text-foreground">
+                  {plan.name}
+                </p>
+                <p className="text-xs text-muted-foreground">{plan.subtitle}</p>
               </div>
+
+              {plan.price ? (
+                <div className="mb-1">
+                  <span className="text-3xl font-bold tracking-tight text-foreground">
+                    {plan.price}
+                  </span>
+                </div>
+              ) : (
+                <div className="mb-1">
+                  <span className="text-lg font-semibold text-foreground">
+                    Cotización personalizada
+                  </span>
+                </div>
+              )}
+
+              {plan.period && (
+                <p className="mb-4 text-xs text-muted-foreground">
+                  {plan.period}
+                </p>
+              )}
+
+              {plan.warranty && (
+                <p className="mb-4 text-xs font-medium text-primary">
+                  {plan.warranty}
+                </p>
+              )}
+
+              {!plan.price && <div className="mb-4" />}
+
+              <Separator className="mb-4" />
+
+              <ul className="mb-6 flex-1 space-y-2.5">
+                {plan.features.map(f => (
+                  <li
+                    key={f}
+                    className="flex items-center gap-2 text-[13px] text-muted-foreground"
+                  >
+                    <Check className="h-3.5 w-3.5 flex-shrink-0 text-primary" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <Button
+                asChild
+                className="w-full"
+                variant={plan.recommended ? 'default' : 'outline'}
+              >
+                <Link href={plan.url} target="_blank">
+                  {plan.price ? 'Comprar' : 'Contáctanos'}
+                  <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+                </Link>
+              </Button>
             </div>
           ))}
         </div>

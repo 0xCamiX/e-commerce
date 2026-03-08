@@ -4,16 +4,14 @@ export default function Tutorial() {
   const videoId = 'XlNISZIxEdI';
 
   return (
-    <section id="tutorial" className="w-full bg-white py-16 md:py-20">
+    <section id="tutorial" className="w-full bg-background py-12 md:py-16">
       <div className="mx-auto max-w-3xl px-4">
-        <h2 className="mb-12 text-center text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl">
+        <h2 className="mb-8 text-center text-2xl font-bold text-foreground md:text-3xl">
           Tutorial de Instalación
         </h2>
         <div
-          className="relative overflow-hidden rounded-xl shadow-lg"
-          style={{
-            aspectRatio: '16 / 9',
-          }}
+          className="relative overflow-hidden rounded-xl border border-border shadow-lg"
+          style={{ aspectRatio: '16 / 9' }}
         >
           <iframe
             className="absolute top-0 left-0 h-full w-full"
@@ -21,7 +19,7 @@ export default function Tutorial() {
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
-          ></iframe>
+          />
         </div>
       </div>
     </section>

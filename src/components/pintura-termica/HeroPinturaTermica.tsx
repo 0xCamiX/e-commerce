@@ -5,13 +5,18 @@ import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { buildWhatsAppUrl } from '@/config/site';
 
 const badges = ['Hogares', 'Bodegas', 'Fábricas', 'Galpones', 'Recintos'];
 
 export default function HeroPinturaTermica() {
   return (
-    <section className="relative w-full overflow-hidden bg-slate-950">
+    <section
+      id="hero"
+      className="relative w-full overflow-hidden bg-foreground"
+    >
       <Image
         src="/products/pintura-termica/hero.png"
         alt="Trabajador aplicando pintura térmica reflectiva en techo de concreto bajo el sol"
@@ -22,33 +27,34 @@ export default function HeroPinturaTermica() {
         className="object-cover object-center opacity-40"
       />
 
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/60 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
 
       <MaxWidthWrapper className="relative z-10">
-        <div className="flex min-h-[85vh] flex-col justify-center py-20 md:py-28">
+        <div className="flex min-h-[85vh] flex-col justify-center py-12 md:py-16">
           <div className="max-w-2xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <span className="badge-nuevo mb-6 inline-flex items-center gap-1.5 rounded-full border border-amber-400/30 bg-amber-500/20 px-3 py-1.5 text-xs font-semibold text-amber-300">
-                <Sparkles className="h-3.5 w-3.5" />
+              <Badge
+                variant="outline"
+                className="mb-6 border-primary/30 bg-primary/20 text-primary-foreground"
+              >
+                <Sparkles className="mr-1.5 h-3.5 w-3.5" />
                 NUEVO PRODUCTO
-              </span>
+              </Badge>
             </motion.div>
 
             <motion.h1
-              className="mb-6 text-4xl leading-[1.1] font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl"
+              className="mb-6 text-2xl leading-[1.1] font-bold tracking-tight text-white sm:text-3xl md:text-4xl"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               Reduce hasta{' '}
-              <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent">
-                  20°C
-                </span>
+              <span className="bg-gradient-to-r from-primary to-accent-foreground bg-clip-text text-transparent">
+                20°C
               </span>
               <br />
               la temperatura
@@ -57,7 +63,7 @@ export default function HeroPinturaTermica() {
             </motion.h1>
 
             <motion.p
-              className="mb-8 max-w-lg text-lg font-medium text-slate-300 sm:text-xl"
+              className="mb-8 max-w-lg text-sm font-medium text-white/70 sm:text-base"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
@@ -73,21 +79,26 @@ export default function HeroPinturaTermica() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
-              <Link
-                href={buildWhatsAppUrl('Pintura Térmica')}
-                target="_blank"
-                className="group flex items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-amber-500 to-orange-500 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-amber-500/25 transition-all hover:scale-105 hover:shadow-xl hover:shadow-amber-500/30"
+              <Button asChild size="lg" className="shadow-lg">
+                <Link
+                  href={buildWhatsAppUrl('Pintura Térmica')}
+                  target="_blank"
+                >
+                  Cotizar ahora
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-white/20 bg-white/5 text-white backdrop-blur-sm hover:border-white/40 hover:bg-white/10 hover:text-white"
               >
-                Cotizar ahora
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link
-                href="#como-funciona"
-                className="flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/5 px-8 py-4 text-base font-semibold text-white backdrop-blur-sm transition-all hover:border-white/40 hover:bg-white/10"
-              >
-                Ver cómo funciona
-                <ChevronDown className="h-4 w-4" />
-              </Link>
+                <Link href="#como-funciona">
+                  Ver cómo funciona
+                  <ChevronDown className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </motion.div>
 
             <motion.div
@@ -96,21 +107,21 @@ export default function HeroPinturaTermica() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.7 }}
             >
-              <span className="text-sm font-medium text-slate-400">
+              <span className="text-sm font-medium text-white/50">
                 Aplicable en:
               </span>
               {badges.map(b => (
-                <span
+                <Badge
                   key={b}
-                  className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300"
+                  variant="outline"
+                  className="border-white/10 bg-white/5 text-white/80"
                 >
                   {b}
-                </span>
+                </Badge>
               ))}
             </motion.div>
           </div>
 
-          {/* Stat floating card */}
           <motion.div
             className="absolute right-8 bottom-20 hidden rounded-2xl border border-white/10 bg-white/10 p-6 backdrop-blur-md lg:block"
             initial={{ opacity: 0, x: 40 }}
@@ -119,23 +130,25 @@ export default function HeroPinturaTermica() {
           >
             <div className="space-y-3">
               <div className="flex items-end gap-2">
-                <span className="text-5xl font-bold text-amber-400">−20°</span>
-                <span className="mb-1 text-lg font-semibold text-white">C</span>
+                <span className="text-3xl font-bold text-primary">−20°</span>
+                <span className="mb-1 text-base font-semibold text-white">
+                  C
+                </span>
               </div>
-              <p className="text-sm font-medium text-slate-300">
+              <p className="text-sm font-medium text-white/70">
                 Reducción en temperatura
                 <br />
                 superficial del techo
               </p>
               <div className="flex items-center gap-4 border-t border-white/10 pt-3">
                 <div>
-                  <p className="text-2xl font-bold text-white">85%</p>
-                  <p className="text-xs text-slate-400">Reflexión solar</p>
+                  <p className="text-xl font-bold text-white">85%</p>
+                  <p className="text-xs text-white/50">Reflexión solar</p>
                 </div>
                 <div className="h-8 w-px bg-white/20" />
                 <div>
-                  <p className="text-2xl font-bold text-white">5</p>
-                  <p className="text-xs text-slate-400">Años garantía</p>
+                  <p className="text-xl font-bold text-white">5</p>
+                  <p className="text-xs text-white/50">Años garantía</p>
                 </div>
               </div>
             </div>

@@ -1,5 +1,6 @@
 import { Building2, ChefHat, Cookie, Factory } from 'lucide-react';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+import { Card } from '@/components/ui/card';
 
 const applications = [
   {
@@ -13,8 +14,6 @@ const applications = [
       'Mejora de condiciones laborales',
       'Cumplimiento de normativas sanitarias',
     ],
-    color: 'from-orange-500 to-red-500',
-    bgColor: 'bg-orange-50',
   },
   {
     icon: Cookie,
@@ -27,8 +26,6 @@ const applications = [
       'Protección de equipos',
       'Mejora de calidad del producto',
     ],
-    color: 'from-amber-500 to-yellow-500',
-    bgColor: 'bg-amber-50',
   },
   {
     icon: Factory,
@@ -41,8 +38,6 @@ const applications = [
       'Protección de trabajadores',
       'Cumplimiento de seguridad industrial',
     ],
-    color: 'from-blue-500 to-indigo-500',
-    bgColor: 'bg-blue-50',
   },
   {
     icon: Building2,
@@ -55,70 +50,63 @@ const applications = [
       'Eficiencia energética',
       'Ambiente confortable',
     ],
-    color: 'from-slate-500 to-gray-500',
-    bgColor: 'bg-slate-50',
   },
 ];
 
 export default function AplicacionesExtractoresTipoHongo() {
   return (
-    <section className="w-full bg-gradient-to-b from-slate-50 to-white py-16 md:py-20">
+    <section id="aplicaciones" className="w-full bg-muted/50 py-12 md:py-16">
       <MaxWidthWrapper>
         <div className="space-y-12">
-          {/* Header */}
           <div className="text-center">
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl">
+            <h2 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">
               Aplicaciones y Casos de Uso
             </h2>
-            <p className="mx-auto max-w-2xl text-lg font-medium text-slate-600">
+            <p className="mx-auto max-w-2xl text-sm font-medium text-muted-foreground sm:text-base">
               Soluciones versátiles para diferentes industrias y entornos
               comerciales
             </p>
           </div>
 
-          {/* Applications Grid */}
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             {applications.map(app => {
               const Icon = app.icon;
               return (
-                <div
+                <Card
                   key={app.title}
-                  className={`group overflow-hidden rounded-xl border border-slate-200 ${app.bgColor} p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl`}
+                  className="group p-8 transition-all hover:-translate-y-1 hover:shadow-xl"
                 >
                   <div className="mb-6 flex items-start gap-4">
-                    <div
-                      className={`flex h-14 w-14 items-center justify-center rounded-lg bg-gradient-to-r ${app.color} shadow-lg`}
-                    >
-                      <Icon className="h-7 w-7 text-white" />
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-primary shadow-lg">
+                      <Icon className="h-7 w-7 text-primary-foreground" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="mb-2 text-xl font-bold text-slate-900">
+                      <h3 className="mb-2 text-base font-bold text-foreground sm:text-lg">
                         {app.title}
                       </h3>
-                      <p className="text-sm leading-relaxed font-medium text-slate-600">
+                      <p className="text-sm leading-relaxed font-medium text-muted-foreground">
                         {app.description}
                       </p>
                     </div>
                   </div>
 
-                  {/* Benefits List */}
                   <div className="mt-6 space-y-2">
-                    <p className="text-sm font-semibold text-slate-700">
+                    <p className="text-sm font-semibold text-foreground">
                       Beneficios principales:
                     </p>
                     <ul className="grid grid-cols-2 gap-2">
                       {app.benefits.map(benefit => (
                         <li
                           key={benefit}
-                          className="flex items-center gap-2 text-sm font-medium text-slate-600"
+                          className="flex items-center gap-2 text-sm font-medium text-muted-foreground"
                         >
-                          <span className="h-1.5 w-1.5 rounded-full bg-sky-500"></span>
+                          <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                           {benefit}
                         </li>
                       ))}
                     </ul>
                   </div>
-                </div>
+                </Card>
               );
             })}
           </div>

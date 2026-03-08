@@ -42,6 +42,37 @@ export const siteConfig = {
         isPrimary: true,
       },
     ],
+    subNav: {
+      '/': [
+        { title: 'Inicio', href: '/#hero' },
+        { title: 'Precios', href: '/#precios' },
+        { title: 'Instalación', href: '/#tutorial' },
+        { title: 'Clientes', href: '/#testimonials' },
+        { title: 'Contacto', href: '/#contact' },
+      ],
+      '/extractores-tipo-hongo': [
+        { title: 'Descripción', href: '/extractores-tipo-hongo#hero' },
+        {
+          title: 'Características',
+          href: '/extractores-tipo-hongo#caracteristicas',
+        },
+        { title: 'Aplicaciones', href: '/extractores-tipo-hongo#aplicaciones' },
+        {
+          title: 'Especificaciones',
+          href: '/extractores-tipo-hongo#especificaciones',
+        },
+      ],
+      '/pintura-termica': [
+        { title: 'Descripción', href: '/pintura-termica#hero' },
+        { title: 'Cómo funciona', href: '/pintura-termica#como-funciona' },
+        { title: 'Beneficios', href: '/pintura-termica#beneficios' },
+        { title: 'Aplicaciones', href: '/pintura-termica#aplicaciones' },
+        {
+          title: 'Especificaciones',
+          href: '/pintura-termica#especificaciones',
+        },
+      ],
+    } as Record<string, { title: string; href: string }[]>,
   },
   features: [
     {
