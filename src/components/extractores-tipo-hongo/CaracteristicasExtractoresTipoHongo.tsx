@@ -13,52 +13,48 @@ import { Card } from '@/components/ui/card';
 
 const features = [
   {
+    title: 'Construcción y Diseño',
     icon: Layers,
-    title: 'Materiales Premium',
-    description:
-      'Fabricados en aluminio moldeado o acero galvanizado, garantizando resistencia a la corrosión y durabilidad excepcional.',
+    points: [
+      {
+        icon: Layers,
+        text: 'Aluminio moldeado o acero galvanizado resistente a la corrosión',
+      },
+      {
+        icon: Gauge,
+        text: 'Diámetros desde 12" hasta 38" para distintas necesidades',
+      },
+      {
+        icon: Wind,
+        text: 'Forma tipo hongo aerodinámica que maximiza el flujo de aire',
+      },
+      {
+        icon: Droplets,
+        text: 'Protección completa contra lluvia, polvo e intemperie',
+      },
+    ],
   },
   {
-    icon: Gauge,
-    title: 'Múltiples Tamaños',
-    description:
-      'Disponibles en diámetros desde 12" hasta 38", adaptándose perfectamente a diferentes necesidades de extracción.',
-  },
-  {
-    icon: Settings,
-    title: 'Tipos de Transmisión',
-    description:
-      'Modelos con transmisión directa o por correas y poleas, según los requerimientos específicos de tu proyecto.',
-  },
-  {
+    title: 'Rendimiento y Operación',
     icon: Zap,
-    title: 'Motores Eficientes',
-    description:
-      'Equipados con motores de alta eficiencia y bajo consumo energético, disponibles en opciones monofásicas, bifásicas o trifásicas.',
-  },
-  {
-    icon: Wrench,
-    title: 'Fácil Mantenimiento',
-    description:
-      'Diseño que permite acceso frontal para inspecciones y mantenimiento sin necesidad de desmontaje completo.',
-  },
-  {
-    icon: Wind,
-    title: 'Diseño Aerodinámico',
-    description:
-      'Forma tipo hongo optimizada para maximizar el flujo de aire y proteger el motor de las condiciones climáticas.',
-  },
-  {
-    icon: Droplets,
-    title: 'Resistente a la Intemperie',
-    description:
-      'Protección completa contra lluvia, polvo y condiciones ambientales adversas, garantizando operación continua.',
-  },
-  {
-    icon: Shield,
-    title: 'Cumplimiento Normativo',
-    description:
-      'Cumplen con estándares de seguridad e higiene para cocinas industriales y entornos comerciales exigentes.',
+    points: [
+      {
+        icon: Settings,
+        text: 'Transmisión directa o por correas y poleas según tu proyecto',
+      },
+      {
+        icon: Zap,
+        text: 'Motores de alta eficiencia: monofásicos, bifásicos o trifásicos',
+      },
+      {
+        icon: Wrench,
+        text: 'Acceso frontal para inspección y mantenimiento sin desmontaje',
+      },
+      {
+        icon: Shield,
+        text: 'Cumple estándares de seguridad e higiene industrial',
+      },
+    ],
   },
 ];
 
@@ -69,34 +65,42 @@ export default function CaracteristicasExtractoresTipoHongo() {
       className="w-full bg-background py-12 md:py-16"
     >
       <MaxWidthWrapper>
-        <div className="space-y-12">
+        <div className="space-y-10">
           <div className="text-center">
             <h2 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">
               Características Destacadas
             </h2>
-            <p className="mx-auto max-w-2xl text-sm font-medium text-muted-foreground sm:text-base">
+            <p className="mx-auto max-w-2xl text-sm text-muted-foreground sm:text-base">
               Tecnología de vanguardia y diseño robusto para máxima eficiencia
               en ventilación industrial
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {features.map(feature => {
-              const Icon = feature.icon;
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {features.map(group => {
+              const GroupIcon = group.icon;
               return (
-                <Card
-                  key={feature.title}
-                  className="group p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <div className="mb-4 inline-flex rounded-lg bg-accent p-3 text-accent-foreground">
-                    <Icon className="h-6 w-6" />
+                <Card key={group.title} className="p-6">
+                  <div className="mb-4 flex items-center gap-3">
+                    <GroupIcon className="h-5 w-5 text-primary" />
+                    <h3 className="text-base font-bold text-foreground">
+                      {group.title}
+                    </h3>
                   </div>
-                  <h3 className="mb-2 text-base font-bold text-foreground">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed font-medium text-muted-foreground">
-                    {feature.description}
-                  </p>
+                  <ul className="space-y-3">
+                    {group.points.map(point => {
+                      const PointIcon = point.icon;
+                      return (
+                        <li
+                          key={point.text}
+                          className="flex items-start gap-3 text-sm text-muted-foreground"
+                        >
+                          <PointIcon className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                          <span>{point.text}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </Card>
               );
             })}

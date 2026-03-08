@@ -44,9 +44,7 @@ export default function Hero() {
             </ul>
             <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
               <Button asChild size="lg">
-                <Link href="https://wa.me/573177525559" target="_blank">
-                  Compra directa
-                </Link>
+                <Link href="/cotizador">Cotizar ahora</Link>
               </Button>
               <Button asChild variant="outline" size="lg">
                 <Link

@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Building2, Factory, Home, Warehouse } from 'lucide-react';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import { Badge } from '@/components/ui/badge';
-import { Card } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 
 const surfaces = [
   {
@@ -56,15 +56,15 @@ export default function AplicacionesPintura() {
   return (
     <section id="aplicaciones" className="w-full bg-muted/50 py-12 md:py-16">
       <MaxWidthWrapper>
-        <div className="space-y-16">
+        <div className="space-y-10">
           <div className="text-center">
             <p className="mb-2 text-sm font-semibold tracking-widest text-primary uppercase">
               Compatibilidad
             </p>
-            <h2 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">
+            <h2 className="mb-3 text-2xl font-bold text-foreground md:text-3xl">
               ¿Funciona en tu techo?
             </h2>
-            <p className="mx-auto max-w-2xl text-sm font-medium text-muted-foreground sm:text-base">
+            <p className="mx-auto max-w-xl text-sm text-muted-foreground">
               La pintura térmica se adapta a los tipos de superficie más comunes
               en Colombia
             </p>
@@ -80,19 +80,26 @@ export default function AplicacionesPintura() {
             {surfaces.map(surface => {
               const Icon = surface.icon;
               return (
-                <motion.div key={surface.name} variants={itemVariants}>
-                  <Card className="group h-full p-6 transition-all hover:-translate-y-1 hover:shadow-lg">
-                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-lg bg-primary shadow-lg">
-                      <Icon className="h-7 w-7 text-primary-foreground" />
-                    </div>
-                    <h3 className="mb-2 text-base font-bold text-foreground">
+                <motion.div
+                  key={surface.name}
+                  variants={itemVariants}
+                  className="flex flex-col rounded-xl border border-border bg-white"
+                >
+                  <div className="flex items-center gap-3 p-5 pb-0">
+                    <Icon className="h-5 w-5 text-primary" />
+                    <Badge variant="secondary" className="text-[10px]">
+                      {surface.benefit}
+                    </Badge>
+                  </div>
+                  <div className="px-5 pt-3 pb-5">
+                    <h3 className="mb-1.5 text-sm font-bold text-foreground">
                       {surface.name}
                     </h3>
-                    <p className="mb-3 text-sm leading-relaxed font-medium text-muted-foreground">
+                    <Separator className="mb-3" />
+                    <p className="text-xs leading-relaxed text-muted-foreground">
                       {surface.description}
                     </p>
-                    <Badge variant="secondary">{surface.benefit}</Badge>
-                  </Card>
+                  </div>
                 </motion.div>
               );
             })}

@@ -13,10 +13,10 @@ export default function TutorialPintura() {
             <p className="mb-2 text-sm font-semibold tracking-widest text-primary uppercase">
               Tutorial
             </p>
-            <h2 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">
+            <h2 className="mb-3 text-2xl font-bold text-foreground md:text-3xl">
               Mira cómo se aplica
             </h2>
-            <p className="mx-auto max-w-2xl text-sm font-medium text-muted-foreground sm:text-base">
+            <p className="mx-auto max-w-xl text-sm text-muted-foreground">
               Aprende el proceso de aplicación de la pintura térmica paso a paso
               en este video demostrativo
             </p>

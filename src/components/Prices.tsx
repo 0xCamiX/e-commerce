@@ -16,7 +16,7 @@ const plans = [
       '100% ecológico',
       'Silencioso',
     ],
-    url: 'https://wa.me/573177525559',
+    url: '/cotizador',
     recommended: false,
   },
   {
@@ -31,7 +31,7 @@ const plans = [
       'Materiales resistentes',
       'Instalación profesional',
     ],
-    url: 'https://wa.me/573177525559',
+    url: '/cotizador',
     recommended: true,
   },
   {
@@ -47,7 +47,7 @@ const plans = [
       'Soporte prioritario',
       'Ahorro de energía',
     ],
-    url: 'https://wa.me/573177525559',
+    url: '/cotizador',
     recommended: false,
   },
 ];
@@ -129,7 +129,7 @@ export default function Prices() {
                 className="w-full"
                 variant={plan.recommended ? 'default' : 'outline'}
               >
-                <Link href={plan.url} target="_blank">
+                <Link href={plan.url}>
                   {plan.price ? 'Comprar' : 'Contáctanos'}
                   <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
                 </Link>

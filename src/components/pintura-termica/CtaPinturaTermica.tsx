@@ -51,7 +51,7 @@ export default function CtaPinturaTermica() {
             </Button>
           </div>
 
-          <Card className="mx-auto max-w-lg border-background/10 bg-background/5 p-6 backdrop-blur-sm">
+          <Card className="mx-auto max-w-2xl border-background/10 bg-background/5 p-6 backdrop-blur-sm">
             <div className="flex items-center justify-center gap-2">
               <MessageCircle className="h-5 w-5 text-primary" />
               <p className="font-semibold text-background">

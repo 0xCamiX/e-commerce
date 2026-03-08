@@ -10,14 +10,14 @@ import TutorialPintura from '@/components/pintura-termica/TutorialPintura';
 export const metadata: Metadata = {
   title: 'Pintura Térmica — Reduce hasta 20°C | Eólicos Gallego',
   description:
-    'Pintura con microesferas cerámicas que refleja los rayos solares y reduce hasta 20°C la temperatura superficial del techo. Disponible en Cali y todo el Valle del Cauca, Colombia.',
+    'Pintura con microesferas que refleja los rayos solares y reduce hasta 20°C la temperatura superficial del techo. Disponible en Cali y todo el Valle del Cauca, Colombia.',
   keywords: [
     'pintura térmica Colombia',
     'pintura reflectiva techo',
     'cómo bajar temperatura techo',
     'pintura aislante térmica Cali',
     'reducir calor bodega',
-    'microesferas cerámicas techo',
+    'microesferas techo',
     'Eólicos Gallego pintura',
   ],
   openGraph: {

@@ -56,7 +56,6 @@ export const siteConfig = {
           title: 'Características',
           href: '/extractores-tipo-hongo#caracteristicas',
         },
-        { title: 'Aplicaciones', href: '/extractores-tipo-hongo#aplicaciones' },
         {
           title: 'Especificaciones',
           href: '/extractores-tipo-hongo#especificaciones',

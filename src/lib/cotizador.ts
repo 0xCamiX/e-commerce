@@ -264,7 +264,7 @@ export function buildQuoteHTML(args: {
 </table>
 ${noteHTML}
 <div style="background:#fff3e0;border:1px solid #ffb74d;border-radius:8px;padding:12px;margin-top:16px;font-size:12px;color:#e65100;">
-  ⚠️ <b>Nota:</b> Los costos de envío pueden variar si el proyecto es fuera de Cali, Colombia.
+  <b>Nota:</b> Los costos de envío pueden variar si el proyecto es fuera de Cali, Colombia.
 </div>
 <div style="border-top:1px solid #e3eaf5;margin-top:24px;padding-top:16px;text-align:center;font-size:12px;color:#777;">
   Eólicos Gallego · Cali, Colombia · Tel: +57 317 752 5559
@@ -295,24 +295,24 @@ export function buildWhatsAppMessage(args: {
     quoteNumber,
   } = args;
 
-  let msg = `*COTIZACIÓN ${quoteNumber} - Eólicos Gallego*\n`;
-  msg += `📍 Cali, Colombia | 📞 +57 317 752 5559\n\n`;
-  msg += `*Cliente:* ${client.name || '—'} | *Tel:* ${client.phone || '—'}\n`;
-  msg += `*Ciudad:* ${client.city || '—'} | *Dir:* ${client.address || '—'}\n\n`;
-  msg += `*Techo:* ${roofTypeLabel} | *Material:* ${material || '—'}\n`;
-  msg += `*Área total:* ${area.toFixed(2)} m²\n\n`;
+  let msg = `COTIZACION ${quoteNumber} - Eolicos Gallego\n`;
+  msg += `Cali, Colombia | +57 317 752 5559\n\n`;
+  msg += `Cliente: ${client.name || '-'} | Tel: ${client.phone || '-'}\n`;
+  msg += `Ciudad: ${client.city || '-'} | Dir: ${client.address || '-'}\n\n`;
+  msg += `Techo: ${roofTypeLabel} | Material: ${material || '-'}\n`;
+  msg += `Area total: ${area.toFixed(2)} m2\n\n`;
 
   if (s.extractor) {
-    msg += `🌀 *${s.extractor.name}:* ${s.extractorCount} und × ${formatCOP(s.extractor.price)} = *${formatCOP(s.extractorTotal)}*\n`;
+    msg += `${s.extractor.name}: ${s.extractorCount} und x ${formatCOP(s.extractor.price)} = ${formatCOP(s.extractorTotal)}\n`;
   }
   if (s.paintCount > 0) {
-    msg += `🎨 *Pintura techo:* ${s.paintCount} cuñetes × ${formatCOP(PAINT_PRICE)} = *${formatCOP(s.paintTotal)}*\n`;
+    msg += `Pintura térmica: ${s.paintCount} cuñetes x ${formatCOP(PAINT_PRICE)} = ${formatCOP(s.paintTotal)}\n`;
   }
 
-  msg += `\n💰 *TOTAL: ${formatCOP(s.total)}*\n\n`;
-  msg += '⚠️ _Los costos de envío pueden variar si es fuera de Cali._';
+  msg += `\nTOTAL: ${formatCOP(s.total)}\n\n`;
+  msg += 'Los costos de envio pueden variar si es fuera de Cali.';
 
-  if (note) msg += `\n\n📝 _${note}_`;
+  if (note) msg += `\n\nNota: ${note}`;
 
   return msg;
 }

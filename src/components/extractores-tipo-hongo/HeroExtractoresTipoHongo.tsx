@@ -1,7 +1,6 @@
 import { Shield, Wind, Zap } from 'lucide-react';
 import Link from 'next/link';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 
 export default function HeroExtractoresTipoHongo() {
@@ -9,11 +8,6 @@ export default function HeroExtractoresTipoHongo() {
     <section id="hero" className="w-full bg-muted/50 py-12 md:py-16">
       <MaxWidthWrapper>
         <div className="flex flex-col items-center text-center">
-          <Badge variant="secondary" className="mb-6 gap-2 text-sm">
-            <Wind className="h-4 w-4" />
-            Nuevo Producto
-          </Badge>
-
           <h1 className="mb-6 text-2xl leading-tight font-bold text-foreground sm:text-3xl md:text-4xl">
             Extractores Tipo{' '}
             <span className="inline-block rounded-md bg-primary px-3 py-1 font-medium text-primary-foreground shadow-lg">
@@ -34,25 +28,19 @@ export default function HeroExtractoresTipoHongo() {
 
           <div className="mb-10 flex flex-wrap items-center justify-center gap-8">
             <div className="flex flex-col items-center gap-2">
-              <div className="rounded-full bg-accent p-4">
-                <Shield className="h-6 w-6 text-accent-foreground" />
-              </div>
+              <Shield className="h-6 w-6 text-primary" />
               <p className="text-sm font-semibold text-foreground">
                 Alta Durabilidad
               </p>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <div className="rounded-full bg-accent p-4">
-                <Zap className="h-6 w-6 text-accent-foreground" />
-              </div>
+              <Zap className="h-6 w-6 text-primary" />
               <p className="text-sm font-semibold text-foreground">
                 Eficiencia Energética
               </p>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <div className="rounded-full bg-accent p-4">
-                <Wind className="h-6 w-6 text-accent-foreground" />
-              </div>
+              <Wind className="h-6 w-6 text-primary" />
               <p className="text-sm font-semibold text-foreground">
                 Alto Flujo de Aire
               </p>

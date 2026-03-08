@@ -2,26 +2,33 @@
 
 import {
   ClipboardList,
-  FileText,
   Home,
-  Layers,
   Paintbrush,
   Printer,
   Ruler,
+  ShieldCheck,
   User,
   Wind,
 } from 'lucide-react';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
+import MaxWidthWrapper from '@/components/MaxWidthWrapper';
 import { Badge } from '@/components/ui/badge';
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Icons } from '@/components/ui/icons';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Separator } from '@/components/ui/separator';
 import { Textarea } from '@/components/ui/textarea';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import {
   buildQuoteHTML,
   buildSummary,
@@ -42,6 +49,14 @@ import {
   syncDims,
   totalArea,
 } from '@/lib/cotizador';
+
+const SECTIONS = [
+  { id: 'datos-cliente', label: 'Datos del cliente' },
+  { id: 'especificaciones', label: 'Especificaciones' },
+  { id: 'extractores', label: 'Extractores' },
+  { id: 'pintura-notas', label: 'Pintura y notas' },
+  { id: 'cotizacion', label: 'Cotización' },
+];
 
 export default function CotizadorApp() {
   const [client, setClient] = useState<ClientData>({
@@ -76,7 +91,9 @@ export default function CotizadorApp() {
   const canQuote = selectedExtractor !== null && area > 0;
   const roofTypeObj = getRoofType(roofType);
 
-  const handleRoofTypeChange = (type: RoofTypeId) => {
+  const handleRoofTypeChange = (value: string) => {
+    if (!value) return;
+    const type = value as RoofTypeId;
     setRoofType(type);
     const count = getRoofType(type).pendientes;
     setDims(syncDims(dims, count));
@@ -137,155 +154,257 @@ export default function CotizadorApp() {
   };
 
   return (
-    <section className="w-full bg-muted/50 py-8 md:py-12">
-      <div className="mx-auto max-w-3xl px-4 sm:px-6">
-        <div className="mb-8 text-center">
-          <h1 className="mb-2 text-2xl font-bold text-foreground md:text-3xl">
+    <section className="w-full py-8 md:py-12">
+      <MaxWidthWrapper>
+        {/* Header */}
+        <div className="mb-6 text-center">
+          <p className="mb-2 text-sm font-semibold tracking-widest text-primary uppercase">
+            Cotizador
+          </p>
+          <h2 className="mb-3 text-2xl font-bold text-foreground md:text-3xl">
             Cotizador de Extractores Eólicos
-          </h1>
-          <p className="text-sm text-muted-foreground">
+          </h2>
+          <p className="mx-auto max-w-xl text-sm text-muted-foreground">
             Calcula la cantidad exacta de extractores según las dimensiones de
             tu techo
           </p>
         </div>
 
-        <div className="space-y-6">
-          {/* DATOS DEL CLIENTE */}
-          <Card className="p-6">
-            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-foreground">
-              <User className="h-5 w-5 text-primary" />
-              Datos del Cliente
-            </h3>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div className="space-y-2">
-                <Label htmlFor="client-name">Nombre completo</Label>
-                <Input
-                  id="client-name"
-                  value={client.name}
-                  onChange={e => setClient({ ...client, name: e.target.value })}
-                  placeholder="Nombre del cliente"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="client-phone">Teléfono / WhatsApp</Label>
-                <Input
-                  id="client-phone"
-                  value={client.phone}
-                  onChange={e =>
-                    setClient({ ...client, phone: e.target.value })
-                  }
-                  placeholder="Ej: 3001234567"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="client-city">Ciudad</Label>
-                <Input
-                  id="client-city"
-                  value={client.city}
-                  onChange={e => setClient({ ...client, city: e.target.value })}
-                  placeholder="Ciudad"
-                />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="client-address">Dirección del proyecto</Label>
-                <Input
-                  id="client-address"
-                  value={client.address}
-                  onChange={e =>
-                    setClient({ ...client, address: e.target.value })
-                  }
-                  placeholder="Dirección"
-                />
-              </div>
-            </div>
-          </Card>
-
-          {/* TIPO DE TECHO */}
-          <Card className="p-6">
-            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-foreground">
-              <Home className="h-5 w-5 text-primary" />
-              Tipo de Techo
-            </h3>
-            <div className="mb-6 flex flex-wrap gap-2">
-              {ROOF_TYPES.map(r => (
-                <Button
-                  key={r.id}
-                  type="button"
-                  variant={roofType === r.id ? 'default' : 'outline'}
-                  onClick={() => handleRoofTypeChange(r.id)}
-                >
-                  {r.label}
-                </Button>
+        {/* Breadcrumb */}
+        <div className="mb-8 flex justify-center">
+          <Breadcrumb>
+            <BreadcrumbList className="text-xs">
+              {SECTIONS.map((sec, i) => (
+                <BreadcrumbItem key={sec.id}>
+                  {i > 0 && <BreadcrumbSeparator />}
+                  <BreadcrumbLink href={`#${sec.id}`}>
+                    {sec.label}
+                  </BreadcrumbLink>
+                </BreadcrumbItem>
               ))}
-            </div>
-            <div className="space-y-4">
-              {dims.map((dim, i) => (
-                <div key={dim.id}>
-                  <p className="mb-2 text-sm font-semibold text-primary">
-                    Pendiente {i + 1}
-                  </p>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="space-y-2">
-                      <Label htmlFor={`${dim.id}-largo`}>Largo (m)</Label>
-                      <Input
-                        id={`${dim.id}-largo`}
-                        type="number"
-                        min="0"
-                        value={dim.largo}
-                        onChange={e => updateDim(i, 'largo', e.target.value)}
-                        placeholder="metros"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor={`${dim.id}-ancho`}>Ancho (m)</Label>
-                      <Input
-                        id={`${dim.id}-ancho`}
-                        type="number"
-                        min="0"
-                        value={dim.ancho}
-                        onChange={e => updateDim(i, 'ancho', e.target.value)}
-                        placeholder="metros"
-                      />
-                    </div>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+
+        <div className="mx-auto flex max-w-4xl flex-col gap-10">
+          {/* ─── SECTION 1: DATOS DEL CLIENTE ─── */}
+          <div id="datos-cliente">
+            <SectionLabel
+              icon={User}
+              number={1}
+              title="Datos del Cliente"
+              description="Información del cliente para la cotización"
+            />
+            <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-5">
+              {/* Privacy note */}
+              <div className="flex flex-col gap-3 md:col-span-2">
+                <div className="flex items-start gap-2.5 rounded-xl border border-border bg-white p-5">
+                  <ShieldCheck className="mt-0.5 size-5 shrink-0 text-primary" />
+                  <div>
+                    <p className="mb-1 text-xs font-bold text-foreground">
+                      Protección de datos
+                    </p>
+                    <p className="text-[11px] leading-relaxed text-muted-foreground">
+                      Los datos recolectados son utilizados exclusivamente para
+                      la generación de la cotización. Su información está
+                      almacenada siguiendo las políticas de seguridad y
+                      protección de datos personales vigentes en Colombia (Ley
+                      1581 de 2012).
+                    </p>
                   </div>
                 </div>
-              ))}
-            </div>
-            {area > 0 && (
-              <div className="mt-4 flex items-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-semibold text-accent-foreground">
-                <Ruler className="h-4 w-4" />
-                Área total del techo: {area.toFixed(2)} m²
               </div>
-            )}
-          </Card>
 
-          {/* MATERIAL DE CUBIERTA */}
-          <Card className="p-6">
-            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-foreground">
-              <Layers className="h-5 w-5 text-primary" />
-              Material de la Cubierta
-            </h3>
-            <select
-              className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
-              value={material}
-              onChange={e => setMaterial(e.target.value)}
-            >
-              <option value="">— Seleccione material —</option>
-              {MATERIALS.map(m => (
-                <option key={m} value={m}>
-                  {m}
-                </option>
-              ))}
-            </select>
-          </Card>
+              {/* Form */}
+              <div className="rounded-xl border border-border bg-white p-5 md:col-span-3">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="client-name" className="text-xs">
+                      Nombre completo
+                    </Label>
+                    <Input
+                      id="client-name"
+                      value={client.name}
+                      onChange={e =>
+                        setClient({ ...client, name: e.target.value })
+                      }
+                      placeholder="Nombre del cliente"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="client-phone" className="text-xs">
+                      Teléfono / WhatsApp
+                    </Label>
+                    <Input
+                      id="client-phone"
+                      value={client.phone}
+                      onChange={e =>
+                        setClient({ ...client, phone: e.target.value })
+                      }
+                      placeholder="Ej: 3001234567"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="client-city" className="text-xs">
+                      Ciudad
+                    </Label>
+                    <Input
+                      id="client-city"
+                      value={client.city}
+                      onChange={e =>
+                        setClient({ ...client, city: e.target.value })
+                      }
+                      placeholder="Ciudad"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="client-address" className="text-xs">
+                      Dirección del proyecto
+                    </Label>
+                    <Input
+                      id="client-address"
+                      value={client.address}
+                      onChange={e =>
+                        setClient({ ...client, address: e.target.value })
+                      }
+                      placeholder="Dirección"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-          {/* SELECTOR DE EXTRACTOR */}
-          <Card className="p-6">
-            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-foreground">
-              <Wind className="h-5 w-5 text-primary" />
-              Tipo de Extractor
-            </h3>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <Separator />
+
+          {/* ─── SECTION 2: ESPECIFICACIONES DEL TECHO ─── */}
+          <div id="especificaciones">
+            <SectionLabel
+              icon={Home}
+              number={2}
+              title="Especificaciones del Techo"
+              description="Tipo de techo, material y dimensiones por pendiente"
+            />
+            <div className="mt-4 rounded-xl border border-border bg-white p-5">
+              <div className="flex flex-col gap-5">
+                {/* Tipo de techo */}
+                <div className="flex flex-col gap-2">
+                  <Label className="text-xs">Tipo de techo</Label>
+                  <ToggleGroup
+                    type="single"
+                    value={roofType}
+                    onValueChange={handleRoofTypeChange}
+                    variant="outline"
+                    size="sm"
+                    spacing={2}
+                  >
+                    {ROOF_TYPES.map(r => (
+                      <ToggleGroupItem
+                        key={r.id}
+                        value={r.id}
+                        className="text-xs"
+                      >
+                        {r.label}
+                      </ToggleGroupItem>
+                    ))}
+                  </ToggleGroup>
+                </div>
+
+                {/* Material */}
+                <div className="flex flex-col gap-1.5">
+                  <Label className="text-xs">Material de la cubierta</Label>
+                  <select
+                    className="flex h-9 w-full max-w-sm rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                    value={material}
+                    onChange={e => setMaterial(e.target.value)}
+                  >
+                    <option value="">— Seleccione material —</option>
+                    {MATERIALS.map(m => (
+                      <option key={m} value={m}>
+                        {m}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <Separator />
+
+                {/* Dimensions */}
+                <div className="flex flex-col gap-3">
+                  <Label className="text-xs">Dimensiones por pendiente</Label>
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    {dims.map((dim, i) => (
+                      <div
+                        key={dim.id}
+                        className="rounded-lg border border-border p-3"
+                      >
+                        <p className="mb-2 text-xs font-semibold text-primary">
+                          Pendiente {i + 1}
+                        </p>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="flex flex-col gap-1">
+                            <Label
+                              htmlFor={`${dim.id}-largo`}
+                              className="text-[11px] text-muted-foreground"
+                            >
+                              Largo (m)
+                            </Label>
+                            <Input
+                              id={`${dim.id}-largo`}
+                              type="number"
+                              min="0"
+                              value={dim.largo}
+                              onChange={e =>
+                                updateDim(i, 'largo', e.target.value)
+                              }
+                              placeholder="metros"
+                            />
+                          </div>
+                          <div className="flex flex-col gap-1">
+                            <Label
+                              htmlFor={`${dim.id}-ancho`}
+                              className="text-[11px] text-muted-foreground"
+                            >
+                              Ancho (m)
+                            </Label>
+                            <Input
+                              id={`${dim.id}-ancho`}
+                              type="number"
+                              min="0"
+                              value={dim.ancho}
+                              onChange={e =>
+                                updateDim(i, 'ancho', e.target.value)
+                              }
+                              placeholder="metros"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {area > 0 && (
+                  <div className="flex items-center gap-2 rounded-lg border border-primary/20 bg-primary/5 px-4 py-2.5 text-xs font-semibold text-foreground">
+                    <Ruler className="size-3.5 text-primary" />
+                    Área total del techo: {area.toFixed(2)} m²
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          <Separator />
+
+          {/* ─── SECTION 3: TIPO DE EXTRACTOR ─── */}
+          <div id="extractores">
+            <SectionLabel
+              icon={Wind}
+              number={3}
+              title="Tipo de Extractor"
+              description="Selecciona el extractor adecuado para tu proyecto"
+            />
+            <div className="mt-4 flex flex-col gap-3">
               {EXTRACTORS.map(ext => {
                 const isSelected = selectedExtractor === ext.id;
                 const count = area > 0 ? Math.ceil(area / ext.coverage) : 0;
@@ -294,195 +413,272 @@ export default function CotizadorApp() {
                     key={ext.id}
                     type="button"
                     onClick={() => setSelectedExtractor(ext.id)}
-                    className={`rounded-xl border-2 p-5 text-left transition-all ${
+                    className={`flex items-center gap-4 rounded-xl border-2 bg-white p-4 text-left transition-colors ${
                       isSelected
-                        ? 'border-primary bg-accent shadow-md'
-                        : 'border-border bg-card hover:border-primary/50 hover:shadow-sm'
+                        ? 'border-primary'
+                        : 'border-border hover:border-primary/40'
                     }`}
                   >
-                    <div className="mb-2 flex items-center justify-between">
-                      <span className="text-base font-bold text-foreground">
-                        {ext.name}
-                      </span>
-                      {isSelected && <Badge>✓</Badge>}
-                    </div>
-                    <p className="mb-3 text-xs leading-relaxed text-muted-foreground">
-                      {ext.description}
-                    </p>
-                    <div className="mb-1 text-xs text-muted-foreground">
-                      Cobertura: {ext.coverage} m²/und
-                    </div>
-                    <div className="text-lg font-bold text-primary">
-                      {formatCOP(ext.price)}
-                    </div>
-                    {isSelected && area > 0 && (
-                      <div className="mt-3 rounded-lg bg-primary px-3 py-2 text-center text-sm font-bold text-primary-foreground">
-                        Cantidad: {count} und
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm font-bold text-foreground">
+                          {ext.name}
+                        </span>
+                        {isSelected && (
+                          <Badge className="text-[10px]">Seleccionado</Badge>
+                        )}
                       </div>
-                    )}
+                      <p className="mt-0.5 text-xs text-muted-foreground">
+                        {ext.description} · Cubre {ext.coverage} m²/und
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-sm font-bold text-primary">
+                        {formatCOP(ext.price)}
+                      </p>
+                      {isSelected && area > 0 && (
+                        <Badge variant="secondary" className="mt-1 text-[10px]">
+                          {count} und
+                        </Badge>
+                      )}
+                    </div>
                   </button>
                 );
               })}
             </div>
-          </Card>
+          </div>
 
-          {/* PINTURA DEL TECHO */}
-          <Card className="p-6">
-            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-foreground">
-              <Paintbrush className="h-5 w-5 text-primary" />
-              Pintura del Techo
-            </h3>
-            <div className="flex items-center gap-3">
-              <Checkbox
-                id="paint-roof"
-                checked={paintRoof}
-                onCheckedChange={checked => setPaintRoof(checked === true)}
-              />
-              <Label htmlFor="paint-roof" className="cursor-pointer">
-                El cliente desea pintar el techo
-              </Label>
-            </div>
-            {paintRoof && (
-              <div className="mt-4 space-y-3">
-                <div className="space-y-2">
-                  <Label htmlFor="paint-area">¿Cuántos m² desea pintar?</Label>
+          <Separator />
+
+          {/* ─── SECTION 4: PINTURA Y NOTAS ─── */}
+          <div id="pintura-notas">
+            <SectionLabel
+              icon={Paintbrush}
+              number={4}
+              title="Pintura y Notas"
+              description="Agrega pintura térmica y observaciones adicionales"
+            />
+            <div className="mt-4 grid grid-cols-1 gap-6 md:grid-cols-2">
+              {/* Paint */}
+              <div className="rounded-xl border border-border bg-white p-5">
+                <p className="mb-3 text-xs font-bold text-foreground">
+                  Pintura del Techo
+                </p>
+                <div className="flex flex-col gap-4">
                   <div className="flex items-center gap-3">
-                    <Input
-                      id="paint-area"
-                      className="max-w-[200px]"
-                      type="number"
-                      min="1"
-                      value={paintArea}
-                      onChange={e => setPaintArea(e.target.value)}
-                      placeholder="m²"
+                    <Checkbox
+                      id="paint-roof"
+                      checked={paintRoof}
+                      onCheckedChange={checked =>
+                        setPaintRoof(checked === true)
+                      }
                     />
-                    <Image
-                      src="/cuñete.jpg"
-                      alt="Cuñete de pintura térmica"
-                      width={48}
-                      height={48}
-                      className="rounded-lg object-cover"
-                    />
+                    <Label
+                      htmlFor="paint-roof"
+                      className="cursor-pointer text-xs"
+                    >
+                      El cliente desea pintar el techo
+                    </Label>
                   </div>
-                  <p className="text-xs text-muted-foreground">
-                    1 cuñete cubre {PAINT_COVERAGE} m² · Precio:{' '}
-                    {formatCOP(PAINT_PRICE)} / cuñete
+                  {paintRoof && (
+                    <>
+                      <Separator />
+                      <div className="flex flex-col gap-2">
+                        <Label htmlFor="paint-area" className="text-xs">
+                          ¿Cuántos m² desea pintar?
+                        </Label>
+                        <div className="flex items-center gap-3">
+                          <Input
+                            id="paint-area"
+                            className="max-w-[140px]"
+                            type="number"
+                            min="1"
+                            value={paintArea}
+                            onChange={e => setPaintArea(e.target.value)}
+                            placeholder="m²"
+                          />
+                          <Image
+                            src="/cuñete.jpg"
+                            alt="Cuñete de pintura térmica"
+                            width={36}
+                            height={36}
+                            className="rounded-lg object-cover"
+                          />
+                        </div>
+                        <p className="text-[11px] text-muted-foreground">
+                          1 cuñete cubre {PAINT_COVERAGE} m² · Precio:{' '}
+                          {formatCOP(PAINT_PRICE)} / cuñete
+                        </p>
+                      </div>
+                      {suggestedCuñetes > 0 && (
+                        <div className="flex items-center gap-2 rounded-lg border border-primary/20 bg-primary/5 px-3 py-2 text-xs text-foreground">
+                          <span className="font-semibold">
+                            Cuñetes: {suggestedCuñetes}
+                          </span>
+                          <span className="text-muted-foreground">·</span>
+                          <span>
+                            {formatCOP(suggestedCuñetes * PAINT_PRICE)}
+                          </span>
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
+              </div>
+
+              {/* Notes */}
+              <div className="rounded-xl border border-border bg-white p-5">
+                <p className="mb-3 text-xs font-bold text-foreground">
+                  Notas adicionales
+                </p>
+                <Textarea
+                  rows={3}
+                  value={quoteNote}
+                  onChange={e => setQuoteNote(e.target.value)}
+                  placeholder="Observaciones, condiciones especiales, tiempo de entrega..."
+                  className="text-sm"
+                />
+              </div>
+            </div>
+          </div>
+
+          <Separator />
+
+          {/* ─── SECTION 5: COTIZACIÓN ─── */}
+          <div id="cotizacion">
+            <SectionLabel
+              icon={ClipboardList}
+              number={5}
+              title="Generar Cotización"
+              description="Revisa el resumen y envía la cotización"
+            />
+
+            {canQuote ? (
+              <div className="mt-4 rounded-xl border border-border bg-white p-5">
+                <div className="flex flex-col gap-4">
+                  {/* Client summary */}
+                  <div className="grid grid-cols-1 gap-x-8 gap-y-1 text-xs sm:grid-cols-3">
+                    <div className="flex justify-between sm:flex-col sm:gap-0.5">
+                      <span className="text-muted-foreground">Cliente</span>
+                      <span className="font-semibold text-foreground">
+                        {client.name || '—'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between sm:flex-col sm:gap-0.5">
+                      <span className="text-muted-foreground">Techo</span>
+                      <span className="text-foreground">
+                        {roofTypeObj.label} — {material || '—'}
+                      </span>
+                    </div>
+                    <div className="flex justify-between sm:flex-col sm:gap-0.5">
+                      <span className="text-muted-foreground">Área total</span>
+                      <span className="font-semibold text-foreground">
+                        {area.toFixed(2)} m²
+                      </span>
+                    </div>
+                  </div>
+
+                  <Separator />
+
+                  {/* Line items */}
+                  <div className="flex flex-col gap-2">
+                    {summary.extractor && (
+                      <div className="flex items-center justify-between rounded-lg border border-border px-4 py-2.5 text-xs">
+                        <span className="text-foreground">
+                          {summary.extractor.name} ({summary.extractorCount} und
+                          × {formatCOP(summary.extractor.price)})
+                        </span>
+                        <span className="font-bold text-foreground">
+                          {formatCOP(summary.extractorTotal)}
+                        </span>
+                      </div>
+                    )}
+
+                    {paintRoof && summary.paintCount > 0 && (
+                      <div className="flex items-center justify-between rounded-lg border border-border px-4 py-2.5 text-xs">
+                        <span className="text-foreground">
+                          Pintura techo ({summary.paintCount} cuñetes ×{' '}
+                          {formatCOP(PAINT_PRICE)})
+                        </span>
+                        <span className="font-bold text-foreground">
+                          {formatCOP(summary.paintTotal)}
+                        </span>
+                      </div>
+                    )}
+
+                    <div className="flex items-center justify-between rounded-lg bg-primary px-5 py-3">
+                      <span className="text-sm font-bold text-primary-foreground">
+                        TOTAL
+                      </span>
+                      <span className="text-base font-extrabold text-primary-foreground">
+                        {formatCOP(summary.total)}
+                      </span>
+                    </div>
+                  </div>
+
+                  <p className="text-[11px] font-medium text-destructive italic">
+                    ⚠️ Los costos de envío pueden variar si el proyecto es fuera
+                    de Cali.
+                  </p>
+
+                  <Separator />
+
+                  {/* Actions */}
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Button size="sm" variant="outline" onClick={openPdf}>
+                      <Printer className="mr-1.5 size-3.5" />
+                      Ver / Imprimir PDF
+                    </Button>
+                    <Button size="sm" onClick={sendWhatsApp}>
+                      <Icons.whatsapp className="mr-1.5 size-3.5" />
+                      Enviar por WhatsApp
+                    </Button>
+                  </div>
+                  <p className="text-[11px] text-muted-foreground">
+                    WhatsApp envía copia simultánea al cliente y a la empresa
+                    (+57 317 752 5559)
                   </p>
                 </div>
-                {suggestedCuñetes > 0 && (
-                  <div className="rounded-lg bg-accent px-4 py-3 text-sm text-accent-foreground">
-                    <span className="font-semibold">
-                      Cuñetes sugeridos: {suggestedCuñetes}
-                    </span>
-                    <span className="mx-2">·</span>
-                    Total: {formatCOP(suggestedCuñetes * PAINT_PRICE)}
-                  </div>
-                )}
+              </div>
+            ) : (
+              <div className="mt-4 rounded-xl border border-dashed border-border bg-white p-8 text-center">
+                <p className="text-xs text-muted-foreground">
+                  Completa las secciones anteriores para generar la cotización.
+                  Necesitas al menos seleccionar un extractor e ingresar las
+                  dimensiones del techo.
+                </p>
               </div>
             )}
-          </Card>
-
-          {/* NOTAS ADICIONALES */}
-          <Card className="p-6">
-            <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-foreground">
-              <FileText className="h-5 w-5 text-primary" />
-              Notas adicionales
-            </h3>
-            <Textarea
-              rows={3}
-              value={quoteNote}
-              onChange={e => setQuoteNote(e.target.value)}
-              placeholder="Observaciones, condiciones especiales, tiempo de entrega..."
-            />
-          </Card>
-
-          {/* RESUMEN DE COTIZACIÓN */}
-          {canQuote && (
-            <Card className="border-2 border-primary p-6 shadow-lg">
-              <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-foreground">
-                <ClipboardList className="h-5 w-5 text-primary" />
-                Resumen de Cotización
-              </h3>
-
-              <div className="mb-4 space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Cliente:</span>
-                  <span className="font-semibold text-foreground">
-                    {client.name || '—'}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Techo:</span>
-                  <span className="text-foreground">
-                    {roofTypeObj.label} — {material || '—'}
-                  </span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Área total:</span>
-                  <span className="font-semibold text-foreground">
-                    {area.toFixed(2)} m²
-                  </span>
-                </div>
-              </div>
-
-              <Separator className="my-4" />
-
-              {summary.extractor && (
-                <div className="mb-2 flex items-center justify-between rounded-lg bg-muted px-4 py-3 text-sm">
-                  <span className="text-foreground">
-                    {summary.extractor.name} ({summary.extractorCount} und ×{' '}
-                    {formatCOP(summary.extractor.price)})
-                  </span>
-                  <span className="font-bold text-foreground">
-                    {formatCOP(summary.extractorTotal)}
-                  </span>
-                </div>
-              )}
-
-              {paintRoof && summary.paintCount > 0 && (
-                <div className="mb-2 flex items-center justify-between rounded-lg bg-muted px-4 py-3 text-sm">
-                  <span className="text-foreground">
-                    Pintura techo ({summary.paintCount} cuñetes ×{' '}
-                    {formatCOP(PAINT_PRICE)})
-                  </span>
-                  <span className="font-bold text-foreground">
-                    {formatCOP(summary.paintTotal)}
-                  </span>
-                </div>
-              )}
-
-              <div className="mt-4 flex items-center justify-between rounded-lg bg-primary px-5 py-4">
-                <span className="text-base font-bold text-primary-foreground">
-                  TOTAL
-                </span>
-                <span className="text-xl font-extrabold text-primary-foreground">
-                  {formatCOP(summary.total)}
-                </span>
-              </div>
-
-              <p className="mt-2 text-xs font-medium text-destructive italic">
-                ⚠️ Los costos de envío pueden variar si el proyecto es fuera de
-                Cali.
-              </p>
-
-              <div className="mt-5 flex flex-wrap gap-3">
-                <Button variant="destructive" onClick={openPdf}>
-                  <Printer className="mr-2 h-4 w-4" />
-                  Ver / Imprimir PDF
-                </Button>
-                <Button onClick={sendWhatsApp}>
-                  <Icons.whatsapp className="mr-2 h-4 w-4" />
-                  Enviar por WhatsApp
-                </Button>
-              </div>
-              <p className="mt-2 text-xs text-muted-foreground">
-                WhatsApp envía copia simultánea al cliente y a la empresa (+57
-                317 752 5559)
-              </p>
-            </Card>
-          )}
+          </div>
         </div>
-      </div>
+      </MaxWidthWrapper>
     </section>
+  );
+}
+
+function SectionLabel({
+  icon: Icon,
+  number,
+  title,
+  description,
+}: {
+  icon: React.ComponentType<{ className?: string }>;
+  number: number;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="flex items-start gap-3">
+      <div className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground">
+        {number}
+      </div>
+      <div>
+        <h3 className="flex items-center gap-2 text-sm font-bold text-foreground">
+          <Icon className="size-4 text-primary" />
+          {title}
+        </h3>
+        <p className="mt-0.5 text-xs text-muted-foreground">{description}</p>
+      </div>
+    </div>
   );
 }

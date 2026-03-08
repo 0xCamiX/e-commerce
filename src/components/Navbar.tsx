@@ -58,10 +58,10 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`relative inline-flex h-8 items-center rounded-md px-3 text-[13px] font-medium transition-colors ${
+                    className={`relative inline-flex items-center px-3 py-1 text-[13px] font-medium transition-colors ${
                       isActive
-                        ? 'bg-muted text-foreground'
-                        : 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'
+                        ? 'text-foreground'
+                        : 'text-muted-foreground hover:text-foreground'
                     }`}
                   >
                     {item.title}
@@ -156,7 +156,7 @@ export default function Navbar() {
                 <Link
                   key={sub.href}
                   href={sub.href}
-                  className="inline-flex h-9 items-center rounded-md px-3 text-[12px] font-medium text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground"
+                  className="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {sub.title}
                 </Link>

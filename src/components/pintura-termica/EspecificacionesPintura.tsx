@@ -40,15 +40,15 @@ export default function EspecificacionesPintura() {
       className="w-full bg-background py-12 md:py-16"
     >
       <MaxWidthWrapper>
-        <div className="space-y-16">
+        <div className="space-y-10">
           <div className="text-center">
             <p className="mb-2 text-sm font-semibold tracking-widest text-primary uppercase">
               Especificaciones
             </p>
-            <h2 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">
+            <h2 className="mb-3 text-2xl font-bold text-foreground md:text-3xl">
               Ficha técnica del producto
             </h2>
-            <p className="mx-auto max-w-2xl text-sm font-medium text-muted-foreground sm:text-base">
+            <p className="mx-auto max-w-xl text-sm text-muted-foreground">
               Datos técnicos respaldados por pruebas de laboratorio y estándares
               internacionales
             </p>
@@ -86,7 +86,7 @@ export default function EspecificacionesPintura() {
 
             <div className="lg:col-span-2">
               <Card className="h-full bg-accent/30 p-8">
-                <h3 className="mb-6 text-lg font-bold text-foreground">
+                <h3 className="mb-6 text-base font-bold text-foreground">
                   Ventajas adicionales
                 </h3>
                 <ul className="space-y-4">

@@ -11,7 +11,7 @@ const brands = [
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="bg-muted/50 py-12 md:py-16">
+    <section id="testimonials" className="bg-white py-12 md:py-16">
       <MaxWidthWrapper>
         <div className="space-y-10 text-center">
           <div className="space-y-3">

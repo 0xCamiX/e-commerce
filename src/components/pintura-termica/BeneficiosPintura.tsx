@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { Droplets, Shield, Thermometer, Zap } from 'lucide-react';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
-import { Card } from '@/components/ui/card';
+import { Separator } from '@/components/ui/separator';
 
 const benefits = [
   {
@@ -11,28 +11,28 @@ const benefits = [
     stat: '−20°C',
     title: 'Reducción térmica',
     description:
-      'Hasta 20 grados Celsius menos en la temperatura superficial del techo',
+      'Hasta 20 grados Celsius menos en la temperatura superficial del techo.',
   },
   {
     icon: Zap,
     stat: 'Hasta 30%',
     title: 'Ahorro en climatización',
     description:
-      'Menor carga calorífica significa menor consumo en aire acondicionado o ventiladores',
+      'Menor carga calorífica significa menor consumo en aire acondicionado o ventiladores.',
   },
   {
     icon: Droplets,
     stat: 'IP65',
     title: 'Resistente al agua',
     description:
-      'Fórmula impermeabilizante integrada que protege la superficie contra la lluvia',
+      'Fórmula impermeabilizante integrada que protege la superficie contra la lluvia.',
   },
   {
     icon: Shield,
     stat: '5 años',
     title: 'Garantía de durabilidad',
     description:
-      'Resistente a rayos UV, ciclos de lluvia y condiciones climáticas tropicales',
+      'Resistente a rayos UV, ciclos de lluvia y condiciones climáticas tropicales.',
   },
 ];
 
@@ -56,15 +56,15 @@ export default function BeneficiosPintura() {
   return (
     <section id="beneficios" className="w-full bg-background py-12 md:py-16">
       <MaxWidthWrapper>
-        <div className="space-y-16">
+        <div className="space-y-10">
           <div className="text-center">
             <p className="mb-2 text-sm font-semibold tracking-widest text-primary uppercase">
               Beneficios
             </p>
-            <h2 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">
+            <h2 className="mb-3 text-2xl font-bold text-foreground md:text-3xl">
               Resultados que se sienten
             </h2>
-            <p className="mx-auto max-w-2xl text-sm font-medium text-muted-foreground sm:text-base">
+            <p className="mx-auto max-w-xl text-sm text-muted-foreground">
               Beneficios comprobados respaldados por datos reales de nuestras
               instalaciones en el Valle del Cauca
             </p>
@@ -80,21 +80,26 @@ export default function BeneficiosPintura() {
             {benefits.map(benefit => {
               const Icon = benefit.icon;
               return (
-                <motion.div key={benefit.title} variants={cardVariants}>
-                  <Card className="group h-full p-6 transition-all hover:-translate-y-1 hover:shadow-lg">
-                    <div className="mb-4 inline-flex rounded-lg bg-primary p-3 shadow-lg">
-                      <Icon className="h-6 w-6 text-primary-foreground" />
-                    </div>
-                    <p className="mb-1 text-2xl font-bold text-foreground">
+                <motion.div
+                  key={benefit.title}
+                  variants={cardVariants}
+                  className="flex flex-col rounded-xl border border-border bg-white"
+                >
+                  <div className="flex items-center gap-3 p-5 pb-0">
+                    <Icon className="h-5 w-5 text-primary" />
+                    <span className="text-xl font-bold tracking-tight text-foreground">
                       {benefit.stat}
-                    </p>
-                    <h3 className="mb-2 text-base font-bold text-foreground">
+                    </span>
+                  </div>
+                  <div className="px-5 pt-3 pb-5">
+                    <h3 className="mb-1.5 text-sm font-bold text-foreground">
                       {benefit.title}
                     </h3>
-                    <p className="text-sm leading-relaxed font-medium text-muted-foreground">
+                    <Separator className="mb-3" />
+                    <p className="text-xs leading-relaxed text-muted-foreground">
                       {benefit.description}
                     </p>
-                  </Card>
+                  </div>
                 </motion.div>
               );
             })}
