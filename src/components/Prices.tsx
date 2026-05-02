@@ -11,7 +11,7 @@ import {
 const plans = [
   {
     type: 'Hogar (24" - 60cm)',
-    price: '$750,000 COP + IVA',
+    price: '$830,000 COP + IVA',
     description: 'Buena para hogares, apartamentos y pequeños comercios.',
     warranty: '5 años de garantía',
     features: [
@@ -31,7 +31,7 @@ const plans = [
   },
   {
     type: 'Bodegas (31" - 80cm)',
-    price: '$850,000 COP + IVA',
+    price: '$930,000 COP + IVA',
     description: 'Ideal para fábricas, bodegas y hangares.',
     warranty: '5 años de garantía',
     features: [
