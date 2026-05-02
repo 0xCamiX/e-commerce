@@ -7,7 +7,7 @@ const plans = [
   {
     name: 'Hogar (24")',
     subtitle: 'Para uso residencial',
-    price: '$750,000',
+    price: '$830,000',
     period: 'COP + IVA',
     warranty: '5 años de garantía',
     features: [
@@ -22,7 +22,7 @@ const plans = [
   {
     name: 'Bodegas (31")',
     subtitle: 'Para uso industrial',
-    price: '$850,000',
+    price: '$930,000',
     period: 'COP + IVA',
     warranty: '5 años de garantía',
     features: [
