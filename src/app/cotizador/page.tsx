@@ -4,9 +4,10 @@ import CotizadorApp from '@/components/cotizador/CotizadorApp';
 export const metadata: Metadata = {
   title: 'Cotizador de Extractores Eólicos | Eólicos Gallego',
   description:
-    'Calcula la cantidad exacta de extractores eólicos que necesitas según las dimensiones de tu techo. Cotización instantánea con envío por WhatsApp.',
+    'Simula la cantidad de extractores eólicos por volumen, ACH y viento, y genera cotización con precios oficiales e IVA. Envío por WhatsApp.',
   keywords: [
     'cotizar extractores eólicos',
+    'simulador extractores',
     'calculadora extractores',
     'ventilación industrial cotización',
     'extractores eólicos Cali precio',
