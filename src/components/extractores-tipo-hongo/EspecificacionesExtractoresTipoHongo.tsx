@@ -3,6 +3,17 @@
 import { CheckCircle, Gauge, Ruler, Settings, Zap } from 'lucide-react';
 import Link from 'next/link';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 
 const specifications = [
   {
@@ -80,155 +91,147 @@ const warranty = {
 
 export default function EspecificacionesExtractoresTipoHongo() {
   return (
-    <section id="especificaciones" className="w-full bg-white py-16 md:py-20">
+    <section
+      id="especificaciones"
+      className="w-full bg-background py-12 md:py-16"
+    >
       <MaxWidthWrapper>
         <div className="space-y-16">
-          {/* Header */}
           <div className="text-center">
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl">
+            <h2 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">
               Especificaciones Técnicas
             </h2>
-            <p className="mx-auto max-w-2xl text-lg font-medium text-slate-600">
+            <p className="mx-auto max-w-2xl text-sm font-medium text-muted-foreground sm:text-base">
               Modelos disponibles y características técnicas para cada necesidad
             </p>
           </div>
 
-          {/* Specifications Table */}
-          <div className="overflow-hidden rounded-xl border border-slate-200 shadow-lg">
+          <Card className="overflow-hidden p-0">
             <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-gradient-to-r from-sky-500 to-sky-600">
-                  <tr>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-white">
-                      <div className="flex items-center gap-2">
+              <Table>
+                <TableHeader>
+                  <TableRow className="bg-primary hover:bg-primary">
+                    <TableHead className="font-bold text-primary-foreground">
+                      <span className="flex items-center gap-2">
                         <Ruler className="h-4 w-4" />
                         Tamaño
-                      </div>
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-white">
+                      </span>
+                    </TableHead>
+                    <TableHead className="font-bold text-primary-foreground">
                       Diámetro
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-white">
-                      <div className="flex items-center gap-2">
+                    </TableHead>
+                    <TableHead className="font-bold text-primary-foreground">
+                      <span className="flex items-center gap-2">
                         <Gauge className="h-4 w-4" />
                         Flujo de Aire
-                      </div>
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-white">
-                      <div className="flex items-center gap-2">
+                      </span>
+                    </TableHead>
+                    <TableHead className="font-bold text-primary-foreground">
+                      <span className="flex items-center gap-2">
                         <Zap className="h-4 w-4" />
                         Motor
-                      </div>
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-white">
+                      </span>
+                    </TableHead>
+                    <TableHead className="font-bold text-primary-foreground">
                       Voltaje
-                    </th>
-                    <th className="px-6 py-4 text-left text-sm font-bold text-white">
-                      <div className="flex items-center gap-2">
+                    </TableHead>
+                    <TableHead className="font-bold text-primary-foreground">
+                      <span className="flex items-center gap-2">
                         <Settings className="h-4 w-4" />
                         Transmisión
-                      </div>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-200 bg-white">
+                      </span>
+                    </TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
                   {specifications.map(spec => (
-                    <tr
+                    <TableRow
                       key={spec.size}
-                      className={`transition-colors hover:bg-slate-50 ${
-                        spec.recommended ? 'bg-sky-50' : ''
-                      }`}
+                      className={spec.recommended ? 'bg-accent/50' : ''}
                     >
-                      <td className="px-6 py-4">
+                      <TableCell>
                         <div className="flex items-center gap-2">
-                          <span className="text-base font-bold text-slate-900">
+                          <span className="text-base font-bold">
                             {spec.size}
                           </span>
-                          {spec.recommended && (
-                            <span className="rounded-full bg-gradient-to-r from-green-500 to-green-600 px-2 py-0.5 text-xs font-semibold text-white">
-                              Popular
-                            </span>
-                          )}
+                          {spec.recommended && <Badge>Popular</Badge>}
                         </div>
-                      </td>
-                      <td className="px-6 py-4 text-sm font-medium text-slate-700">
+                      </TableCell>
+                      <TableCell className="font-medium">
                         {spec.diameter}
-                      </td>
-                      <td className="px-6 py-4 text-sm font-medium text-slate-700">
+                      </TableCell>
+                      <TableCell className="font-medium">
                         {spec.airflow}
-                      </td>
-                      <td className="px-6 py-4 text-sm font-medium text-slate-700">
+                      </TableCell>
+                      <TableCell className="font-medium">
                         {spec.motor}
-                      </td>
-                      <td className="px-6 py-4 text-sm font-medium text-slate-700">
+                      </TableCell>
+                      <TableCell className="font-medium">
                         {spec.voltage}
-                      </td>
-                      <td className="px-6 py-4 text-sm font-medium text-slate-700">
+                      </TableCell>
+                      <TableCell className="font-medium">
                         {spec.transmission}
-                      </td>
-                    </tr>
+                      </TableCell>
+                    </TableRow>
                   ))}
-                </tbody>
-              </table>
+                </TableBody>
+              </Table>
             </div>
-          </div>
+          </Card>
 
-          {/* Materials and Warranty Grid */}
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            {/* Materials */}
-            <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-slate-50 to-white p-8 shadow-sm">
-              <h3 className="mb-4 text-xl font-bold text-slate-900">
+            <Card className="bg-muted/50 p-8">
+              <h3 className="mb-4 text-base font-bold text-foreground sm:text-lg">
                 Materiales de Construcción
               </h3>
               <ul className="space-y-3">
                 {materials.map(material => (
                   <li
                     key={material}
-                    className="flex items-start gap-3 text-sm font-medium text-slate-700"
+                    className="flex items-start gap-3 text-sm font-medium text-muted-foreground"
                   >
-                    <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-green-500" />
+                    <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                     <span>{material}</span>
                   </li>
                 ))}
               </ul>
-            </div>
+            </Card>
 
-            {/* Warranty */}
-            <div className="rounded-xl border border-slate-200 bg-gradient-to-br from-sky-50 to-white p-8 shadow-sm">
-              <h3 className="mb-4 text-xl font-bold text-slate-900">
+            <Card className="bg-accent/30 p-8">
+              <h3 className="mb-4 text-base font-bold text-foreground sm:text-lg">
                 {warranty.title}
               </h3>
               <ul className="space-y-3">
                 {warranty.items.map(item => (
                   <li
                     key={item}
-                    className="flex items-start gap-3 text-sm font-medium text-slate-700"
+                    className="flex items-start gap-3 text-sm font-medium text-muted-foreground"
                   >
-                    <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-sky-500" />
+                    <CheckCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-primary" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
-            </div>
+            </Card>
           </div>
 
-          {/* CTA */}
-          <div className="rounded-xl bg-gradient-to-r from-sky-500 to-sky-600 p-8 text-center shadow-lg">
-            <h3 className="mb-4 text-2xl font-bold text-white">
+          <Card className="bg-primary p-8 text-center">
+            <h3 className="mb-4 text-lg font-bold text-primary-foreground sm:text-xl">
               ¿Necesitas asesoría personalizada?
             </h3>
-            <p className="mb-6 text-lg font-medium text-sky-50">
+            <p className="mb-6 text-sm font-medium text-primary-foreground/80 sm:text-base">
               Nuestro equipo de expertos te ayudará a elegir el modelo ideal
               para tu proyecto
             </p>
-            <Link
-              href="https://wa.me/573177525559?text=Hola,%20necesito%20asesoría%20sobre%20Extractores%20Tipo%20Hongo"
-              target="_blank"
-              className="inline-block rounded-lg bg-white px-8 py-3 text-base font-semibold text-sky-600 transition-all hover:scale-105 hover:shadow-xl"
-            >
-              Solicitar Asesoría Gratuita
-            </Link>
-          </div>
+            <Button asChild variant="secondary" size="lg">
+              <Link
+                href="https://wa.me/573177525559?text=Hola,%20necesito%20asesoría%20sobre%20Extractores%20Tipo%20Hongo"
+                target="_blank"
+              >
+                Solicitar Asesoría Gratuita
+              </Link>
+            </Button>
+          </Card>
         </div>
       </MaxWidthWrapper>
     </section>

@@ -1,134 +1,170 @@
 'use client';
 
-import { Menu, X, Sparkles } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
-import { buttonVariants } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Button, buttonVariants } from '@/components/ui/button';
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import { siteConfig } from '@/config/site';
 
-const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+function getActiveProduct(pathname: string): string {
+  if (pathname.startsWith('/extractores-tipo-hongo'))
+    return '/extractores-tipo-hongo';
+  if (pathname.startsWith('/pintura-termica')) return '/pintura-termica';
+  if (pathname.startsWith('/cotizador')) return '/cotizador';
+  return '/';
+}
+
+export default function Navbar() {
   const pathname = usePathname();
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  // Determinar la URL correcta para anchors según la página actual
-  const getHref = (href: string) => {
-    if (href.startsWith('#')) {
-      // Si estamos en /extractores-tipo-hongo, los anchors van a la página principal
-      return pathname === '/extractores-tipo-hongo' ? `/${href}` : href;
-    }
-    return href;
-  };
-
-  // Filtrar navlinks según la página actual
-  const currentPageNavLinks = siteConfig.navigation.main;
+  const activeProduct = getActiveProduct(pathname);
+  const subNavItems = siteConfig.navigation.subNav[activeProduct] ?? [];
 
   return (
-    <nav className="sticky inset-x-0 top-0 z-[100] h-14 w-full border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
-      <MaxWidthWrapper>
-        <div className="flex h-14 items-center justify-between border-b border-zinc-200">
-          {/* Logo */}
-          <Link href="/" className="z-40 flex items-center font-semibold">
-            <Image
-              src="/logo.png"
-              width={40}
-              height={25}
-              alt={siteConfig.name}
-              className="mr-2"
-            />
-            <span className="flex items-center">{siteConfig.name}</span>
-          </Link>
+    <header className="sticky top-0 z-[100] w-full bg-white shadow-sm">
+      {/* Level 1: Main navigation */}
+      <div className="border-b border-border">
+        <MaxWidthWrapper>
+          <div className="flex h-12 items-center justify-between">
+            <Link
+              href="/"
+              className="flex items-center gap-2 text-sm font-semibold text-foreground"
+            >
+              <Image
+                src="/logo.png"
+                width={32}
+                height={20}
+                alt={siteConfig.name}
+              />
+              <span>{siteConfig.name}</span>
+            </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden h-full items-center space-x-2 md:flex">
-            {currentPageNavLinks.map(item => {
-              const isActive = pathname === item.href || 
-                (item.href === '/' && pathname === '/');
-              const isPrimary = 'isPrimary' in item && item.isPrimary;
-              const isAnchor = item.href.startsWith('#');
-
-              return (
-                <Link
-                  key={item.href}
-                  href={getHref(item.href)}
-                  className={`group relative ${buttonVariants({
-                    size: 'sm',
-                    variant: 'ghost',
-                  })} ${isPrimary ? 'px-3 font-semibold' : ''} ${isActive && !isAnchor ? 'text-sky-600' : ''} transition-all duration-200 hover:scale-105`}
-                >
-                  {isPrimary && (
-                    <span className="absolute -top-1 -right-1 flex h-2 w-2">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
-                      <span className="relative inline-flex h-2 w-2 rounded-full bg-sky-500"></span>
-                    </span>
-                  )}
-                  <span className="flex items-center gap-1.5">
-                    {item.title}
-                    {isPrimary && (
-                      <Sparkles className="h-3 w-3 text-sky-500 transition-transform group-hover:scale-110 group-hover:rotate-12" />
-                    )}
-                  </span>
-                  {isPrimary && (
-                    <span className="absolute inset-x-0 -bottom-1 h-0.5 bg-gradient-to-r from-sky-400 to-sky-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
-                  )}
-                </Link>
-              );
-            })}
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            type="button"
-            onClick={toggleMenu}
-            className="rounded-md p-2 transition-colors hover:bg-gray-100 md:hidden"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="absolute top-14 right-0 left-0 border-b border-gray-200 bg-white shadow-lg md:hidden">
-            <div className="flex flex-col space-y-2 p-4">
-              {currentPageNavLinks.map(item => {
-                const isActive = pathname === item.href || 
-                  (item.href === '/' && pathname === '/');
-                const isPrimary = 'isPrimary' in item && item.isPrimary;
-                const isAnchor = item.href.startsWith('#');
+            {/* Desktop nav */}
+            <nav className="hidden items-center gap-1 md:flex">
+              {siteConfig.navigation.main.map(item => {
+                const isActive = activeProduct === item.href;
+                const isNew = 'isNew' in item && item.isNew;
 
                 return (
                   <Link
                     key={item.href}
-                    href={getHref(item.href)}
-                    className={`group relative ${buttonVariants({
-                      size: 'sm',
-                      variant: 'ghost',
-                      className: 'w-full justify-start',
-                    })} ${isPrimary ? 'font-semibold' : ''} ${isActive && !isAnchor ? 'text-sky-600' : ''} transition-all duration-200`}
-                    onClick={() => setIsMenuOpen(false)}
+                    href={item.href}
+                    className={`relative inline-flex items-center px-3 py-1 text-[13px] font-medium transition-colors ${
+                      isActive
+                        ? 'text-foreground'
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
                   >
-                    <span className="flex items-center gap-2">
-                      {item.title}
-                      {isPrimary && (
-                        <Sparkles className="h-3.5 w-3.5 text-sky-500 transition-transform group-hover:rotate-12" />
-                      )}
-                    </span>
-                    {isPrimary && (
-                      <span className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-sky-400 to-sky-600 scale-y-0 group-hover:scale-y-100 transition-transform duration-300"></span>
+                    {item.title}
+                    {isNew && (
+                      <Badge className="ml-1.5 px-1 py-0 text-[9px] leading-tight">
+                        NEW
+                      </Badge>
                     )}
                   </Link>
                 );
               })}
+            </nav>
+
+            {/* Mobile hamburger */}
+            <div className="md:hidden">
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8"
+                    aria-label="Abrir menú"
+                  >
+                    <Menu className="h-4 w-4" />
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-64">
+                  <SheetHeader>
+                    <SheetTitle className="text-left text-sm">
+                      {siteConfig.name}
+                    </SheetTitle>
+                  </SheetHeader>
+                  <nav className="mt-4 flex flex-col gap-0.5">
+                    {siteConfig.navigation.main.map(item => {
+                      const isActive = activeProduct === item.href;
+                      const isNew = 'isNew' in item && item.isNew;
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className={`${buttonVariants({
+                            size: 'sm',
+                            variant: isActive ? 'secondary' : 'ghost',
+                            className: 'w-full justify-start',
+                          })} text-[13px] font-medium`}
+                        >
+                          {item.title}
+                          {isNew && (
+                            <Badge className="ml-1.5 px-1 py-0 text-[9px]">
+                              NEW
+                            </Badge>
+                          )}
+                        </Link>
+                      );
+                    })}
+
+                    {subNavItems.length > 0 && (
+                      <>
+                        <div className="my-2 border-t border-border" />
+                        <p className="px-3 pb-1 text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
+                          Secciones
+                        </p>
+                        {subNavItems.map(sub => (
+                          <Link
+                            key={sub.href}
+                            href={sub.href}
+                            className={`${buttonVariants({
+                              size: 'sm',
+                              variant: 'ghost',
+                              className: 'w-full justify-start',
+                            })} text-[13px] font-normal text-muted-foreground`}
+                          >
+                            {sub.title}
+                          </Link>
+                        ))}
+                      </>
+                    )}
+                  </nav>
+                </SheetContent>
+              </Sheet>
             </div>
           </div>
-        )}
-      </MaxWidthWrapper>
-    </nav>
-  );
-};
+        </MaxWidthWrapper>
+      </div>
 
-export default Navbar;
+      {/* Level 2: Product sub-navigation */}
+      {subNavItems.length > 0 && (
+        <div className="border-b border-border bg-white/90 backdrop-blur-sm">
+          <MaxWidthWrapper>
+            <nav className="hidden items-center gap-0.5 overflow-x-auto md:flex">
+              {subNavItems.map(sub => (
+                <Link
+                  key={sub.href}
+                  href={sub.href}
+                  className="inline-flex items-center px-3 py-1.5 text-[12px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {sub.title}
+                </Link>
+              ))}
+            </nav>
+          </MaxWidthWrapper>
+        </div>
+      )}
+    </header>
+  );
+}

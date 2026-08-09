@@ -9,114 +9,99 @@ import {
   Zap,
 } from 'lucide-react';
 import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+import { Card } from '@/components/ui/card';
 
 const features = [
   {
+    title: 'Construcción y Diseño',
     icon: Layers,
-    title: 'Materiales Premium',
-    description:
-      'Fabricados en aluminio moldeado o acero galvanizado, garantizando resistencia a la corrosión y durabilidad excepcional.',
-    color: 'sky',
+    points: [
+      {
+        icon: Layers,
+        text: 'Aluminio moldeado o acero galvanizado resistente a la corrosión',
+      },
+      {
+        icon: Gauge,
+        text: 'Diámetros desde 12" hasta 38" para distintas necesidades',
+      },
+      {
+        icon: Wind,
+        text: 'Forma tipo hongo aerodinámica que maximiza el flujo de aire',
+      },
+      {
+        icon: Droplets,
+        text: 'Protección completa contra lluvia, polvo e intemperie',
+      },
+    ],
   },
   {
-    icon: Gauge,
-    title: 'Múltiples Tamaños',
-    description:
-      'Disponibles en diámetros desde 12" hasta 38", adaptándose perfectamente a diferentes necesidades de extracción.',
-    color: 'green',
-  },
-  {
-    icon: Settings,
-    title: 'Tipos de Transmisión',
-    description:
-      'Modelos con transmisión directa o por correas y poleas, según los requerimientos específicos de tu proyecto.',
-    color: 'amber',
-  },
-  {
+    title: 'Rendimiento y Operación',
     icon: Zap,
-    title: 'Motores Eficientes',
-    description:
-      'Equipados con motores de alta eficiencia y bajo consumo energético, disponibles en opciones monofásicas, bifásicas o trifásicas.',
-    color: 'purple',
-  },
-  {
-    icon: Wrench,
-    title: 'Fácil Mantenimiento',
-    description:
-      'Diseño que permite acceso frontal para inspecciones y mantenimiento sin necesidad de desmontaje completo.',
-    color: 'blue',
-  },
-  {
-    icon: Wind,
-    title: 'Diseño Aerodinámico',
-    description:
-      'Forma tipo hongo optimizada para maximizar el flujo de aire y proteger el motor de las condiciones climáticas.',
-    color: 'teal',
-  },
-  {
-    icon: Droplets,
-    title: 'Resistente a la Intemperie',
-    description:
-      'Protección completa contra lluvia, polvo y condiciones ambientales adversas, garantizando operación continua.',
-    color: 'cyan',
-  },
-  {
-    icon: Shield,
-    title: 'Cumplimiento Normativo',
-    description:
-      'Cumplen con estándares de seguridad e higiene para cocinas industriales y entornos comerciales exigentes.',
-    color: 'red',
+    points: [
+      {
+        icon: Settings,
+        text: 'Transmisión directa o por correas y poleas según tu proyecto',
+      },
+      {
+        icon: Zap,
+        text: 'Motores de alta eficiencia: monofásicos, bifásicos o trifásicos',
+      },
+      {
+        icon: Wrench,
+        text: 'Acceso frontal para inspección y mantenimiento sin desmontaje',
+      },
+      {
+        icon: Shield,
+        text: 'Cumple estándares de seguridad e higiene industrial',
+      },
+    ],
   },
 ];
 
 export default function CaracteristicasExtractoresTipoHongo() {
-  const colorClasses = {
-    sky: 'bg-sky-100 text-sky-600',
-    green: 'bg-green-100 text-green-600',
-    amber: 'bg-amber-100 text-amber-600',
-    purple: 'bg-purple-100 text-purple-600',
-    blue: 'bg-blue-100 text-blue-600',
-    teal: 'bg-teal-100 text-teal-600',
-    cyan: 'bg-cyan-100 text-cyan-600',
-    red: 'bg-red-100 text-red-600',
-  };
-
   return (
-    <section className="w-full bg-white py-16 md:py-20">
+    <section
+      id="caracteristicas"
+      className="w-full bg-background py-12 md:py-16"
+    >
       <MaxWidthWrapper>
-        <div className="space-y-12">
-          {/* Header */}
+        <div className="space-y-10">
           <div className="text-center">
-            <h2 className="mb-4 text-3xl font-bold text-slate-900 md:text-4xl lg:text-5xl">
+            <h2 className="mb-4 text-2xl font-bold text-foreground md:text-3xl">
               Características Destacadas
             </h2>
-            <p className="mx-auto max-w-2xl text-lg font-medium text-slate-600">
+            <p className="mx-auto max-w-2xl text-sm text-muted-foreground sm:text-base">
               Tecnología de vanguardia y diseño robusto para máxima eficiencia
               en ventilación industrial
             </p>
           </div>
 
-          {/* Features Grid */}
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {features.map(feature => {
-              const Icon = feature.icon;
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {features.map(group => {
+              const GroupIcon = group.icon;
               return (
-                <div
-                  key={feature.title}
-                  className="group rounded-xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"
-                >
-                  <div
-                    className={`mb-4 inline-flex rounded-lg p-3 ${colorClasses[feature.color as keyof typeof colorClasses]}`}
-                  >
-                    <Icon className="h-6 w-6" />
+                <Card key={group.title} className="p-6">
+                  <div className="mb-4 flex items-center gap-3">
+                    <GroupIcon className="h-5 w-5 text-primary" />
+                    <h3 className="text-base font-bold text-foreground">
+                      {group.title}
+                    </h3>
                   </div>
-                  <h3 className="mb-2 text-lg font-bold text-slate-900">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm leading-relaxed font-medium text-slate-600">
-                    {feature.description}
-                  </p>
-                </div>
+                  <ul className="space-y-3">
+                    {group.points.map(point => {
+                      const PointIcon = point.icon;
+                      return (
+                        <li
+                          key={point.text}
+                          className="flex items-start gap-3 text-sm text-muted-foreground"
+                        >
+                          <PointIcon className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                          <span>{point.text}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </Card>
               );
             })}
           </div>
