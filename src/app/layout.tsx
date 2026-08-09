@@ -1,16 +1,16 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Inter, JetBrains_Mono } from 'next/font/google';
 import '../app/styles/globals.css';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const inter = Inter({
+  variable: '--font-sans',
   subsets: ['latin'],
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const jetbrainsMono = JetBrains_Mono({
+  variable: '--font-mono',
   subsets: ['latin'],
 });
 
@@ -28,13 +28,11 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
       >
-        <main className="grainy-light flex min-h-[calc(100vh-3.5rem-1px)] flex-col">
-          <div className="flex h-full flex-1 flex-col">
-            <Navbar />
-            {children}
-          </div>
+        <Navbar />
+        <main className="flex min-h-[calc(100vh-3.5rem-1px)] flex-col">
+          <div className="flex h-full flex-1 flex-col">{children}</div>
           <Footer />
         </main>
       </body>

@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
 import Contact from '@/components/Contact';
-import AplicacionesExtractoresTipoHongo from '@/components/extractores-tipo-hongo/AplicacionesExtractoresTipoHongo';
 import CaracteristicasExtractoresTipoHongo from '@/components/extractores-tipo-hongo/CaracteristicasExtractoresTipoHongo';
 import EspecificacionesExtractoresTipoHongo from '@/components/extractores-tipo-hongo/EspecificacionesExtractoresTipoHongo';
 import HeroExtractoresTipoHongo from '@/components/extractores-tipo-hongo/HeroExtractoresTipoHongo';
@@ -24,7 +23,6 @@ export default function ExtractoresTipoHongoPage() {
     <>
       <HeroExtractoresTipoHongo />
       <CaracteristicasExtractoresTipoHongo />
-      <AplicacionesExtractoresTipoHongo />
       <EspecificacionesExtractoresTipoHongo />
       <Contact />
     </>
