@@ -1,67 +1,68 @@
 import { Shield, Wind, Zap } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
-import MaxWidthWrapper from '@/components/MaxWidthWrapper';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { siteConfig } from '@/config/site';
+
+const highlights = [
+  { icon: Shield, label: 'Alta durabilidad' },
+  { icon: Zap, label: 'Eficiencia energética' },
+  { icon: Wind, label: 'Alto flujo de aire' },
+];
 
 export default function HeroExtractoresTipoHongo() {
   return (
-    <section id="hero" className="w-full bg-muted/50 py-12 md:py-16">
-      <MaxWidthWrapper>
-        <div className="flex flex-col items-center text-center">
-          <h1 className="mb-6 text-2xl leading-tight font-bold text-foreground sm:text-3xl md:text-4xl">
-            Extractores Tipo{' '}
-            <span className="inline-block rounded-md bg-primary px-3 py-1 font-medium text-primary-foreground shadow-lg">
-              Hongo
-            </span>
-            <br className="hidden sm:block" />
-            <span className="text-muted-foreground">
-              Ventilación Industrial Premium
-            </span>
+    <section className="relative overflow-hidden bg-[oklch(0.18_0.04_250)] text-primary-foreground">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,oklch(0.45_0.12_220/.45),transparent_45%)]" />
+      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:px-8 lg:py-24">
+        <div>
+          <Badge variant="secondary" className="mb-5">
+            Eólicos Gallego · Tipo hongo
+          </Badge>
+          <h1 className="text-primary-foreground">
+            Extractores tipo hongo para ventilación industrial
           </h1>
-
-          <p className="mb-8 max-w-3xl text-sm font-medium text-muted-foreground sm:text-base">
-            Solución profesional para la extracción eficiente de{' '}
-            <b className="text-foreground">humos, vapores, grasas y olores</b>{' '}
-            en entornos industriales y comerciales. Diseño aerodinámico que
-            protege el motor y maximiza el flujo de aire.
+          <p className="mt-5 max-w-xl text-base text-primary-foreground/75 sm:text-lg">
+            Extracción de humos, vapores, grasas y olores en cocinas
+            industriales, panaderías y fábricas. Diseño aerodinámico que protege
+            el motor y maximiza el flujo de aire.
           </p>
-
-          <div className="mb-10 flex flex-wrap items-center justify-center gap-8">
-            <div className="flex flex-col items-center gap-2">
-              <Shield className="h-6 w-6 text-primary" />
-              <p className="text-sm font-semibold text-foreground">
-                Alta Durabilidad
-              </p>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <Zap className="h-6 w-6 text-primary" />
-              <p className="text-sm font-semibold text-foreground">
-                Eficiencia Energética
-              </p>
-            </div>
-            <div className="flex flex-col items-center gap-2">
-              <Wind className="h-6 w-6 text-primary" />
-              <p className="text-sm font-semibold text-foreground">
-                Alto Flujo de Aire
-              </p>
-            </div>
-          </div>
-
-          <div className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
-            <Button asChild size="lg" className="shadow-lg">
+          <ul className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-6">
+            {highlights.map(item => (
+              <li key={item.label} className="flex items-center gap-2 text-sm">
+                <item.icon className="size-4 text-accent" />
+                {item.label}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Button asChild size="lg">
+              <Link href="/tienda/extractor-tipo-hongo">Ver en tienda</Link>
+            </Button>
+            <Button asChild size="lg" variant="secondary">
               <Link
-                href="https://wa.me/573177525559?text=Hola,%20me%20interesan%20los%20Extractores%20Tipo%20Hongo"
+                href={`https://wa.me/${siteConfig.contact.whatsapp}?text=${encodeURIComponent(
+                  'Hola, me interesan los extractores tipo hongo de Eólicos Gallego.',
+                )}`}
                 target="_blank"
               >
-                Solicitar Cotización
+                Solicitar cotización
               </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="#especificaciones">Ver Especificaciones</Link>
             </Button>
           </div>
         </div>
-      </MaxWidthWrapper>
+        <div className="relative min-h-72 overflow-hidden rounded-3xl border border-white/10 bg-white/5">
+          <Image
+            src="/products/extractor-tipo-hongo.png"
+            alt="Extractor tipo hongo Eólicos Gallego para ventilación industrial"
+            fill
+            className="object-cover"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            priority
+          />
+        </div>
+      </div>
     </section>
   );
 }

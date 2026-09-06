@@ -181,6 +181,12 @@ export const siteConfig = {
         isNew: true,
       },
       {
+        title: 'Tienda',
+        href: '/tienda',
+        description: 'Compra extractores eólicos y pintura térmica',
+        isPrimary: true,
+      },
+      {
         title: 'Cotizador',
         href: '/cotizador',
         description: 'Cotiza extractores eólicos según tu proyecto',
