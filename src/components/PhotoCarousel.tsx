@@ -5,12 +5,12 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
 const images = [
-  '/hero-pictures/1.jpeg',
-  '/hero-pictures/2.jpeg',
-  '/hero-pictures/3.jpeg',
-  '/hero-pictures/4.jpeg',
-  '/hero-pictures/5.jpeg',
-  '/hero-pictures/6.jpeg',
+  '/hero-pictures/1.png',
+  '/hero-pictures/2.png',
+  '/hero-pictures/3.png',
+  '/hero-pictures/4.png',
+  '/hero-pictures/5.png',
+  '/hero-pictures/6.png',
 ];
 
 const ALBUM_SIZE = 3; // cuántas fotos mostrar atrás
