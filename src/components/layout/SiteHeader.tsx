@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -91,6 +92,9 @@ export function SiteHeader() {
               <SheetContent side="right">
                 <SheetHeader>
                   <SheetTitle>{siteConfig.name}</SheetTitle>
+                  <SheetDescription>
+                    Navegación del sitio de extractores eólicos
+                  </SheetDescription>
                 </SheetHeader>
                 <nav className="mt-6 flex flex-col gap-2">
                   {links.map(link => (
