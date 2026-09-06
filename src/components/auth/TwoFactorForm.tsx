@@ -58,8 +58,8 @@ export function TwoFactorForm() {
             <FieldLabel>Código TOTP</FieldLabel>
             <InputOTP maxLength={6} value={code} onChange={setCode}>
               <InputOTPGroup>
-                {Array.from({ length: 6 }).map((_, index) => (
-                  <InputOTPSlot key={`totp-${index}`} index={index} />
+                {[0, 1, 2, 3, 4, 5].map(slot => (
+                  <InputOTPSlot key={slot} index={slot} />
                 ))}
               </InputOTPGroup>
             </InputOTP>
@@ -78,8 +78,8 @@ export function TwoFactorForm() {
             <FieldLabel>Código email</FieldLabel>
             <InputOTP maxLength={6} value={code} onChange={setCode}>
               <InputOTPGroup>
-                {Array.from({ length: 6 }).map((_, index) => (
-                  <InputOTPSlot key={`totp-${index}`} index={index} />
+                {[0, 1, 2, 3, 4, 5].map(slot => (
+                  <InputOTPSlot key={slot} index={slot} />
                 ))}
               </InputOTPGroup>
             </InputOTP>

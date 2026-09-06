@@ -64,8 +64,8 @@ export function VerifyEmailForm() {
           <FieldLabel>Código de 6 dígitos</FieldLabel>
           <InputOTP maxLength={6} value={otp} onChange={setOtp}>
             <InputOTPGroup>
-              {Array.from({ length: 6 }).map((_, index) => (
-                <InputOTPSlot key={`otp-${index}`} index={index} />
+              {[0, 1, 2, 3, 4, 5].map(slot => (
+                <InputOTPSlot key={slot} index={slot} />
               ))}
             </InputOTPGroup>
           </InputOTP>

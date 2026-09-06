@@ -75,6 +75,9 @@ export function SiteHeader() {
               ) : null}
             </Link>
           </Button>
+          <Button asChild variant="ghost" className="hidden sm:inline-flex">
+            <Link href="/login">Cuenta</Link>
+          </Button>
           <Button asChild className="hidden sm:inline-flex">
             <Link href="/tienda">Comprar</Link>
           </Button>
@@ -100,6 +103,12 @@ export function SiteHeader() {
                       <Link href={link.href}>{link.label}</Link>
                     </Button>
                   ))}
+                  <Button asChild variant="ghost" className="justify-start">
+                    <Link href="/login">Cuenta</Link>
+                  </Button>
+                  <Button asChild className="justify-start">
+                    <Link href="/tienda">Comprar</Link>
+                  </Button>
                 </nav>
               </SheetContent>
             </Sheet>
