@@ -116,10 +116,8 @@ export function LandingHeroScroll() {
               if (prevPhoto) tl.to(prevPhoto, { autoAlpha: 0 }, '<');
               if (nextPhoto) {
                 tl.to(nextPhoto, { autoAlpha: 1 }, '<');
-                tl.to(overlay, { autoAlpha: 1 }, '<');
                 tl.to(extractor, { autoAlpha: 0.12 }, '<');
               } else {
-                tl.to(overlay, { autoAlpha: 0 }, '<');
                 tl.to(extractor, { autoAlpha: 1 }, '<');
               }
 
