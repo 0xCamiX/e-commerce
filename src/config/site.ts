@@ -186,6 +186,13 @@ export const siteConfig = {
         description: 'Cotiza extractores eólicos según tu proyecto',
         isPrimary: true,
       },
+      {
+        title: 'Propuesta',
+        href: '/landing',
+        description: 'Landing scroll-motion (preview)',
+        isPrimary: true,
+        isNew: true,
+      },
     ],
     subNav: {
       '/': [

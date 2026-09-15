@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" preserveAspectRatio="xMidYMid meet">
+  <rect width="800" height="1000" fill="#d7e3ea"/>
+  <rect y="0" width="800" height="520" fill="#c5d6de"/>
+  <polygon points="0,280 400,90 800,280 800,620 0,620" fill="#c45c32"/>
+  <polygon points="0,280 400,90 800,280 800,320 400,140 0,320" fill="#a34728"/>
+  <g fill="#9a3f22">
+    <path d="M80 330 h640 v16 H80z"/>
+    <path d="M120 380 h560 v16 H120z"/>
+    <path d="M160 430 h480 v16 H160z"/>
+    <path d="M210 480 h380 v16 H210z"/>
+  </g>
+  <rect x="368" y="118" width="64" height="100" rx="6" fill="#d8d4cb"/>
+  <circle cx="400" cy="92" r="86" fill="#ece9e1"/>
+  <circle cx="400" cy="92" r="32" fill="#5c5a56"/>
+  <circle cx="372" cy="70" r="10" fill="#ffffff" opacity="0.65"/>
+  <rect y="620" width="800" height="380" fill="#5a3a2c"/>
+</svg>
