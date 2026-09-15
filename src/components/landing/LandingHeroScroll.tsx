@@ -2,12 +2,16 @@
 
 import Link from 'next/link';
 import { useRef } from 'react';
-import { landingCallouts, landingChapters } from '@/components/landing/copy';
+import { landingHeroCopy, landingScrubSteps } from '@/components/landing/copy';
 import { ExtractorVisual } from '@/components/landing/ExtractorVisual';
 import { Button } from '@/components/ui/button';
 import { buildWhatsAppUrl } from '@/config/site';
 import { gsap, useGSAP } from '@/lib/gsap-client';
-import { cn } from '@/lib/utils';
+
+const SIZE_ON = 'rgba(45, 122, 94, 1)';
+const SIZE_OFF = 'rgba(28, 25, 22, 0.06)';
+const SIZE_ON_FG = '#f7f4ee';
+const SIZE_OFF_FG = '#1c1916';
 
 export function LandingHeroScroll() {
   const rootRef = useRef<HTMLElement>(null);
@@ -19,63 +23,27 @@ export function LandingHeroScroll() {
 
       const mm = gsap.matchMedia();
       const pinTarget = root.querySelector<HTMLElement>('[data-pin]');
-      const product = root.querySelector<HTMLElement>('[data-product]');
-      const vanes = root.querySelector<SVGElement>('[data-vanes]');
-      const chapters = gsap.utils.toArray<HTMLElement>('[data-chapter]');
-      const callouts = gsap.utils.toArray<HTMLElement>('[data-callout]');
+      const photos = gsap.utils.toArray<HTMLElement>('[data-photo]');
+      const overlay = root.querySelector<HTMLElement>('[data-overlay]');
+      const extractor = root.querySelector<HTMLElement>('[data-extractor]');
       const sizes = gsap.utils.toArray<HTMLElement>('[data-size]');
-      const progress = root.querySelector<HTMLElement>('[data-progress]');
+      const vanes = root.querySelector<SVGElement>('[data-vanes]');
 
-      let lastChapter = -1;
-
-      const applyChapterChrome = (index: number) => {
-        if (index === lastChapter) return;
-        lastChapter = index;
-        const chapter = landingChapters[index];
-        if (!chapter) return;
-
-        callouts.forEach(el => {
-          const on = chapter.calloutIds.includes(el.dataset.callout ?? '');
-          gsap.to(el, {
-            autoAlpha: on ? 1 : 0,
-            y: on ? 0 : 10,
-            duration: 0.35,
-            overwrite: 'auto',
-          });
+      const sizeVars = (index: number) => {
+        const step = landingScrubSteps[index];
+        return sizes.map(el => {
+          const on = step?.highlightSizes.includes(Number(el.dataset.size));
+          return {
+            target: el,
+            backgroundColor: on ? SIZE_ON : SIZE_OFF,
+            color: on ? SIZE_ON_FG : SIZE_OFF_FG,
+          };
         });
-
-        sizes.forEach(el => {
-          const n = Number(el.dataset.size);
-          const on = chapter.highlightSizes.includes(n);
-          gsap.to(el, {
-            backgroundColor: on
-              ? 'rgba(45, 122, 94, 1)'
-              : 'rgba(28, 25, 22, 0.06)',
-            color: on ? '#f7f4ee' : '#1c1916',
-            scale: on ? 1.04 : 1,
-            duration: 0.3,
-            overwrite: 'auto',
-          });
-        });
-
-        if (product) {
-          gsap.to(product, {
-            scale: chapter.productScale,
-            duration: 0.5,
-            ease: 'power2.out',
-            overwrite: 'auto',
-          });
-        }
-
-        if (progress) {
-          progress.style.width = `${((index + 1) / chapters.length) * 100}%`;
-        }
       };
 
       mm.add(
         {
           isDesktop: '(min-width: 1024px)',
-          isMobile: '(max-width: 1023px)',
           reduceMotion: '(prefers-reduced-motion: reduce)',
         },
         context => {
@@ -84,16 +52,15 @@ export function LandingHeroScroll() {
             reduceMotion: boolean;
           };
 
-          applyChapterChrome(0);
+          const labels = gsap.utils.toArray<HTMLElement>(
+            isDesktop ? '[data-scrub-label]' : '[data-scrub-label-mobile]',
+          );
 
           if (reduceMotion) {
-            gsap.set(chapters, {
-              autoAlpha: 1,
-              y: 0,
-              position: 'relative',
-            });
-            gsap.set(callouts, { autoAlpha: 1, y: 0 });
-            gsap.set(sizes, { clearProps: 'transform' });
+            gsap.set(labels, { autoAlpha: 1, y: 0 });
+            gsap.set(photos, { autoAlpha: 0 });
+            gsap.set(overlay, { autoAlpha: 0 });
+            gsap.set(extractor, { autoAlpha: 1 });
             return;
           }
 
@@ -108,55 +75,85 @@ export function LandingHeroScroll() {
           }
 
           if (isDesktop && pinTarget) {
-            gsap.set(chapters, { autoAlpha: 0, y: 28 });
-            gsap.set(chapters[0], { autoAlpha: 1, y: 0 });
-            gsap.set(callouts, { autoAlpha: 0, y: 12 });
-            applyChapterChrome(0);
+            gsap.set(labels, { autoAlpha: 0, y: 12 });
+            gsap.set(photos, { autoAlpha: 0 });
+            gsap.set(labels[0], { autoAlpha: 1, y: 0 });
+            gsap.set('[data-photo="hogar"]', { autoAlpha: 1 });
+            gsap.set(overlay, { autoAlpha: 1 });
+            gsap.set(extractor, { autoAlpha: 0.12 });
+            sizeVars(0).forEach(({ target, ...vars }) => {
+              gsap.set(target, vars);
+            });
 
             const tl = gsap.timeline({
-              defaults: { ease: 'none' },
+              defaults: { duration: 0.45, ease: 'none' },
               scrollTrigger: {
                 trigger: root,
                 pin: pinTarget,
-                start: 'top 5.5rem',
+                start: 'top 3.5rem',
                 end: () =>
-                  `+=${Math.round(window.innerHeight * 0.92 * (chapters.length - 1))}`,
+                  `+=${Math.round(window.innerHeight * 0.85 * labels.length)}`,
                 scrub: 0.65,
                 anticipatePin: 1,
                 invalidateOnRefresh: true,
-                onUpdate: self => {
-                  const i = Math.min(
-                    chapters.length - 1,
-                    Math.round(self.progress * (chapters.length - 1)),
-                  );
-                  applyChapterChrome(i);
-                },
               },
             });
 
-            chapters.forEach((chapter, i) => {
-              if (i === 0) return;
-              tl.to(
-                chapters[i - 1],
-                { autoAlpha: 0, y: -24, duration: 0.45 },
-                i,
-              );
-              tl.to(chapter, { autoAlpha: 1, y: 0, duration: 0.45 }, i);
+            landingScrubSteps.forEach((step, i) => {
+              tl.addLabel(step.id);
+              if (i === 0) {
+                tl.to({}, { duration: 0.7 });
+                return;
+              }
+
+              const prev = landingScrubSteps[i - 1];
+              tl.to(labels[i - 1], { autoAlpha: 0, y: -12 });
+              tl.to(labels[i], { autoAlpha: 1, y: 0 }, '<');
+
+              const prevPhoto = root.querySelector(`[data-photo="${prev.id}"]`);
+              const nextPhoto = root.querySelector(`[data-photo="${step.id}"]`);
+
+              if (prevPhoto) tl.to(prevPhoto, { autoAlpha: 0 }, '<');
+              if (nextPhoto) {
+                tl.to(nextPhoto, { autoAlpha: 1 }, '<');
+                tl.to(overlay, { autoAlpha: 1 }, '<');
+                tl.to(extractor, { autoAlpha: 0.12 }, '<');
+              } else {
+                tl.to(overlay, { autoAlpha: 0 }, '<');
+                tl.to(extractor, { autoAlpha: 1 }, '<');
+              }
+
+              sizeVars(i).forEach(({ target, ...vars }) => {
+                tl.to(target, vars, '<');
+              });
+
+              tl.to({}, { duration: 0.7 });
             });
           } else {
-            chapters.forEach((chapter, i) => {
-              gsap.from(chapter, {
+            gsap.set(photos, { autoAlpha: 0 });
+            gsap.set('[data-photo="hogar"]', { autoAlpha: 1 });
+            gsap.set(overlay, { autoAlpha: 1 });
+            labels.forEach((label, i) => {
+              gsap.from(label, {
                 autoAlpha: 0,
-                y: 24,
-                duration: 0.6,
+                y: 16,
+                duration: 0.5,
                 ease: 'power2.out',
                 scrollTrigger: {
-                  trigger: chapter,
-                  start: 'top 82%',
+                  trigger: label,
+                  start: 'top 85%',
                   toggleActions: 'play none none reverse',
-                  onEnter: () => applyChapterChrome(i),
-                  onEnterBack: () => applyChapterChrome(i),
                 },
+              });
+              sizeVars(i).forEach(({ target, ...vars }) => {
+                gsap.to(target, {
+                  ...vars,
+                  scrollTrigger: {
+                    trigger: label,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse',
+                  },
+                });
               });
             });
           }
@@ -179,38 +176,18 @@ export function LandingHeroScroll() {
     >
       <div
         data-pin
-        className="mx-auto flex w-full max-w-6xl flex-col gap-10 px-5 py-12 md:px-8 lg:min-h-[calc(100svh-5.5rem)] lg:flex-row lg:items-center lg:gap-16 lg:py-8"
+        className="mx-auto grid min-h-[calc(100svh-3.5rem)] w-full max-w-6xl grid-cols-1 gap-8 px-5 py-10 md:px-8 lg:grid-cols-2 lg:items-center lg:gap-16 lg:py-8"
       >
-        <div className="order-2 w-full lg:order-1 lg:w-[46%]">
+        <div className="order-2 lg:order-1">
           <p className="mb-6 text-[11px] font-medium tracking-[0.22em] text-[#6b6560] uppercase">
             Extractor eólico · Cali
           </p>
-          <div
-            data-chapter-stack
-            className="landing-chapter-stack relative space-y-16 lg:min-h-[28rem] lg:space-y-0"
-          >
-            {landingChapters.map((chapter, index) => {
-              const Heading = index === 0 ? 'h1' : 'h2';
-              return (
-                <article
-                  key={chapter.id}
-                  data-chapter={chapter.id}
-                  className="landing-chapter lg:absolute lg:inset-0 lg:flex lg:flex-col lg:justify-center"
-                >
-                  <p className="mb-3 text-sm font-medium tracking-wide text-[#2d7a5e]">
-                    {chapter.kicker}
-                  </p>
-                  <Heading className="landing-serif max-w-xl text-[2.15rem] leading-[1.08] font-normal text-[#1c1916] sm:text-5xl lg:text-[3.35rem]">
-                    {chapter.title}
-                  </Heading>
-                  <p className="mt-5 max-w-md text-[15px] leading-relaxed text-[#5c574f] sm:text-base">
-                    {chapter.body}
-                  </p>
-                </article>
-              );
-            })}
-          </div>
-
+          <h1 className="landing-serif max-w-xl text-[2.15rem] leading-[1.08] font-normal text-[#1c1916] sm:text-5xl lg:text-[3.35rem]">
+            {landingHeroCopy.h1}
+          </h1>
+          <p className="mt-5 max-w-md text-[15px] leading-relaxed text-[#5c574f] sm:text-base">
+            {landingHeroCopy.sub}
+          </p>
           <div className="mt-10 flex flex-wrap items-center gap-3">
             <Button asChild size="lg" className="rounded-full px-7 shadow-none">
               <Link href="/cotizador">Cotizar</Link>
@@ -232,55 +209,103 @@ export function LandingHeroScroll() {
           </div>
         </div>
 
-        <div className="order-1 w-full lg:order-2 lg:w-[54%]">
-          <div className="relative mx-auto max-w-lg">
-            {landingCallouts.map(callout => (
-              <div
-                key={callout.id}
-                data-callout={callout.id}
-                className={cn(
-                  'pointer-events-none absolute z-10 hidden max-w-[10.5rem] rounded-2xl border border-[#1c1916]/8 bg-[#f7f4ee]/90 px-3 py-2 shadow-sm backdrop-blur-sm lg:block',
-                  callout.position,
-                )}
-              >
-                <p className="text-[11px] font-semibold tracking-wide text-[#1c1916] uppercase">
-                  {callout.label}
-                </p>
-                <p className="mt-0.5 text-[11px] leading-snug text-[#6b6560]">
-                  {callout.detail}
-                </p>
-              </div>
-            ))}
+        <div className="order-1 flex flex-col gap-4 lg:order-2">
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-[#e6e0d4] lg:aspect-auto lg:h-[min(36rem,calc(100svh-8rem))]">
+            {landingScrubSteps
+              .filter(step => step.photo)
+              .map(step => (
+                <div
+                  key={step.id}
+                  data-photo={step.id}
+                  className="absolute inset-0"
+                >
+                  {/* biome-ignore lint/performance/noImgElement: SVG slots until Figma drops PNG/WebP. */}
+                  <img
+                    src={step.photo ?? ''}
+                    alt={step.title}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              ))}
 
-            <div data-product className="origin-center will-change-transform">
+            <div
+              data-overlay
+              className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[42%] bg-gradient-to-t from-black/80 via-black/40 to-transparent"
+            />
+
+            <div
+              data-extractor
+              className="relative z-20 mx-auto flex h-full max-w-sm items-center px-6"
+            >
               <ExtractorVisual />
             </div>
 
-            <div className="mt-2 flex items-center justify-center gap-2">
-              {[24, 31, 39].map(size => (
-                <span
-                  key={size}
-                  data-size={size}
-                  className="inline-flex min-w-16 items-center justify-center rounded-full bg-[#1c1916]/6 px-3 py-1.5 text-xs font-medium text-[#1c1916]"
-                >
-                  {size}&quot;
-                </span>
+            <div className="absolute inset-x-0 bottom-0 z-30 hidden lg:block">
+              {landingScrubSteps.map(step => (
+                <ScrubLabel key={step.id} step={step} attr="data-scrub-label" />
               ))}
             </div>
           </div>
+
+          <div className="flex items-center justify-center gap-2">
+            {[24, 31, 39].map(size => (
+              <span
+                key={size}
+                data-size={size}
+                className="inline-flex min-w-16 items-center justify-center rounded-full bg-[#1c1916]/6 px-3 py-1.5 text-xs font-medium text-[#1c1916]"
+              >
+                {size}&quot;
+              </span>
+            ))}
+          </div>
+
+          <div className="space-y-8 pb-8 lg:hidden">
+            {landingScrubSteps.map(step => (
+              <ScrubLabel
+                key={step.id}
+                step={step}
+                attr="data-scrub-label-mobile"
+                onPaper
+              />
+            ))}
+          </div>
         </div>
       </div>
-
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[#1c1916]/10"
-        aria-hidden
-      >
-        <span
-          data-progress
-          className="block h-px bg-[#2d7a5e] transition-[width] duration-300"
-          style={{ width: `${100 / landingChapters.length}%` }}
-        />
-      </div>
     </section>
+  );
+}
+
+function ScrubLabel({
+  step,
+  onPaper = false,
+  attr,
+}: {
+  step: (typeof landingScrubSteps)[number];
+  onPaper?: boolean;
+  attr: 'data-scrub-label' | 'data-scrub-label-mobile';
+}) {
+  const titleClass = onPaper
+    ? 'landing-serif text-xl text-[#1c1916]'
+    : 'landing-serif text-xl text-white sm:text-2xl';
+  const bodyClass = onPaper
+    ? 'mt-1 text-sm leading-relaxed text-[#5c574f]'
+    : 'mt-1 text-sm leading-relaxed text-white/80';
+  const kickerClass = onPaper
+    ? 'mb-1 text-[10px] font-medium tracking-[0.18em] text-[#2d7a5e] uppercase'
+    : 'mb-1 text-[10px] font-medium tracking-[0.18em] text-white/70 uppercase';
+
+  return (
+    <div
+      {...{ [attr]: step.id }}
+      className={onPaper ? '' : 'absolute inset-x-0 bottom-0 p-5'}
+    >
+      {step.isPlaceholder ? (
+        <p className={kickerClass}>Placeholder — no es un quote real</p>
+      ) : (
+        <p className={kickerClass}>{step.kicker}</p>
+      )}
+      <p className={titleClass}>{step.title}</p>
+      <p className={bodyClass}>{step.body}</p>
+    </div>
   );
 }

@@ -227,13 +227,6 @@ export const siteConfig = {
         { title: 'Simulador', href: '/cotizador#simulador' },
         { title: 'Cotización', href: '/cotizador#cotizacion' },
       ],
-      '/landing': [
-        { title: 'Experiencia', href: '/landing#experiencia' },
-        { title: 'Instalaciones', href: '/landing#instalaciones' },
-        { title: 'Indicadores', href: '/landing#indicadores' },
-        { title: 'Beneficios', href: '/landing#beneficios' },
-        { title: 'Cotizar', href: '/landing#cotizar-b2b' },
-      ],
     } as Record<string, { title: string; href: string }[]>,
   },
   features: [

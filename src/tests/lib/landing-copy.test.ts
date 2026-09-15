@@ -1,39 +1,44 @@
 import { describe, expect, test } from 'bun:test';
 import {
-  landingChapters,
-  landingGallery,
-  landingMetrics,
-  landingQuote,
+  landingHeroCopy,
+  landingScrubSteps,
+  landingTimelineLabels,
 } from '@/components/landing/copy';
 
-describe('landing proposal copy', () => {
-  test('covers the brief narrative blocks in order', () => {
-    expect(landingChapters.map(chapter => chapter.id)).toEqual([
-      'calor',
-      'kwh',
+describe('landing T1 copy', () => {
+  test('uses the exact left-hero placeholders', () => {
+    expect(landingHeroCopy.h1).toBe(
+      'Baja el calor que se siente. Sin gastar un kWh.',
+    );
+    expect(landingHeroCopy.sub.toLowerCase()).toContain(
+      'hogar, bodega y local en colombia',
+    );
+  });
+
+  test('scrubs timeline labels in the brief order', () => {
+    expect(landingTimelineLabels).toEqual([
       'hogar',
       'bodega',
       'tallas',
       'hongo',
       'pintura',
-      'cotizar',
+      'indicadores',
+      'cita',
+      'beneficios',
     ]);
+    expect(landingScrubSteps.map(step => step.id)).toEqual(
+      landingTimelineLabels,
+    );
   });
 
-  test('exposes catalog sizes 24, 31 and 39', () => {
-    const sizes = new Set(landingChapters.flatMap(c => c.highlightSizes));
-    expect(sizes.has(24)).toBe(true);
-    expect(sizes.has(31)).toBe(true);
-    expect(sizes.has(39)).toBe(true);
+  test('marks the project quote as a placeholder', () => {
+    const cita = landingScrubSteps.find(step => step.id === 'cita');
+    expect(cita?.isPlaceholder).toBe(true);
+    expect(cita?.body.toLowerCase()).toContain('juan');
   });
 
-  test('marks gallery shots and the project quote as placeholders', () => {
-    expect(landingGallery.every(shot => shot.placeholder)).toBe(true);
-    expect(landingQuote.isPlaceholder).toBe(true);
-    expect(landingQuote.meta.toLowerCase()).toContain('testimonio');
-  });
-
-  test('includes 0 kWh as a metric', () => {
-    expect(landingMetrics.some(metric => metric.value === '0 kWh')).toBe(true);
+  test('does not invent m3/h or prices', () => {
+    const blob = landingScrubSteps.map(s => `${s.title} ${s.body}`).join(' ');
+    expect(blob).not.toMatch(/m³\/h|m3\/h|\bCOP\b|\$\d/i);
   });
 });
