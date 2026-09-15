@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Placeholder cubierta metálica">
+  <rect width="800" height="1000" fill="#7f8c94"/>
+  <polygon points="0,260 400,90 800,260 800,1000 0,1000" fill="#6a767e"/>
+  <g stroke="#5c676e" stroke-width="8">
+    <path d="M40 300 L400 140 L760 300"/>
+    <path d="M80 380 L400 210 L720 380"/>
+    <path d="M120 460 L400 280 L680 460"/>
+    <path d="M160 540 L400 350 L640 540"/>
+  </g>
+  <g>
+    <circle cx="280" cy="250" r="48" fill="#d5d1c8"/>
+    <circle cx="400" cy="200" r="52" fill="#ddd9d0"/>
+    <circle cx="520" cy="250" r="48" fill="#d5d1c8"/>
+  </g>
+  <text x="40" y="930" font-family="Georgia, serif" font-size="32" fill="#f7f4ee">Cubierta metálica</text>
+</svg>

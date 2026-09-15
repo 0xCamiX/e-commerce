@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Placeholder losa plana">
+  <rect width="800" height="620" fill="#b9c8d1"/>
+  <rect y="560" width="800" height="440" fill="#8e8a82"/>
+  <rect y="540" width="800" height="36" fill="#a8a39a"/>
+  <rect x="60" y="580" width="680" height="14" fill="#6f6b64" opacity="0.35"/>
+  <rect x="372" y="430" width="56" height="120" rx="6" fill="#cfcbc2"/>
+  <circle cx="400" cy="390" r="82" fill="#dcd8cf"/>
+  <circle cx="400" cy="390" r="28" fill="#6d6a64"/>
+  <circle cx="120" cy="120" r="40" fill="#f3efe6" opacity="0.35"/>
+  <text x="40" y="930" font-family="Georgia, serif" font-size="32" fill="#f7f4ee">Losa plana</text>
+</svg>

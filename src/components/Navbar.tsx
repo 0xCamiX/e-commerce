@@ -21,6 +21,7 @@ function getActiveProduct(pathname: string): string {
     return '/extractores-tipo-hongo';
   if (pathname.startsWith('/pintura-termica')) return '/pintura-termica';
   if (pathname.startsWith('/cotizador')) return '/cotizador';
+  if (pathname.startsWith('/landing')) return '/landing';
   return '/';
 }
 

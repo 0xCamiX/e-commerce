@@ -129,3 +129,26 @@
     @apply text-lg font-semibold;
   }
 }
+
+.landing-canvas {
+  background-color: #f3efe6;
+  color: #1c1916;
+}
+
+.landing-serif {
+  font-family: var(--font-landing-serif), ui-serif, Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-chapter {
+    position: relative !important;
+    inset: auto !important;
+  }
+
+  .landing-chapter-stack {
+    min-height: 0 !important;
+    row-gap: 4rem;
+  }
+}

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Placeholder antes y después">
+  <rect width="400" height="1000" fill="#c45c32"/>
+  <rect x="400" width="400" height="1000" fill="#6a9aa3"/>
+  <text x="200" y="120" text-anchor="middle" font-family="Georgia, serif" font-size="36" fill="#f7f4ee">Antes</text>
+  <text x="600" y="120" text-anchor="middle" font-family="Georgia, serif" font-size="36" fill="#f7f4ee">Después</text>
+  <rect x="170" y="400" width="60" height="120" rx="6" fill="#e7cbb8" opacity="0.5"/>
+  <circle cx="200" cy="360" r="70" fill="#e7cbb8" opacity="0.45"/>
+  <rect x="570" y="400" width="60" height="120" rx="6" fill="#e8f0f2"/>
+  <circle cx="600" cy="360" r="70" fill="#e8f0f2"/>
+  <text x="400" y="930" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#f7f4ee">Placeholder  no es una medición real</text>
+</svg>

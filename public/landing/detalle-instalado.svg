@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Placeholder detalle instalado">
+  <rect width="800" height="1000" fill="#cfc9bb"/>
+  <circle cx="400" cy="420" r="260" fill="#b7b2a6"/>
+  <circle cx="400" cy="420" r="210" fill="#d8d4ca"/>
+  <g fill="none" stroke="#8a867c" stroke-width="10">
+    <path d="M400 210 C480 260 540 330 560 420 C540 510 480 580 400 630 C320 580 260 510 240 420 C260 330 320 260 400 210"/>
+    <path d="M400 250 C460 290 510 350 520 420 C510 490 460 550 400 590 C340 550 290 490 280 420 C290 350 340 290 400 250"/>
+  </g>
+  <circle cx="400" cy="420" r="70" fill="#6f6c66"/>
+  <circle cx="372" cy="396" r="16" fill="#f3efe6" opacity="0.7"/>
+  <text x="40" y="930" font-family="Georgia, serif" font-size="32" fill="#1c1916">Detalle · aspas esféricas</text>
+</svg>
