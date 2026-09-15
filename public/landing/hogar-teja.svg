@@ -1,21 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Placeholder teja hogar">
-  <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#c5d6de"/>
-      <stop offset="100%" stop-color="#e7d7c4"/>
-    </linearGradient>
-  </defs>
-  <rect width="800" height="1000" fill="url(#sky)"/>
-  <polygon points="0,430 400,220 800,430 800,1000 0,1000" fill="#b45c3a"/>
-  <g fill="#9a4a2e">
-    <path d="M40 470 h720 v18 H40 z"/>
-    <path d="M70 520 h660 v18 H70 z"/>
-    <path d="M100 570 h600 v18 H100 z"/>
-    <path d="M140 620 h520 v18 H140 z"/>
-    <path d="M180 670 h440 v18 H180 z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" width="800" height="1000" preserveAspectRatio="xMidYMid meet">
+  <rect width="800" height="1000" fill="#d7e3ea"/>
+  <rect y="0" width="800" height="520" fill="#c5d6de"/>
+  <polygon points="0,280 400,90 800,280 800,620 0,620" fill="#c45c32"/>
+  <polygon points="0,280 400,90 800,280 800,320 400,140 0,320" fill="#a34728"/>
+  <g fill="#9a3f22">
+    <path d="M80 330 h640 v16 H80z"/>
+    <path d="M120 380 h560 v16 H120z"/>
+    <path d="M160 430 h480 v16 H160z"/>
+    <path d="M210 480 h380 v16 H210z"/>
   </g>
-  <rect x="372" y="250" width="56" height="90" rx="6" fill="#c9c4b8"/>
-  <circle cx="400" cy="220" r="78" fill="#d8d4cb"/>
-  <circle cx="400" cy="220" r="28" fill="#8a8680"/>
-  <text x="40" y="930" font-family="Georgia, serif" font-size="32" fill="#f7f4ee">Teja · hogar</text>
+  <rect x="368" y="118" width="64" height="100" rx="6" fill="#d8d4cb"/>
+  <circle cx="400" cy="92" r="86" fill="#ece9e1"/>
+  <circle cx="400" cy="92" r="32" fill="#5c5a56"/>
+  <circle cx="372" cy="70" r="10" fill="#ffffff" opacity="0.65"/>
+  <rect y="620" width="800" height="380" fill="#5a3a2c"/>
 </svg>

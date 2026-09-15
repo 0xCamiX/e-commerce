@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { landingGallery, landingQuote } from '@/components/landing/copy';
 
 export function LandingGallery() {
@@ -27,15 +26,13 @@ export function LandingGallery() {
             key={shot.id}
             className="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-[#e6e0d4]"
           >
-            <Image
+            {/* biome-ignore lint/performance/noImgElement: SVG placeholders aren't handled well by next/image; swap when Juan drops JPG/WebP. */}
+            <img
               src={shot.src}
               alt={shot.title}
-              fill
-              unoptimized
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 from-20% via-black/35 via-45% to-transparent" />
             {shot.placeholder ? (
               <span className="absolute top-3 left-3 rounded-full bg-black/45 px-2.5 py-1 text-[10px] font-medium tracking-wide text-white/90 uppercase backdrop-blur-sm">
                 Placeholder
